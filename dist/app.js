@@ -68,8 +68,8 @@ function renderScroll() {
       element.style.setProperty('--brand-turn',`${progress*180}deg`);
     } else if (element.classList.contains('hero')) {
       const progress = clamp(-rect.top / Math.max(1, rect.height));
-      element.style.setProperty('--city-drift', `${progress * (narrow ? 35 : 95)}px`);
-      element.style.setProperty('--city-scale', (1.10 - progress * .06).toFixed(3));
+      element.style.setProperty('--city-drift', `${progress * (narrow ? 14 : 24)}px`);
+      element.style.setProperty('--city-scale', (1.18 - progress * .03).toFixed(3));
       element.style.setProperty('--title-drift', `${progress * (narrow ? -12 : -42)}px`);
     } else if (element.classList.contains('intro')) {
       const progress = clamp((height * .78 - rect.top) / Math.max(1, rect.height * .65));
