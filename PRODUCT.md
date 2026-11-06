@@ -1,4 +1,4 @@
-﻿# Confort4
+# Confort4
 <!-- impeccable:product-schema 1 -->
 ## Platform
 web
@@ -17,4 +17,4 @@ Header: Quiénes somos; Quiero: Vender, Comprar, Rentar; Mis propiedades. Indepe
 
 Current user preference: no advisor photos on the page for now; show the actual Confort4 logo on white; direct Vender, Rentar and Comprar header links, plus social icons.
 
-Latest scope: advisor photos belong only on the dedicated team page. Homepage is brief and includes a contact form. Separate service URLs cover selling, buying, and both sides of renting. A separate review URL receives private submissions pending moderation. Future advisor-managed admin UI is a planned next stage, not part of the current implementation. Confort4 now owns private form records in its own Supabase schema; no KW tables are changed. Recipient email remains an open owner decision.
+Latest scope: advisor photos belong only on the dedicated team page. Homepage is brief and includes a contact form. Separate service URLs cover selling, buying, and both sides of renting. A separate review URL receives private submissions pending moderation. Future advisor-managed admin UI is a planned next stage, not part of the current implementation. Confort4 now owns private form records in its own Supabase schema; no KW tables are changed. Notification recipient was supplied by the owner and configured privately in Supabase.

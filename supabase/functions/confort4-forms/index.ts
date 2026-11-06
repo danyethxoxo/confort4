@@ -5,7 +5,7 @@ const env=(key:string)=>Deno.env.get(key)||'';
 const url=env('SUPABASE_URL');
 const serviceKey=env('SUPABASE_SERVICE_ROLE_KEY')||env('SERVICE_ROLE_KEY');
 const resendKey=env('RESEND_API_KEY');
-const sharedSender=env('CORREO_REMITENTE');
+const sharedSender=env('CORREO_REMITENTE')||env('EMAIL_FROM');
 const verifiedAddress=sharedSender.match(/<([^>]+)>/)?.[1]||(sharedSender.includes('@')?sharedSender:'');
 const sender=env('CONFORT4_FROM')||(verifiedAddress?`Confort4 <${verifiedAddress}>`:'');
 function respond(data:unknown,status=200){return new Response(JSON.stringify(data),{status,headers});}
@@ -58,6 +58,7 @@ Deno.serve(async(req:Request)=>{
   // Contact capture never disappears if email delivery is temporarily unavailable.
   try{
    const config=await rpc('confort4_email_config');
+   if(!config?.to||!resendKey||!sender)console.warn('confort4-forms: incomplete email configuration',JSON.stringify({recipient:!!config?.to,resend:!!resendKey,sender:!!sender}));
    if(config?.to&&resendKey&&sender&&emailStatus!=='sent'&&(claimed=await rpc('confort4_claim_notification',{p_id:saved.id}))){
     const p=input.payload;
     const lines=[input.kind==='review'?'Nueva reseña de Confort4':'Nuevo contacto de Confort4','',`Nombre: ${p.name}`,`Correo: ${p.email}`,`Teléfono: ${p.phone||'No indicado'}`,`Interés: ${p.interest}`,...(input.kind==='review'?[`Calificación: ${p.rating}/5`,`Permiso de publicación: ${p.publishConsent?'Sí':'No'}`]:[]),'',p.message,'',`Referencia: ${saved.id}`];

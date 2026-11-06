@@ -33,7 +33,7 @@ Proyecto Supabase: `iloetojomzqtadkithtv`. Esquema privado propio: `confort4`. F
 
 La función valida el cuerpo, consentimiento, puntuación y origen; limita tamaño y frecuencia; evita duplicados por ID; guarda primero y luego intenta notificar por Resend. Una falla de correo no pierde el lead. Las reseñas entran pendientes y nunca se publican automáticamente.
 
-**Para activar la notificación falta definir el destinatario en `confort4.settings.notification_email` con el correo que indique el propietario.** Se reutiliza la credencial de Resend del servidor; el remitente se presenta como Confort4. No se envía copia a la oficina. `CONFORT4_FROM` permite configurar un remitente propio verificado sin tocar las otras funciones.
+**La notificación por correo está activada con el destinatario indicado por el propietario, guardado de forma privada en `confort4.settings.notification_email`.** Se reutiliza la credencial de Resend del servidor; el remitente se presenta como Confort4. No se envía copia a la oficina. `CONFORT4_FROM` permite configurar un remitente propio verificado sin tocar las otras funciones.
 
 ## Futuro panel
 

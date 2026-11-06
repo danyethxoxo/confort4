@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 let handler;const calls=[];let mode='success';
-globalThis.Deno={env:{get:name=>({SUPABASE_URL:'https://example.invalid',SUPABASE_SERVICE_ROLE_KEY:'test-service-key',RESEND_API_KEY:'test-resend-key',CORREO_REMITENTE:'KW Premier <avisos@example.invalid>'}[name]||'')},serve:fn=>handler=fn};
+globalThis.Deno={env:{get:name=>({SUPABASE_URL:'https://example.invalid',SUPABASE_SERVICE_ROLE_KEY:'test-service-key',RESEND_API_KEY:'test-resend-key',EMAIL_FROM:'KW Premier <avisos@example.invalid>'}[name]||'')},serve:fn=>handler=fn};
 globalThis.fetch=async(url,options)=>{
  const body=JSON.parse(options.body);calls.push({url,body});
  const name=url.split('/').at(-1);
