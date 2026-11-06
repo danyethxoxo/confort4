@@ -1,21 +1,16 @@
-# Confort4 visual direction
+# Confort4 — revised direction
 
-User-pinned direction takes priority over the concept seed. Code-led implementation of the supplied references for this first base.
+User rejected the dark pinned collage and supplied Coinbase and Cuure as replacement references. The former Pete Sena effects are superseded.
 
 | Decision | Source | Application |
 | --- | --- | --- |
-| Charcoal, white, red | Supplied Confort4 logo | White reading surfaces, charcoal opening and closing, red actions |
-| Large restrained typography and generous space | Bauhaus Clock | Manrope, disciplined geometry, no decorative cards |
-| Cinematic opening and scroll reveal | Pete Sena | Wide CDMX photograph, clipped opening, staggered type, native scroll, reduced-motion fallback |
-| Services, team, properties, contact | Jaime Luciano and user header | Direct paths to selling, buying and renting |
-| Two generations | User copy and portraits | Equal standing for Alberto and Renata, no invented titles |
+| Clear product-first hierarchy and whitespace | Coinbase official page and public homepage captures | White navigation, large left-aligned title, explicit primary action |
+| Personal guidance and concise visual presentation | Cuure official page and Bubble's Cuure showcase | Split hero with one residential photo; service choices; accordion; soft neutral surfaces |
+| Red and charcoal identity | User-provided logo | Red actions, original logo in footer, official KW Premier affiliation |
+| Team and service intents | User's brief | Equal presentation of Alberto/Renata; direct Vender, Comprar, Rentar navigation |
 
-Mode: Persuade. First viewport: navigation on charcoal, oversized heading, immersive city photograph, clear WhatsApp action. Signature: photography opens like a window as the title appears; scrolling expands the photo, then passes to white team and service sections. No scroll hijacking. Responsive controls and visible content without JavaScript. Catalog starts empty until actual inventory association is confirmed.
+First viewport: white sticky header, 'Un espacio para lo que sigue.' left, residential photograph right. Photography is ambiance, never a claimed listing. A compact trust row retains CDMX and KW Premier. Progression: choose an intent, understand the service, meet the team, request property options, contact. Catalog explicitly remains in preparation.
 
-## Scrollytelling
+Motion is confined to brief native entrances. No pinned scenes, floating fragments or artificial scroll distances. Content is visible by default, reduced motion cancels entrances. Self-hosted Manrope variable; max-width 1432px including gutters; 16px photo corners.
 
-Requested extension of the pinned Pete Sena motion reference. The focal narrative moves from the city to the two-generation team: city image travels slower than the opening text; the introduction headline stays alongside the explanation and its words gain emphasis; services gain focus as the visitor reaches each decision; portraits converge gently with Renata entering later on desktop; the closing invitation opens to full width. Native scrolling, no forced snapping, no scroll interception. A single requestAnimationFrame batches geometry reads before writes, only intersecting scenes are updated, no perpetual loop. Mobile reduces displacement and removes sticky reading; reduced motion presents all content without spatial effects. Existing controls and content stay available without JavaScript.
-
-## Video reference refinement
-
-Reviewed 15 sampled frames across the user's 30.3-second Pete Sena MP4, including its opening collage, stacking service panels and pinned principles sequence. Replaced the subtle-only approach with a sticky opening stage where real team/city fragments move outward, three full-width overlapping service chapters, a pinned three-step values sequence with the official logo and orbit, and a compact floating navigation. Preserves the Confort4 palette and content. Mobile shortens the pinned scenes; reduced motion removes pinning and exposes every values paragraph in normal document flow.
+Verification limitation: browser access host is unavailable; native Chrome control cannot establish the current URL. DOM simulation and deployment checks are not visual verification.

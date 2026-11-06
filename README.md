@@ -20,3 +20,9 @@ Siguiente fase: esquema privado `confort4` para configuraciÃ³n/selecciones/lea
 
 La carpeta `dist` contiene el sitio. `.openai/hosting.json` conserva la identidad del alojamiento Sites. El repositorio GitHub es independiente del sitio KW Premier.
 
+
+## Rediseño actual
+
+Referencia de jerarquía: Coinbase. Referencia de presentación y acompañamiento: Cuure. Se retiró el scrollytelling fijado. Navegación sticky, servicios con details/summary nativos, selector de intención que prepara el mensaje de WhatsApp. No realiza envíos automáticos. Retratos optimizados en WebP.
+
+Fotografías de ambientación, no propiedades anunciadas: https://images.unsplash.com/photo-1600210492486-724fe5c67fb0 y https://images.unsplash.com/photo-1600607687920-4e2a09cf159d. Manrope variable se distribuye con su licencia OFL en assets/manrope-license.txt.
