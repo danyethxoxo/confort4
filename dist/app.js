@@ -1,0 +1,14 @@
+const menuButton = document.querySelector('.menu-toggle');
+const navigation = document.querySelector('#navigation');
+const intentButton = document.querySelector('#intent-toggle');
+const intentMenu = document.querySelector('#intent-menu');
+function closeIntent(){if(intentMenu){intentMenu.hidden=true;intentButton.setAttribute('aria-expanded','false');}}
+menuButton?.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')!=='true';menuButton.setAttribute('aria-expanded',String(open));navigation.classList.toggle('open',open);if(!open)closeIntent();});
+intentButton?.addEventListener('click',()=>{const open=intentMenu.hidden;intentMenu.hidden=!open;intentButton.setAttribute('aria-expanded',String(open));});
+document.addEventListener('click',event=>{if(!event.target.closest('.dropdown'))closeIntent();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){const wasOpen=intentButton?.getAttribute('aria-expanded')==='true';closeIntent();if(wasOpen)intentButton.focus();else if(menuButton?.getAttribute('aria-expanded')==='true'){menuButton.setAttribute('aria-expanded','false');navigation.classList.remove('open');menuButton.focus();}}});
+navigation?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{navigation.classList.remove('open');menuButton.setAttribute('aria-expanded','false');closeIntent();}));
+document.querySelector('#year')?.replaceChildren(String(new Date().getFullYear()));
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+if(!reducedMotion.matches&&'IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.animate([{opacity:.35,transform:'translateY(20px)'},{opacity:1,transform:'translateY(0)'}],{duration:650,easing:'cubic-bezier(.16,1,.3,1)'});observer.unobserve(entry.target);}}},{threshold:.12});document.querySelectorAll('[data-reveal]').forEach(el=>observer.observe(el));}
+document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(other=>{other.classList.toggle('active',other===button);other.setAttribute('aria-pressed',String(other===button));});const choice=button.dataset.filter;const title=document.querySelector('.catalog-empty h3');if(title)title.textContent=choice==='venta'?'¿Buscas una propiedad para comprar?':choice==='renta'?'¿Buscas una propiedad en renta?':'Tu búsqueda puede empezar hoy.';const contact=document.querySelector('.catalog-empty a');if(contact){const message=choice==='venta'?'Hola Confort4, busco una propiedad para comprar.':choice==='renta'?'Hola Confort4, busco una propiedad en renta.':'Hola Confort4, me gustaría conocer las propiedades disponibles.';contact.href=`https://wa.me/525534347566?text=${encodeURIComponent(message)}`;}}));
