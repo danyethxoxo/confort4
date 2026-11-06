@@ -16,3 +16,5 @@ User provided business introduction, social links, phone +52 55 3434 7566. No ve
 Header: Quiénes somos; Quiero: Vender, Comprar, Rentar; Mis propiedades. Independent GitHub repository. Existing Supabase KW Premier is read-only inventory source; any new functions or records must be isolated. Catalog scope remains undecided, so no full-network publication.
 
 Current user preference: no advisor photos on the page for now; show the actual Confort4 logo on white; direct Vender, Rentar and Comprar header links, plus social icons.
+
+Latest scope: advisor photos belong only on the dedicated team page. Homepage is brief and includes a contact form. Separate service URLs cover selling, buying, and both sides of renting. A separate review URL receives private submissions pending moderation. Future advisor-managed admin UI is a planned next stage, not part of the current implementation. Confort4 now owns private form records in its own Supabase schema; no KW tables are changed. Recipient email remains an open owner decision.

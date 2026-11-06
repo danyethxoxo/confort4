@@ -4,15 +4,40 @@ function closeNavigation(){navigation?.classList.remove('open');menuButton?.setA
 menuButton?.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')!=='true';menuButton.setAttribute('aria-expanded',String(open));navigation.classList.toggle('open',open);});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menuButton?.getAttribute('aria-expanded')==='true'){closeNavigation();menuButton.focus();}});
 navigation?.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeNavigation));
-const serviceDetails=[...document.querySelectorAll('.service-accordion details')];
-function openService(target){if(!target)return;serviceDetails.forEach(detail=>{detail.open=detail===target;});}
-function openRequestedService(){openService(serviceDetails.find(detail=>`#${detail.id}`===location.hash));}
-window.addEventListener('hashchange',openRequestedService);
-document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',()=>openService(serviceDetails.find(detail=>`#${detail.id}`===link.getAttribute('href')))));
-openRequestedService();
 document.querySelector('#year')?.replaceChildren(String(new Date().getFullYear()));
-const choices={comprar:{description:'Un hogar para vivir o una propiedad para invertir. Busquemos opciones que se ajusten a ti.',action:'Cuéntanos qué buscas',message:'Hola Confort4, busco una propiedad para comprar.'},rentar:{description:'Un espacio para empezar o cambiar de etapa. Cuéntanos dónde y cómo te gustaría vivir.',action:'Busquemos tu próxima renta',message:'Hola Confort4, busco una propiedad para rentar.'},vender:{description:'Tu propiedad tiene una historia. Platiquemos de sus características y de cómo presentarla al mercado.',action:'Hablemos de tu propiedad',message:'Hola Confort4, quiero vender mi propiedad.'}};
-document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{const choice=choices[button.dataset.filter];if(!choice)return;document.querySelectorAll('.filter').forEach(other=>{other.classList.toggle('active',other===button);other.setAttribute('aria-pressed',String(other===button));});document.querySelector('#search-description').textContent=choice.description;const contact=document.querySelector('#search-contact');contact.href=`https://wa.me/525534347566?text=${encodeURIComponent(choice.message)}`;contact.firstChild.textContent=choice.action+' ';}));
+const requestedInterest=new URLSearchParams(location.search).get('interes');
+document.querySelectorAll('form.site-form').forEach(form=>{
+ const interest=form.querySelector('[name="interest"]');
+ if(interest&&[...interest.options].some(option=>option.value===requestedInterest))interest.value=requestedInterest;
+ let lastPayload='',requestId='';
+ form.addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(!form.reportValidity())return;
+  const status=form.querySelector('.form-status'),button=form.querySelector('button[type="submit"]');
+  const initialLabel=button.innerHTML;
+  const data=new FormData(form);
+  const payload={kind:form.dataset.kind,name:String(data.get('name')||'').trim(),email:String(data.get('email')||'').trim(),phone:String(data.get('phone')||'').trim(),interest:String(data.get('interest')||''),message:String(data.get('message')||'').trim(),rating:Number(data.get('rating')||0),consent:data.get('consent')==='on',publishConsent:data.get('publishConsent')==='on',website:String(data.get('website')||'')};
+  const serialized=JSON.stringify(payload);
+  if(serialized!==lastPayload){requestId=crypto.randomUUID();lastPayload=serialized;}
+  status.textContent='Enviando tu mensaje…';status.classList.remove('is-error');
+  button.disabled=true;button.textContent='Enviando…';form.setAttribute('aria-busy','true');
+  try{
+   const config=window.CONFORT4_FORMS;
+   if(!config?.endpoint||!config?.anonKey)throw new Error('El formulario no está disponible. Escríbenos por WhatsApp.');
+   const response=await fetch(config.endpoint,{method:'POST',headers:{'Content-Type':'application/json',apikey:config.publishableKey,Authorization:'Bearer '+config.anonKey},body:JSON.stringify({...payload,requestId}),signal:AbortSignal.timeout(20000)});
+   const result=await response.json().catch(()=>null);
+   if(!response.ok||!result?.ok)throw new Error(result?.error||'No pudimos confirmar el envío. Intenta otra vez o usa WhatsApp.');
+   status.textContent=result.message;
+   form.classList.add('is-complete');
+   form.querySelectorAll('input,textarea,select').forEach(field=>field.disabled=true);
+   button.textContent=form.dataset.kind==='review'?'Reseña recibida':'Mensaje recibido';
+   status.focus();
+  }catch(error){
+   status.textContent=error.name==='TimeoutError'?'La conexión tardó demasiado. Intenta de nuevo; evitaremos duplicar tu mensaje.':error.message;
+   status.classList.add('is-error');button.disabled=false;button.innerHTML=initialLabel;status.focus();
+  }finally{form.removeAttribute('aria-busy');}
+ });
+});
 // Restrained entrances; all content remains visible without JavaScript.
 const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
 if('IntersectionObserver' in window){

@@ -1,0 +1,66 @@
+{
+  "brand": "Confort4",
+  "phone": "+52 55 3434 7566",
+  "whatsapp": "https://wa.me/525534347566",
+  "team": {
+    "title": "Dos generaciones. Un equipo contigo.",
+    "intro": "Somos un equipo de profesionales inmobiliarios certificados que combina experiencia y nuevas perspectivas para acompañar cada proyecto en CDMX.",
+    "paragraphs": [
+      "Entendemos que cada generación tiene distintas prioridades: un primer hogar, un cambio de etapa, un patrimonio por cuidar o una propiedad para invertir. Empezamos por escuchar tu proyecto antes de buscar una solución.",
+      "Trabajamos con ética, visión de futuro y atención personal. Alberto y Renata Flores forman Confort4, una inmobiliaria afiliada a KW Premier."
+    ],
+    "members": [
+      {"id":"alberto","name":"Alberto Flores Resendiz","photo":"assets/alberto.webp","contact":"https://wa.me/525534347566","contactLabel":"Hablar con Alberto"},
+      {"id":"renata","name":"Renata Flores","photo":"assets/renata.webp","contact":"https://www.instagram.com/renflogar/","contactLabel":"Conocer a Renata"}
+    ]
+  },
+  "services": [
+    {
+      "id":"vender","title":"Vender una propiedad empieza con una buena estrategia.","shortTitle":"Vender","image":"assets/home-detail.jpg",
+      "intro":"Poner un anuncio es solo una parte. Una venta requiere entender el mercado, preparar la documentación y acompañar las decisiones hasta el cierre.",
+      "cta":"Quiero asesoría para vender",
+      "sections":[
+        {"title":"Antes de salir al mercado","text":"Primero conviene aclarar qué quieres lograr, en qué plazo y bajo qué condiciones. Un precio de salida debe considerar la ubicación, el estado del inmueble y propiedades comparables; no solo el monto que te gustaría recibir."},
+        {"title":"Un expediente que permita avanzar","text":"La revisión de la propiedad y sus antecedentes ayuda a detectar pendientes antes de negociar. Los documentos y las verificaciones concretas dependen de la operación; el asesor puede organizar la información y coordinar su revisión con la notaría o el especialista correspondiente."},
+        {"title":"Presentar bien, atender mejor","text":"Fotografías, descripción y difusión deben contar con claridad lo que ofrece tu inmueble. También importa atender consultas, organizar visitas y dar seguimiento a las personas interesadas, sin perder el control de tu tiempo."},
+        {"title":"Negociar también es revisar condiciones","text":"El precio es importante, pero también lo son la forma de pago, los tiempos, los compromisos y la entrega. La asesoría ayuda a comparar propuestas y a mantener una comunicación ordenada entre las partes."}
+      ],
+      "benefitsTitle":"¿Qué aporta un asesor inmobiliario?",
+      "benefits":["Un punto de referencia para definir la estrategia comercial.","Coordinación de visitas y seguimiento a interesados.","Acompañamiento para entender las propuestas.","Organización del proceso con las partes y especialistas que intervienen."],
+      "closing":"En Confort4 empezamos por conocer tu propiedad y lo que necesitas de la venta. A partir de ahí, construimos contigo el siguiente paso.",
+      "source":{"label":"Profeco: aspectos a revisar en una operación de vivienda usada","url":"https://www.gob.mx/profeco/documentos/antes-de-comprar-casa-usada-informate"}
+    },
+    {
+      "id":"comprar","title":"Comprar con claridad, elegir con confianza.","shortTitle":"Comprar","image":"assets/interior.jpg",
+      "intro":"Una propiedad tiene que hacer sentido para tu vida y para tu presupuesto. La búsqueda empieza por tus prioridades, no por una lista interminable de anuncios.",
+      "cta":"Quiero asesoría para comprar",
+      "sections":[
+        {"title":"Define lo que necesitas de verdad","text":"Ubicación, movilidad, espacios, servicios y planes de vida ayudan a distinguir lo indispensable de lo deseable. Si compras para invertir, también conviene aclarar el uso que buscas darle al inmueble y tu horizonte de tiempo."},
+        {"title":"Mira el presupuesto completo","text":"Además del precio, hay gastos asociados a la operación y, cuando corresponda, al financiamiento. Antes de comprometerte, revisa con los prestadores de servicios qué conceptos aplican y cómo impactan tu presupuesto total."},
+        {"title":"Revisa más allá de la visita","text":"Conocer el estado físico de la vivienda, los documentos de propiedad y los antecedentes que correspondan permite formular mejores preguntas. La inspección técnica, la valuación y la intervención notarial tienen funciones distintas; el asesor ayuda a coordinar el proceso, sin sustituir a esos especialistas."},
+        {"title":"De la oferta a la entrega","text":"Una vez que encuentras una opción, hay que ordenar las condiciones de compra, los tiempos y la documentación. Mantener claridad sobre cada compromiso reduce confusiones antes de firmar o realizar pagos."}
+      ],
+      "benefitsTitle":"La diferencia de buscar acompañado",
+      "benefits":["Opciones filtradas según tus prioridades.","Un interlocutor para organizar visitas y resolver preguntas.","Acompañamiento durante la oferta y la negociación.","Coordinación de las siguientes etapas con las partes involucradas."],
+      "closing":"Cuéntanos cómo imaginas tu próximo espacio. Te ayudamos a convertir esa idea en una búsqueda concreta en CDMX.",
+      "source":{"label":"Profeco: antes de comprar una casa usada","url":"https://www.gob.mx/profeco/documentos/antes-de-comprar-casa-usada-informate"}
+    },
+    {
+      "id":"rentar","title":"Una buena renta funciona para las dos partes.","shortTitle":"Rentar","image":"assets/home-detail.jpg",
+      "intro":"Acompañamos tanto a quien ofrece una propiedad como a quien busca un lugar para vivir. Expectativas claras desde el inicio ayudan a construir una mejor relación de arrendamiento.",
+      "cta":"Quiero asesoría para rentar",
+      "audiences":[
+        {"id":"arrendador","title":"Si eres arrendador","intro":"Tu objetivo es encontrar a la persona adecuada y cuidar tu propiedad.","items":["Definir cómo presentar el inmueble y qué condiciones ofrecer.","Revisar la información de las personas interesadas con criterios claros y respetuosos.","Aclarar renta, depósito, garantías y conceptos incluidos antes de firmar.","Documentar el estado de la propiedad, los acuerdos y la entrega."]},
+        {"id":"inquilino","title":"Si eres inquilino","intro":"Necesitas un espacio que responda a tu vida y condiciones que puedas entender.","items":["Definir ubicación, presupuesto y requisitos de tu búsqueda.","Conocer el inmueble y verificar con quién estás contratando.","Revisar qué incluye la renta y cómo se manejarán servicios, mantenimiento y depósito.","Entender plazos, responsabilidades y condiciones de salida antes de comprometerte."]}
+      ],
+      "sections":[
+        {"title":"Los acuerdos merecen quedar claros","text":"Un contrato por escrito, la identificación de las partes y un registro de la entrega ayudan a ordenar la relación. Las condiciones deben revisarse según el inmueble y la normativa aplicable, con apoyo jurídico cuando sea necesario."},
+        {"title":"¿Por qué hacerlo con asesoría?","text":"Un asesor puede organizar la búsqueda o promoción, coordinar visitas y facilitar la comunicación. También ayuda a identificar preguntas pendientes para que arrendador e inquilino sepan qué están acordando."}
+      ],
+      "benefitsTitle":"Acompañamiento para una relación más clara",
+      "benefits":["Condiciones comunicadas desde el principio.","Visitas y seguimiento organizados.","Documentación y entrega con mejor orden.","Orientación para coordinar la revisión con especialistas."],
+      "closing":"Dinos si quieres poner tu propiedad en renta o encontrar tu próximo hogar. En Confort4 te acompañamos desde tu lado de la operación.",
+      "source":{"label":"Profeco: proceso para rentar casa o departamento","url":"https://www.gob.mx/profeco/documentos/proceso-para-rentar-casa-o-departamento?state=published"}
+    }
+  ]
+}

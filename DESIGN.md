@@ -18,3 +18,7 @@ Verification limitation: browser access host is unavailable; native Chrome contr
 ## Header and team refinement
 
 User requests the real logo, direct Vender/Rentar/Comprar links and social icons in the header. An inline SVG applies a transparent color filter to the original supplied JPG: white marks become dark, dark background becomes transparent, red remains an accent. Original geometry is preserved, no regenerated logo. On mobile social links remain in the expandable header navigation. All advisor photographs were removed from the page, including hero avatars; names and contacts remain.
+
+## Segmented site
+
+The latest request removes repetition by moving full team content and photographs to `quienes-somos.html`, and service education to three dedicated pages. The homepage keeps the initial visual direction, short service routes, a properties note, a contact form and a review CTA. All pages use the shared header/footer. WhatsApp joins the header social icons. The review form separates private contact consent from optional publication permission. Team/guide content is structured in JSON so a future admin interface can manage it without changing the page layouts; do not imply that the admin interface already exists.

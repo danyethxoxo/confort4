@@ -1,28 +1,50 @@
-﻿# Confort4
+# Confort4
 
-Primera base independiente de la landing de Confort4. HTML, CSS y JS estÃ¡ticos sin dependencias de ejecuciÃ³n.
+Sitio inmobiliario independiente de KW Premier. Publicación: https://danyethxoxo.github.io/confort4/
 
-## Vista local
+## Páginas
 
-Ejecutar `node serve.mjs`, abrir http://localhost:4317.
+- `index.html`: portada breve, accesos a servicios, propiedades y formulario.
+- `quienes-somos.html`: equipo, fotos y enlaces de Alberto y Renata.
+- `vender.html`, `comprar.html`, `rentar.html`: guías independientes. Renta aborda arrendador e inquilino.
+- `resena.html`: recepción privada de reseñas con permiso de publicación separado.
+- `privacidad.html`: tratamiento de información y medios de contacto.
 
-## Contenido
+Contenido estructurado: `content/site.json`. Encabezado y pie compartidos: `templates/`. Las páginas se generan con `node scripts/build-pages.mjs`. No editar las páginas generadas para cambiar contenidos de las guías.
 
-NavegaciÃ³n con QuiÃ©nes somos, Quiero (Vender, Comprar, Rentar), Mis propiedades; equipo; filtros con contacto contextual; WhatsApp y redes. Animaciones nativas respetan movimiento reducido. Assets proporcionados por el usuario y logos oficiales de KW Premier del repositorio existente. FotografÃ­a ambiental de CDMX: https://images.unsplash.com/photo-1547686669-9a8cb1a22d91 (Unsplash). TipografÃ­a Manrope obtenida de Google Fonts.
+## Desarrollo y verificación
 
-## Inventario / Supabase
+Node 24, sin dependencias npm de ejecución ni de construcción.
 
-Proyecto fuente: `iloetojomzqtadkithtv` (kwpremier web). Se inspeccionÃ³ en modo lectura. No se modificaron tablas, polÃ­ticas, funciones ni datos. La bÃºsqueda de los nombres completos de Alberto y Renata en `public.propiedades.asesor_nombre` no devolviÃ³ coincidencias; por ello esta versiÃ³n muestra un estado de catÃ¡logo en preparaciÃ³n. No contiene propiedades inventadas ni publica todo el inventario de la red. Confirmar IDs de asesores y alcance antes de conectar.
+```sh
+node scripts/build-pages.mjs
+node scripts/check-pages.mjs
+node --experimental-strip-types tests/forms.test.mjs
+node serve.mjs
+```
 
-Siguiente fase: esquema privado `confort4` para configuraciÃ³n/selecciones/leads; funciones `confort4-*` con respuestas limitadas a campos pÃºblicos y propiedades autorizadas. No exponer `datos_origen`, contactos privados ni claves privilegiadas. Las propiedades deben leerse del origen para reflejar bajas y cambios, no copiarse a mano. Resend se conectarÃ¡ cuando existan formulario, aviso integral y remitente aprobado. Hoy el contacto es directo por WhatsApp.
+GitHub Actions ejecuta la generación y esas comprobaciones antes de publicar `dist/`.
 
-## PublicaciÃ³n
+## Formularios
 
-La carpeta `dist` contiene el sitio. `.openai/hosting.json` conserva la identidad del alojamiento Sites. El repositorio GitHub es independiente del sitio KW Premier.
+Proyecto Supabase: `iloetojomzqtadkithtv`. Esquema privado propio: `confort4`. Función nueva: `confort4-forms`, con verificación JWT habilitada. `dist/form-config.js` solo contiene credenciales públicas; no da acceso de lectura a los registros.
 
+`db/confort4-schema.sql` conserva el DDL aplicado en la migración `confort4_private_forms`. Los RPC de persistencia, límites y avisos solo son ejecutables por `service_role`. Las tablas tienen RLS y no están expuestas al cliente. No se modificaron tablas, funciones ni políticas de KW Premier.
 
-## Rediseño actual
+La función valida el cuerpo, consentimiento, puntuación y origen; limita tamaño y frecuencia; evita duplicados por ID; guarda primero y luego intenta notificar por Resend. Una falla de correo no pierde el lead. Las reseñas entran pendientes y nunca se publican automáticamente.
 
-Referencia de jerarquía: Coinbase. Referencia de presentación y acompañamiento: Cuure. Se retiró el scrollytelling fijado. Navegación sticky, servicios con details/summary nativos, selector de intención que prepara el mensaje de WhatsApp. No realiza envíos automáticos. Retratos optimizados en WebP.
+**Para activar la notificación falta definir el destinatario en `confort4.settings.notification_email` con el correo que indique el propietario.** Se reutiliza la credencial de Resend del servidor; el remitente se presenta como Confort4. No se envía copia a la oficina. `CONFORT4_FROM` permite configurar un remitente propio verificado sin tocar las otras funciones.
 
-Fotografías de ambientación, no propiedades anunciadas: https://images.unsplash.com/photo-1600210492486-724fe5c67fb0 y https://images.unsplash.com/photo-1600607687920-4e2a09cf159d. Manrope variable se distribuye con su licencia OFL en assets/manrope-license.txt.
+## Futuro panel
+
+Ver [docs/ADMIN-PLAN.md](docs/ADMIN-PLAN.md): acceso con membresía propia, edición de contenido, perfiles, galerías, operaciones, bandeja de leads, moderación y publicación. La estructura está preparada; el panel aún no está implementado.
+
+## Inventario
+
+El catálogo todavía no está conectado: la búsqueda por los nombres completos de los asesores no identificó sus propiedades. Confirmar IDs y alcance antes de exponer inventario. Las fotografías residenciales son ambientación, no anuncios de inmuebles disponibles.
+
+## Recursos
+
+Logotipo y retratos proporcionados por el usuario; logos oficiales de KW Premier del sitio existente. Fotos de ambientación de Unsplash: `photo-1600210492486-724fe5c67fb0` y `photo-1600607687920-4e2a09cf159d`. Manrope se distribuye con su licencia OFL en `dist/assets/manrope-license.txt`.
+
+La publicación por Pages y el comportamiento de los formularios están comprobados. La herramienta de control de Chrome no puede verificar la URL, por lo que no se ha completado la revisión visual en navegador.
