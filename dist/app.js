@@ -1,13 +1,8 @@
 const menuButton=document.querySelector('.menu-toggle');
 const navigation=document.querySelector('#navigation');
-const intentButton=document.querySelector('#intent-toggle');
-const intentMenu=document.querySelector('#intent-menu');
-function closeIntent(){if(intentMenu){intentMenu.hidden=true;intentButton.setAttribute('aria-expanded','false');}}
-function closeNavigation(){navigation?.classList.remove('open');menuButton?.setAttribute('aria-expanded','false');closeIntent();}
-menuButton?.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')!=='true';menuButton.setAttribute('aria-expanded',String(open));navigation.classList.toggle('open',open);if(!open)closeIntent();});
-intentButton?.addEventListener('click',()=>{intentMenu.hidden=!intentMenu.hidden;intentButton.setAttribute('aria-expanded',String(!intentMenu.hidden));});
-document.addEventListener('click',event=>{if(!event.target.closest('.dropdown'))closeIntent();});
-document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;if(intentButton?.getAttribute('aria-expanded')==='true'){closeIntent();intentButton.focus();}else if(menuButton?.getAttribute('aria-expanded')==='true'){closeNavigation();menuButton.focus();}});
+function closeNavigation(){navigation?.classList.remove('open');menuButton?.setAttribute('aria-expanded','false');}
+menuButton?.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')!=='true';menuButton.setAttribute('aria-expanded',String(open));navigation.classList.toggle('open',open);});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menuButton?.getAttribute('aria-expanded')==='true'){closeNavigation();menuButton.focus();}});
 navigation?.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeNavigation));
 const serviceDetails=[...document.querySelectorAll('.service-accordion details')];
 function openService(target){if(!target)return;serviceDetails.forEach(detail=>{detail.open=detail===target;});}

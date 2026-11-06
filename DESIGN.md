@@ -14,3 +14,7 @@ First viewport: white sticky header, 'Un espacio para lo que sigue.' left, resid
 Motion is confined to brief native entrances. No pinned scenes, floating fragments or artificial scroll distances. Content is visible by default, reduced motion cancels entrances. Self-hosted Manrope variable; max-width 1432px including gutters; 16px photo corners.
 
 Verification limitation: browser access host is unavailable; native Chrome control cannot establish the current URL. DOM simulation and deployment checks are not visual verification.
+
+## Header and team refinement
+
+User requests the real logo, direct Vender/Rentar/Comprar links and social icons in the header. An inline SVG applies a transparent color filter to the original supplied JPG: white marks become dark, dark background becomes transparent, red remains an accent. Original geometry is preserved, no regenerated logo. On mobile social links remain in the expandable header navigation. All advisor photographs were removed from the page, including hero avatars; names and contacts remain.

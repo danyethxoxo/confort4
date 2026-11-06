@@ -14,3 +14,5 @@ Confort4, user-provided logo and portraits; charcoal, white and red identity. KW
 User provided business introduction, social links, phone +52 55 3434 7566. No verified testimonials, statistics or specific service areas beyond CDMX. Renata's exact role remains unspecified.
 ## Capabilities and Constraints
 Header: Quiénes somos; Quiero: Vender, Comprar, Rentar; Mis propiedades. Independent GitHub repository. Existing Supabase KW Premier is read-only inventory source; any new functions or records must be isolated. Catalog scope remains undecided, so no full-network publication.
+
+Current user preference: no advisor photos on the page for now; show the actual Confort4 logo on white; direct Vender, Rentar and Comprar header links, plus social icons.
