@@ -15,3 +15,7 @@ Mode: Persuade. First viewport: navigation on charcoal, oversized heading, immer
 ## Scrollytelling
 
 Requested extension of the pinned Pete Sena motion reference. The focal narrative moves from the city to the two-generation team: city image travels slower than the opening text; the introduction headline stays alongside the explanation and its words gain emphasis; services gain focus as the visitor reaches each decision; portraits converge gently with Renata entering later on desktop; the closing invitation opens to full width. Native scrolling, no forced snapping, no scroll interception. A single requestAnimationFrame batches geometry reads before writes, only intersecting scenes are updated, no perpetual loop. Mobile reduces displacement and removes sticky reading; reduced motion presents all content without spatial effects. Existing controls and content stay available without JavaScript.
+
+## Video reference refinement
+
+Reviewed 15 sampled frames across the user's 30.3-second Pete Sena MP4, including its opening collage, stacking service panels and pinned principles sequence. Replaced the subtle-only approach with a sticky opening stage where real team/city fragments move outward, three full-width overlapping service chapters, a pinned three-step values sequence with the official logo and orbit, and a compact floating navigation. Preserves the Confort4 palette and content. Mobile shortens the pinned scenes; reduced motion removes pinning and exposes every values paragraph in normal document flow.

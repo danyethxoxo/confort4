@@ -12,7 +12,10 @@ document.querySelector('#year')?.replaceChildren(String(new Date().getFullYear()
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 // Native scroll remains in control. Each scene progresses in both directions.
 const clamp = value => Math.max(0, Math.min(1, value));
-const scenes = [...document.querySelectorAll('.hero,.intro,.service,.portraits figure,.values,.contact')];
+const scenes = [...document.querySelectorAll('.hero,.hero-story,.principles-story,.intro,.service,.portraits figure,.contact')];
+const principleLabels = [...document.querySelectorAll('.principle-label')];
+const principleArticles = [...document.querySelectorAll('.principle-copy article')];
+const storyDock = document.querySelector('.story-dock');
 const visibleScenes = new Set();
 const storyHeading = document.querySelector('.intro h2');
 if (storyHeading) {
@@ -47,9 +50,23 @@ function renderScroll() {
   const measurements = [...visibleScenes].map(element => ({element, rect: element.getBoundingClientRect()}));
   const total = document.documentElement.scrollHeight - height;
   progressLine.style.transform = `scaleX(${total > 0 ? clamp(window.scrollY / total) : 0})`;
+  storyDock?.classList.toggle('is-visible', window.scrollY > height * .3);
   measurements.forEach(({element, rect}) => {
     const entry = clamp((height * .94 - rect.top) / (height * .62));
-    if (element.classList.contains('hero')) {
+    if (element.classList.contains('hero-story')) {
+      const progress = clamp(-rect.top / Math.max(1, rect.height - height));
+      element.style.setProperty('--fragment-travel', `${progress * (narrow ? 120 : 340)}px`);
+      element.style.setProperty('--fragment-fade', (1-clamp(progress*1.7)).toFixed(3));
+      element.style.setProperty('--hero-focus', (1+progress*.08).toFixed(3));
+      element.style.setProperty('--hero-copy-opacity', clamp((progress-.05)*4+.55).toFixed(3));
+    } else if (element.classList.contains('principles-story')) {
+      const progress = clamp(-rect.top / Math.max(1,rect.height-height));
+      const active = Math.min(2,Math.floor(progress*3));
+      principleLabels.forEach((label,index)=>label.classList.toggle('is-active',index===active));
+      principleArticles.forEach((article,index)=>{article.classList.toggle('is-active',index===active);article.setAttribute('aria-hidden',String(index!==active));});
+      element.style.setProperty('--principle-progress',progress.toFixed(3));
+      element.style.setProperty('--brand-turn',`${progress*180}deg`);
+    } else if (element.classList.contains('hero')) {
       const progress = clamp(-rect.top / Math.max(1, rect.height));
       element.style.setProperty('--city-drift', `${progress * (narrow ? 35 : 95)}px`);
       element.style.setProperty('--city-scale', (1.10 - progress * .06).toFixed(3));
@@ -58,8 +75,6 @@ function renderScroll() {
       const progress = clamp((height * .78 - rect.top) / Math.max(1, rect.height * .65));
       storyWords.forEach((word, index) => word.classList.toggle('is-read', progress >= index / Math.max(1, storyWords.length)));
     } else if (element.classList.contains('service')) {
-      element.style.setProperty('--reveal-inset', `${(1-entry)*5}%`);
-      element.style.setProperty('--entry-shift', `${(1-entry)*(narrow?14:38)}px`);
       element.classList.toggle('is-current', rect.top < height*.6 && rect.bottom > height*.3);
     } else if (element.matches('.portraits figure')) {
       const direction = element === element.parentElement.firstElementChild ? -1 : 1;
@@ -87,6 +102,7 @@ if ('IntersectionObserver' in window) {
   document.addEventListener('visibilitychange', requestScrollFrame);
   reducedMotion.addEventListener('change', () => {
     document.querySelectorAll('[data-reveal]').forEach(el => el.getAnimations().forEach(animation => animation.cancel()));
+    if(reducedMotion.matches)principleArticles.forEach(article=>article.removeAttribute('aria-hidden'));
     requestScrollFrame();
   });
   if (!reducedMotion.matches) {
