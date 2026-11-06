@@ -5,6 +5,7 @@ let references=0;
 for(const file of pages){
  const html=fs.readFileSync(path.join(root,file),'utf8');
  if((html.match(/<h1\b/g)||[]).length!==1)throw Error(`${file}: expected one H1`);
+ for(const form of html.matchAll(/<form\b([^>]*)>/g))if(!/\bmethod="post"/i.test(form[1]))throw Error(`${file}: forms must not put visitor data or credentials in URLs`);
  for(const match of html.matchAll(/(?:href|src)="([^"\s]+)"/g)){
   const ref=match[1];if(/^(https?:|tel:|mailto:|data:)/.test(ref))continue;
   const [url,hash]=ref.split('#');const target=(url||file).split('?')[0];
