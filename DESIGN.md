@@ -1,24 +1,29 @@
-# Confort4 — revised direction
+# Confort4 — design direction
 
-User rejected the dark pinned collage and supplied Coinbase and Cuure as replacement references. The former Pete Sena effects are superseded.
+The owner rejected the dark, pinned collage and supplied Coinbase and Cuure as the accepted replacement references. Jaime Luciano supplies the breadth of real-estate information architecture, rather than a visual template.
 
-| Decision | Source | Application |
+| Reference / evidence | Decision | Application |
 | --- | --- | --- |
-| Clear product-first hierarchy and whitespace | Coinbase official page and public homepage captures | White navigation, large left-aligned title, explicit primary action |
-| Personal guidance and concise visual presentation | Cuure official page and Bubble's Cuure showcase | Split hero with one residential photo; service choices; accordion; soft neutral surfaces |
-| Red and charcoal identity | User-provided logo | Red actions, original logo in footer, official KW Premier affiliation |
-| Team and service intents | User's brief | Equal presentation of Alberto/Renata; direct Vender, Comprar, Rentar navigation |
+| Coinbase | Strong hierarchy, whitespace, clear primary action | White sticky navigation, left aligned hero, generous type and spacing |
+| Cuure | Personal guidance, approachable reading, neutral surfaces | Residential split hero, concise service paths, restrained corners |
+| Jaime Luciano | Content breadth and separate journeys | Team, buyer/seller/renter pages, inventory, journal, practical resources |
+| Confort4 supplied identity | Charcoal, white, red | Real raster logo filtered inside SVG; original logo and official KW Premier in footer |
+| Owner's latest requests | Segmentation and editability | Distinct URLs, modular content, forms, authenticated editorial panel |
 
-First viewport: white sticky header, 'Un espacio para lo que sigue.' left, residential photograph right. Photography is ambiance, never a claimed listing. A compact trust row retains CDMX and KW Premier. Progression: choose an intent, understand the service, meet the team, request property options, contact. Catalog explicitly remains in preparation.
+## Reading rhythm
 
-Motion is confined to brief native entrances. No pinned scenes, floating fragments or artificial scroll distances. Content is visible by default, reduced motion cancels entrances. Self-hosted Manrope variable; max-width 1432px including gutters; 16px photo corners.
+The homepage moves from a residential image to three service paths, actual property cards, a sticky process guide, a charcoal budget tool, editorial illustrations, FAQ, a focused wizard and authorized reviews. Each module has a distinct purpose and structure. Full biographies and photos stay on the team page.
 
-Verification limitation: browser access host is unavailable; native Chrome control cannot establish the current URL. DOM simulation and deployment checks are not visual verification.
+The process uses a connected SVG route with active milestones driven by intersection. Brief native entrances reveal service paths and article cards. No artificial scroll distance or scroll hijacking. Content is visible by default; reduced motion cancels entrances and transitions. Gallery, tables, checklists and forms provide useful interactions rather than decorative counters.
 
-## Header and team refinement
+## System
 
-User requests the real logo, direct Vender/Rentar/Comprar links and social icons in the header. An inline SVG applies a transparent color filter to the original supplied JPG: white marks become dark, dark background becomes transparent, red remains an accent. Original geometry is preserved, no regenerated logo. On mobile social links remain in the expandable header navigation. All advisor photographs were removed from the page, including hero avatars; names and contacts remain.
+Self-hosted Manrope, charcoal `#202520`, red `#c92330`, off-white `#f4f5f0`, white. Maximum public content width 1432px including responsive gutters. Large reading headings and restrained 6–16px corners. SVG editorial artwork uses the same palette with architectural and budget motifs. Ambient photos never masquerade as property inventory.
 
-## Segmented site
+Header uses the actual supplied logo. Its SVG viewport excludes the lower “by KW” block; color filtering removes the dark background and changes white marks to charcoal. Social icons include WhatsApp. Mobile uses an explicit menu; properties, service routes and forms reflow into single columns.
 
-The latest request removes repetition by moving full team content and photographs to `quienes-somos.html`, and service education to three dedicated pages. The homepage keeps the initial visual direction, short service routes, a properties note, a contact form and a review CTA. All pages use the shared header/footer. WhatsApp joins the header social icons. The review form separates private contact consent from optional publication permission. Team/guide content is structured in JSON so a future admin interface can manage it without changing the page layouts; do not imply that the admin interface already exists.
+Administrative content is structured, escaped and validated. Draft previews use public-content-only local storage. Private leads and credentials never enter public rendering. Styling remains fixed while editors update text, images, module order and article content.
+
+## Verification
+
+Local links/assets, HTML structure, API authorization, content validation, form flows, catalog controls, budget math, gallery, article/blog navigation and CMS draft/followup were tested. SQL save/publish/restore checks were rolled back. The three original SVG illustrations were rendered and visually inspected. Browser access host was unavailable and native Chrome could not verify the current URL, so no claim is made of complete browser visual or responsive verification.

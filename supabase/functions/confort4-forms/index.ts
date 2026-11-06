@@ -22,15 +22,20 @@ export function validate(body:Record<string,unknown>){
  const name=text(body.name,100),email=text(body.email,254).toLowerCase(),message=text(body.message,3000),phone=text(body.phone,30);
  const interest=text(body.interest,40);
  if(name.length<2)throw new Error('Escribe tu nombre.');
- if(!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email))throw new Error('Revisa tu correo electrónico.');
+ const rawProject=body.project&&typeof body.project==='object'&&!Array.isArray(body.project)?body.project as Record<string,unknown>:{};
+ const preference=text(rawProject.contact_preference,20)||'email';
+ if(!['email','whatsapp','phone'].includes(preference))throw new Error('Selecciona un medio de contacto.');
+ if((kind==='review'||preference==='email'||email)&&!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email))throw new Error('Revisa tu correo electrónico.');
+ if(kind==='contact'&&preference!=='email'&&(!phone||phone.replace(/\D/g,'').length<7))throw new Error('Escribe un teléfono de contacto.');
  if(message.length<10)throw new Error('Cuéntanos un poco más: escribe al menos 10 caracteres.');
- if(phone&&!/^[+\d\s().-]{7,30}$/.test(phone))throw new Error('Revisa tu teléfono.');
+ if(phone&&(!/^[+\d\s().-]{7,30}$/.test(phone)||phone.replace(/\D/g,'').length<7))throw new Error('Revisa tu teléfono.');
  if(body.consent!==true)throw new Error('Necesitamos tu autorización para recibir la información.');
  if(!['vender','comprar','rentar-arrendador','rentar-inquilino','general'].includes(interest))throw new Error('Selecciona el motivo de contacto.');
  const rating=Number(body.rating);
  if(kind==='review'&&(!Number.isInteger(rating)||rating<1||rating>5))throw new Error('Selecciona una calificación de 1 a 5.');
  if(!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(body.requestId)))throw new Error('Recarga la página e intenta de nuevo.');
- return {kind,requestId:String(body.requestId),payload:{name,email,phone,interest,message,...(kind==='review'?{rating,publishConsent:body.publishConsent===true}:{}),consent:true,consentVersion:'confort4-2026-11-05',source:kind==='review'?'resena.html':'index.html#contacto'}};
+ const project={contact_preference:preference,zone:text(rawProject.zone,120),property_type:text(rawProject.property_type,60),budget:text(rawProject.budget,80),timeframe:text(rawProject.timeframe,80),property_id:/^[0-9a-f-]{36}$/i.test(String(rawProject.property_id))?String(rawProject.property_id):'',page:['index.html','propiedades.html'].includes(String(rawProject.page))?String(rawProject.page):'index.html'};
+ return {kind,requestId:String(body.requestId),payload:{name,email,phone,interest,message,...(kind==='review'?{rating,publishConsent:body.publishConsent===true}:Object.keys(rawProject).length?{project}:{}),consent:true,consentVersion:'confort4-2026-11-05',source:kind==='review'?'resena.html':'index.html#contacto'}};
 }
 Deno.serve(async(req:Request)=>{
  if(req.headers.get('origin')!==allowedOrigin)return respond({error:'Origen no permitido.'},403);
@@ -61,8 +66,8 @@ Deno.serve(async(req:Request)=>{
    if(!config?.to||!resendKey||!sender)console.warn('confort4-forms: incomplete email configuration',JSON.stringify({recipient:!!config?.to,resend:!!resendKey,sender:!!sender}));
    if(config?.to&&resendKey&&sender&&emailStatus!=='sent'&&(claimed=await rpc('confort4_claim_notification',{p_id:saved.id}))){
     const p=input.payload;
-    const lines=[input.kind==='review'?'Nueva reseña de Confort4':'Nuevo contacto de Confort4','',`Nombre: ${p.name}`,`Correo: ${p.email}`,`Teléfono: ${p.phone||'No indicado'}`,`Interés: ${p.interest}`,...(input.kind==='review'?[`Calificación: ${p.rating}/5`,`Permiso de publicación: ${p.publishConsent?'Sí':'No'}`]:[]),'',p.message,'',`Referencia: ${saved.id}`];
-    const mail=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+resendKey,'Content-Type':'application/json; charset=utf-8','Idempotency-Key':'confort4-'+saved.id},body:JSON.stringify({from:sender,to:[config.to],reply_to:p.email,subject:(input.kind==='review'?'Confort4 · Nueva reseña: ':'Confort4 · Nuevo contacto: ')+p.name.replace(/[\r\n]/g,' '),text:lines.join('\n')}),signal:AbortSignal.timeout(8000)});
+    const lines=[input.kind==='review'?'Nueva reseña de Confort4':'Nuevo contacto de Confort4','',`Nombre: ${p.name}`,`Correo: ${p.email||'No indicado'}`,`Teléfono: ${p.phone||'No indicado'}`,`Interés: ${p.interest}`,...(p.project?Object.entries(p.project).filter(([,v])=>v).map(([k,v])=>`${k}: ${v}`):[]),...(input.kind==='review'?[`Calificación: ${p.rating}/5`,`Permiso de publicación: ${p.publishConsent?'Sí':'No'}`]:[]),'',p.message,'',`Referencia: ${saved.id}`];
+    const mail=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+resendKey,'Content-Type':'application/json; charset=utf-8','Idempotency-Key':'confort4-'+saved.id},body:JSON.stringify({from:sender,to:[config.to],...(p.email?{reply_to:p.email}:{}),subject:(input.kind==='review'?'Confort4 · Nueva reseña: ':'Confort4 · Nuevo contacto: ')+p.name.replace(/[\r\n]/g,' '),text:lines.join('\n')}),signal:AbortSignal.timeout(8000)});
     const result=await mail.json().catch(()=>({}));
     emailStatus=mail.ok?'sent':'failed';
     await rpc('confort4_notification_result',{p_id:saved.id,p_sent:mail.ok,p_provider_id:mail.ok?result.id:null});

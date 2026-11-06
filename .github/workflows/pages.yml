@@ -27,10 +27,14 @@ jobs:
           node-version: '24'
       - name: Generar y verificar páginas y formularios
         run: |
+          npm ci --no-audit --no-fund
           node scripts/build-pages.mjs
           node scripts/check-pages.mjs
-          node --check dist/app.js
+          node --check dist/site.mjs
+          node --check dist/admin.mjs
           node --experimental-strip-types tests/forms.test.mjs
+          node --experimental-strip-types tests/site.test.mjs
+          node tests/ui.test.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

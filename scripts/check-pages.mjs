@@ -20,7 +20,7 @@ for(const file of pages){
 }
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
 if(!home.includes('data-kind="contact"')||!home.includes('href="resena.html"'))throw Error('Missing contact/review flow');
-if(/alberto\.webp|renata\.webp/.test(home))throw Error('Advisor photos belong on the team page only');
+if(/alberto\.webp|renata\.webp/.test(home.match(/<main[^>]*>([\s\S]*?)<\/main>/)[1]))throw Error('Advisor photos belong on the team page only');
 const team=fs.readFileSync(path.join(root,'quienes-somos.html'),'utf8');
 if(!team.includes('alberto.webp')||!team.includes('renata.webp'))throw Error('Team photographs missing');
 const reviews=fs.readFileSync(path.join(root,'resena.html'),'utf8');

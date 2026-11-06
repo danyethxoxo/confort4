@@ -3,18 +3,14 @@
 ## Platform
 web
 ## Stack
-Static HTML, CSS and JavaScript for the requested first base; implementation choice inferred from the request to start with a general base.
+HTML static generation with shared native JavaScript rendering, CSS, GitHub Pages. Supabase private CMS/Auth/Storage and read-only published property feed. Resend for notifications. jsdom only for tests.
 ## Users
-People buying, selling or renting property in CDMX.
+Buyers, sellers, landlords and tenants in CDMX; Alberto and Renata as the site-owning team.
 ## Product Purpose
-Present Confort4 and connect visitors with Alberto Flores Resendiz and Renata Flores through WhatsApp.
+Help visitors understand a property decision, explore actual inventory and contact Confort4. Let the team edit content and handle contacts without changing layouts.
 ## Brand Commitments
-Confort4, user-provided logo and portraits; charcoal, white and red identity. KW Premier affiliation. Clean elegant design. Latest user direction: Coinbase and Cuure replace the rejected Pete Sena visual treatment. Preserve the real estate content structure, white surfaces, clean hierarchy and discreet animation.
+User-provided real logo; white, charcoal and red. Coinbase/Cuure hierarchy and clarity supersede the rejected dark Pete Sena direction. Advisor photographs only on the team page. KW Premier affiliation. Concise education with distinct modules and restrained, accessible motion.
 ## Evidence on Hand
-User provided business introduction, social links, phone +52 55 3434 7566. No verified testimonials, statistics or specific service areas beyond CDMX. Renata's exact role remains unspecified.
+Alberto Flores Resendiz, Renata Flores, supplied photos and logo, social links, phone +52 55 3434 7566. Owner confirmed Alberto's KW inventory ID 2000102839; four published source listings. No invented testimonials, achievements or transaction history. Test notification recipient Dani only.
 ## Capabilities and Constraints
-Header: Quiénes somos; Quiero: Vender, Comprar, Rentar; Mis propiedades. Independent GitHub repository. Existing Supabase KW Premier is read-only inventory source; any new functions or records must be isolated. Catalog scope remains undecided, so no full-network publication.
-
-Current user preference: no advisor photos on the page for now; show the actual Confort4 logo on white; direct Vender, Rentar and Comprar header links, plus social icons.
-
-Latest scope: advisor photos belong only on the dedicated team page. Homepage is brief and includes a contact form. Separate service URLs cover selling, buying, and both sides of renting. A separate review URL receives private submissions pending moderation. Future advisor-managed admin UI is a planned next stage, not part of the current implementation. Confort4 now owns private form records in its own Supabase schema; no KW tables are changed. Notification recipient was supplied by the owner and configured privately in Supabase.
+Direct service and team URLs, real catalog with saved listings/comparison/gallery, six original initial articles, editable FAQ, budget tool, printable checklists, three-step conditional contact and review consent. Authenticated administrative drafts, preview, publication, history, private leads/followup, moderation, inventory selection and image uploads. Own membership and schema isolate Confort4 from KW data. Native MFA is required when configured. Pages exports provide fallback HTML; the published feed supplies current content on load. No automatic rebuild from admin changes, polling, legal/tax calculations or email retry job. Chrome visual QA was unavailable; functional DOM/API/SQL tests are documented separately.
