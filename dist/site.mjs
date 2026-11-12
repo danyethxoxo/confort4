@@ -1,8 +1,8 @@
-import {renderPage,e,propertyCard,money,imageOf,safeURL} from './ui.mjs?v=30';
-import {initializeReferenceMotion} from './reference-motion.mjs';
+import {renderPage,e,propertyCard,money,imageOf,safeURL} from './ui.mjs?v=32';
+import {initializeReferenceMotion} from './reference-motion.mjs?v=32';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;
-let bundle=JSON.parse(document.querySelector('#site-data').textContent),dirty=false,observer;
+let bundle=JSON.parse(document.querySelector('#site-data').textContent),dirty=false;
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const storage={get(k,f){try{return JSON.parse(localStorage.getItem('confort4-'+k))??f;}catch{return f;}},set(k,v){try{localStorage.setItem('confort4-'+k,JSON.stringify(v));}catch{}}};
 let favorites=new Set(storage.get('favorites',[])),comparisons=new Set(),favoritesOnly=false;
@@ -37,7 +37,6 @@ function setStep(form,n){form.dataset.currentStep=n;$$('[data-step]',form).forEa
 function validateStep(form){let valid=true;$$('[data-step]:not([hidden]) input,[data-step]:not([hidden]) select,[data-step]:not([hidden]) textarea',form).forEach(f=>{const error=$('[data-error-for="'+f.name+'"]',form);if(error)error.textContent=f.validity.valid?'':f.validationMessage;f.setAttribute('aria-invalid',String(!f.validity.valid));if(!f.validity.valid&&valid){f.reportValidity();valid=false;}});return valid;}
 function preference(form){const email=form.elements.email,phone=form.elements.phone,phonePreferred=form.elements.contact_preference?.value!=='email';email.required=!phonePreferred;phone.required=phonePreferred;if(phonePreferred)phone.pattern='[+0-9 () .\\-]{7,30}';else phone.removeAttribute('pattern');}
 function init(){
- observer?.disconnect();
  initializeReferenceMotion(main);
  if(preview){$$('a[href]',main).forEach(a=>{const url=new URL(a.getAttribute('href'),location.href);if(url.origin===location.origin&&url.pathname.endsWith('.html')&&!/\/(admin|privacidad|resena)\.html$/.test(url.pathname)){url.searchParams.set('preview','1');a.href=url.href;}});$$('button[type=submit]',main).forEach(b=>{b.disabled=true;b.textContent='Formulario en vista previa';});}
  $$('[data-checklist]').forEach(s=>{const saved=storage.get('checklist-'+s.dataset.checklist,[]);$$('[data-check]',s).forEach((c,i)=>c.checked=!!saved[i]);updateChecklist(s);});
@@ -45,7 +44,6 @@ function init(){
  markFavorites();
  if(page==='article'){const post=bundle.content.posts.find(p=>p.slug===params.slug&&p.published!==false);if(post)document.title=post.title+' | Confort4';}
  if(page==='property'){const property=bundle.properties.find(p=>p.id===params.id);if(property)document.title=property.titulo+' | Confort4';}
- if('IntersectionObserver' in window){const reduced=matchMedia('(prefers-reduced-motion: reduce)');observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){if(entry.target.matches('.process-stage')){const process=entry.target.closest('.process-section');$$('.process-stage',process).forEach(s=>s.classList.toggle('is-active',s===entry.target));$$('.process-graphic circle',process).forEach((c,i)=>c.classList.toggle('is-active',i===Number(entry.target.dataset.stage)));}else{if(!reduced.matches)entry.target.animate([{opacity:.65,transform:'translateY(18px)'},{opacity:1,transform:'none'}],{duration:600,easing:'cubic-bezier(.16,1,.3,1)'});observer.unobserve(entry.target);}}});},{threshold:.15,rootMargin:'0px 0px -8% 0px'});$$('.process-stage,.intent-tile,.module-heading,.journal-card').forEach(el=>observer.observe(el));}
 }
 main.addEventListener('click',ev=>{
  const target=ev.target.closest('button');if(!target)return;
@@ -83,4 +81,45 @@ if(['property','article'].includes(page))main.innerHTML=renderPage(bundle,page,p
 let preview=false;
 if(params.preview==='1'){const content=storage.get('preview',null);if(content){bundle={...bundle,content};main.innerHTML=renderPage(bundle,page,params)||main.innerHTML;const banner=document.createElement('div');banner.className='preview-banner';banner.textContent='Vista previa del borrador · estos cambios todavía no son públicos.';main.before(banner);preview=true;}}
 init();
-if(!preview)fetch(config.endpoint.replace('confort4-forms','confort4-site'),{method:'POST',headers:{'Content-Type':'application/json',apikey:config.publishableKey,Authorization:'Bearer '+config.anonKey},body:JSON.stringify({action:'public'}),signal:AbortSignal.timeout(15000)}).then(async res=>{if(!res.ok)throw Error('feed');const live=await res.json();if(!live.content?.home)throw Error('feed');bundle=live;if(!dirty&&!['privacy','review'].includes(page)){main.innerHTML=renderPage(bundle,page,params);init();if(location.hash)$(location.hash)?.scrollIntoView({block:'start'});}}).catch(()=>{$$('.catalog-status').forEach(el=>el.textContent='Mostrando la última selección disponible. Confirma vigencia con el equipo.');});
+
+function heroSignature(hero) {
+ if (!hero) return '';
+ const heading = hero.querySelector('h1');
+ return JSON.stringify([
+  heading?.dataset.motionText || heading?.textContent.trim(),
+  hero.querySelector('.hero-image')?.getAttribute('src'),
+  hero.querySelector('.hero-aside p')?.textContent.trim()
+ ]);
+}
+if (!preview) {
+ fetch(config.endpoint.replace('confort4-forms','confort4-site'), {
+  method:'POST',
+  headers:{'Content-Type':'application/json',apikey:config.publishableKey,Authorization:'Bearer '+config.anonKey},
+  body:JSON.stringify({action:'public'}),
+  signal:AbortSignal.timeout(15000)
+ }).then(async response => {
+  if (!response.ok) throw Error('feed');
+  const live = await response.json();
+  if (!live.content?.home) throw Error('feed');
+  bundle = live;
+  if (dirty || ['privacy','review'].includes(page)) return;
+  const previousHero = main.querySelector('.hero');
+  const signature = heroSignature(previousHero);
+  const template = document.createElement('template');
+  template.innerHTML = renderPage(bundle,page,params);
+  const nextHero = template.content.querySelector('.hero');
+  if (previousHero && signature === heroSignature(nextHero)) {
+   nextHero.remove();
+   [...main.children].forEach(element => { if (element !== previousHero) element.remove(); });
+   main.append(template.content);
+  } else {
+   main.replaceChildren(template.content);
+  }
+  init();
+  if (location.hash) $(location.hash)?.scrollIntoView({block:'start'});
+ }).catch(() => {
+  $$('.catalog-status').forEach(element => {
+   element.textContent='Mostrando la última selección disponible. Confirma vigencia con el equipo.';
+  });
+ });
+}

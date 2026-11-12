@@ -1,5 +1,5 @@
-import {e,safeURL,money} from './ui.mjs?v=30';
-import {validateContent,moduleTypes} from './content-validation.mjs?v=30';
+import {e,safeURL,money} from './ui.mjs?v=32';
+import {validateContent,moduleTypes} from './content-validation.mjs?v=32';
 const config=window.CONFORT4_FORMS,base=config.endpoint.split('/functions/')[0],endpoint=config.endpoint.replace('confort4-forms','confort4-site');
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 let session=null,state=null,draft=null,tab='home',offset=0,unsaved=false,pending=false;

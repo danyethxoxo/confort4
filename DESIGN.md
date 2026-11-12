@@ -19,3 +19,11 @@ Scroll effects use one requestAnimationFrame update per frame, with passive scro
 ## Evidence
 
 Nivara's live desktop rendering, font and media were inspected. Confort4's rebuilt hero and contact were checked in Chrome, and a 390-pixel iframe fixture exercises native responsive layout. Functional checks cover carousel controls, catalog filters, FAQ, single-view contact, administrative editing and the absence of the retired calculator. The supplied cloner repository was cloned separately and reviewed as a workflow reference. The application continues to use its existing static Pages architecture.
+
+## Measured motion — November 2026
+
+The public reference CSS and component parameters were inspected. Hero framing runs for 2.1 seconds, title lines for 1.3 seconds with 100ms stagger, and general line reveals for 1 second with 80ms stagger. Lenis uses duration 1.1. Carousel transitions run for 900ms with a six-second interval and an 80px swipe threshold. Five vertical panels transition between internal pages.
+
+The 260svh photographic scene expands from a 30% vertical and 35% horizontal crop, using a 20% horizontal crop below 810px. Its scrim, copy, rules and 1600ms counters enter in sequence. Counters use the actual public catalog, team and service data. Seven scattered photographs have independent vertical drift at desktop widths, with a static two-column gallery below 1200px. Process text fills one measured line at a time. Footer letters reveal progressively with scroll.
+
+Reduced-motion preferences remove spatial transitions and smooth scrolling. The existing hero stays connected during public-feed hydration so its opening sequence does not replay.

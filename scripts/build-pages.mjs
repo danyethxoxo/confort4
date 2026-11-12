@@ -4,6 +4,10 @@ import {validateContent} from '../dist/content-validation.mjs';
 const root=path.resolve(import.meta.dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const write=(p,v)=>fs.writeFileSync(path.join(root,p),v);
+fs.mkdirSync(path.join(root,'dist/vendor'),{recursive:true});
+for(const [source,target] of [['dist/lenis.mjs','lenis.mjs'],['dist/lenis.css','lenis.css'],['LICENSE','lenis-license.txt']]) {
+ fs.copyFileSync(path.join(root,'node_modules/lenis',source),path.join(root,'dist/vendor',target));
+}
 const content=JSON.parse(read('content/site.json'));validateContent(content);
 const properties=JSON.parse(read('content/inventory.json'));
 const articleRoutes=Object.fromEntries(content.posts.filter(p=>p.published).map(p=>[p.slug,'lectura-'+p.slug+'.html']));
@@ -31,8 +35,8 @@ for(const [file,page,title,params={}] of routes){
  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff">
  <title>${e(title)} | Confort4</title><meta name="description" content="${e(description)}">${!indexable?'<meta name="robots" content="noindex,nofollow">':`<link rel="canonical" href="${origin+file+'.html'}">`}
  <meta property="og:title" content="${e(title)} | Confort4"><meta property="og:description" content="${e(description)}"><meta property="og:type" content="${post?'article':'website'}"><meta property="og:image" content="${origin+image}">
- <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="assets/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="styles.css?v=14"><link rel="stylesheet" href="modules.css?v=14"><link rel="stylesheet" href="identity.css?v=30">
- <script src="form-config.js"></script><script type="module" src="${page==='admin'?'admin.mjs':'site.mjs'}?v=30"></script>${jsonld?'<script type="application/ld+json">'+JSON.stringify(jsonld).replaceAll('<','\\u003c')+'</script>':''}</head>
+ ${page==='home'?'<script src="motion-boot.js"></script>':''}<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="assets/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="styles.css?v=14"><link rel="stylesheet" href="modules.css?v=14"><link rel="stylesheet" href="identity.css?v=32"><link rel="stylesheet" href="motion.css?v=32">
+ <script src="form-config.js"></script><script type="module" src="${page==='admin'?'admin.mjs':'site.mjs'}?v=32"></script>${jsonld?'<script type="application/ld+json">'+JSON.stringify(jsonld).replaceAll('<','\\u003c')+'</script>':''}</head>
  <body data-page="${page}" data-route-id="${e(params.id||'')}" data-route-slug="${e(params.slug||'')}"><a class="skip" href="#contenido">Saltar al contenido</a>${header.replaceAll('href="'+file+'.html"','href="'+file+'.html" aria-current="page"')}<main id="contenido">${main}</main>${footer}<script type="application/json" id="site-data">${JSON.stringify(bundle).replaceAll('<','\\u003c')}</script></body></html>`);
 }
 write('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+routes.filter(([file])=>!['admin','articulo','propiedad'].includes(file)).map(([file])=>'<url><loc>'+origin+file+'.html</loc></url>').join('')+'</urlset>');

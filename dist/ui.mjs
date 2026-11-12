@@ -1,4 +1,4 @@
-import {livingScene} from './living-scene.mjs';
+import {livingScene} from './living-scene.mjs?v=32';
 export function featuredProperties(bundle) {
  const properties=bundle.properties||[];
  if(!properties.length)return `<section class="featured-section wrap"><h2>Propiedades</h2><p>El catálogo se está actualizando. Cuéntanos qué buscas.</p>${link('index.html#contacto','Contactar al equipo')}</section>`;
@@ -78,7 +78,7 @@ export function comparisonTable(service){const rows={vender:[['Precio de salida'
 export function renderPage(bundle,page,params={}){
  const d=bundle.content,properties=bundle.properties||[];
  if(page==='home'){
-  const modules={intents:()=>intents(d),properties:()=>propertyModule(bundle),process:()=>processModule(d)+livingScene(),journal:()=>journal(d),faq:()=>faqModule(d),contact:contactForm,reviews:()=>reviewModule(bundle)};
+  const modules={intents:()=>intents(d),properties:()=>propertyModule(bundle),process:()=>processModule(d)+livingScene(bundle),journal:()=>journal(d),faq:()=>faqModule(d),contact:contactForm,reviews:()=>reviewModule(bundle)};
   return `<section class="hero wrap"><div class="hero-visual"><img class="hero-image" src="${safeURL(d.home.photo)}" alt="Fachada arquitectónica de ambientación" width="1920" height="1280" fetchpriority="high"></div><div class="hero-content"><h1>${e(d.home.title)}</h1><div class="hero-aside"><p>${e(d.home.intro)}</p>${link('#contacto','Hablemos de tu proyecto','button')}</div></div></section>
   <section class="brand-statement wrap"><p class="scroll-copy">${e(d.team.intro)}</p>${link('quienes-somos.html','Conoce a Alberto y Renata')}</section>
   ${d.home.modules.map(module=>modules[module]?.()||'').join('')}`;

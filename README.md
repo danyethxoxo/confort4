@@ -2,7 +2,7 @@
 
 Sitio público: https://danyethxoxo.github.io/confort4/
 
-Sitio modular independiente, publicado en GitHub Pages. HTML, CSS y módulos JavaScript nativos; sin dependencias en ejecución. Supabase KW Premier aporta autenticación y lectura de inventario; todos los registros nuevos pertenecen a Confort4.
+Sitio modular independiente, publicado en GitHub Pages. HTML, CSS y módulos JavaScript nativos, con Lenis 1.3.27 para el desplazamiento suave. El build copia su módulo, CSS y licencia MIT a dist/vendor. Supabase KW Premier aporta autenticación y lectura de inventario; todos los registros nuevos pertenecen a Confort4.
 
 ## Páginas y módulos
 
