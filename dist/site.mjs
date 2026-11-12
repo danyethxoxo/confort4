@@ -1,5 +1,5 @@
-﻿import {renderPage} from './ui.mjs?v=39';
-import {initializeReferenceMotion} from './reference-motion.mjs?v=39';
+﻿import {renderPage} from './ui.mjs?v=40';
+import {initializeReferenceMotion} from './reference-motion.mjs?v=40';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;
 let bundle=JSON.parse(document.querySelector('#site-data').textContent),dirty=false;
@@ -7,8 +7,16 @@ const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelecto
 const storage={get(k,f){try{return JSON.parse(localStorage.getItem('confort4-'+k))??f;}catch{return f;}},set(k,v){try{localStorage.setItem('confort4-'+k,JSON.stringify(v));}catch{}}};
 let favorites=new Set(storage.get('favorites',[]));
 const menu=$('.menu-toggle'),nav=$('#navigation');
-function closeMenu(){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}
-menu?.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open);});
+function setMenu(open){
+ if(!menu||!nav)return;
+ nav.classList.toggle('open',open);menu.setAttribute('aria-expanded',String(open));
+ menu.firstChild.textContent=open?'Cerrar ':'Menú ';
+ menu.querySelector('path')?.setAttribute('d',open?'M6 6l12 12M6 18 18 6':'M4 8h16M4 16h16');
+}
+function closeMenu(){setMenu(false);}
+menu?.addEventListener('click',()=>setMenu(menu.getAttribute('aria-expanded')!=='true'));
+document.addEventListener('click',event=>{if(nav?.classList.contains('open')&&!event.target.closest('.header'))closeMenu();});
+window.addEventListener('resize',()=>{if(window.innerWidth>1000&&nav?.classList.contains('open'))closeMenu();},{passive:true});
 nav?.addEventListener('click',ev=>{if(ev.target.closest('a'))closeMenu();});
 document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&nav?.classList.contains('open')){closeMenu();menu.focus();}});
 $('#year')?.replaceChildren(String(new Date().getFullYear()));

@@ -257,3 +257,24 @@ body[data-page=faq] .faq-module { padding-top: 24px; }
 html.lenis,html.lenis body { scroll-behavior: auto; }
 .site-form textarea,.select-options { overscroll-behavior: auto; }
 .contact-form-section::before { contain: paint; }
+
+/* Compact glass navigation stays below a permanently visible logo/menu bar. */
+@media(max-width:1000px) {
+ .header .nav-inner { position: relative; min-height: 74px; flex-wrap: nowrap; align-items: center; padding-top: 8px; padding-bottom: 8px; }
+ .header .brand-logo { position: relative; z-index: 2; width: 70px; height: 54px; flex-shrink: 0; }
+ .header .menu-toggle { display: inline-flex; margin-left: auto; order: 0; align-items: center; justify-content: center; gap: 12px; min-height: 42px; padding: 9px 15px; border: 1px solid currentColor; border-radius: 24px; font-size: 14px; position: relative; z-index: 2; }
+ .header .menu-toggle svg { width: 18px; height: 18px; }
+ .header.over-hero:has(nav.open) { background: rgb(25 43 32 / 28%); color: #fff; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+ .header:not(.over-hero):has(nav.open) { background: rgb(255 255 255 / 84%); color: #596b43; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+ .header #navigation { display: none; }
+ .header #navigation.open,.header.over-hero #navigation.open,.header:not(.over-hero) #navigation.open { position: absolute; inset: calc(100% + 8px) var(--gutter) auto; width: auto; display: grid; grid-template-columns: 1fr; gap: 3px; margin: 0; padding: 16px; max-height: calc(100dvh - 100px); overflow-y: auto; overscroll-behavior: contain; border: 1px solid #ffffff38; border-radius: 16px; background: rgb(30 49 36 / 72%); color: #fff; backdrop-filter: blur(24px) saturate(120%); -webkit-backdrop-filter: blur(24px) saturate(120%); box-shadow: 0 16px 48px #13231930; animation: nav-glass-arrive .22s ease-out both; }
+ .header.over-hero #navigation.open > a,.header:not(.over-hero) #navigation.open > a,.header.over-hero #navigation.open > a[aria-current],.header:not(.over-hero) #navigation.open > a[aria-current] { color: #fff; font-size: 17px; padding: 12px; border-radius: 7px; min-height: 44px; line-height: 1.25; }
+ .header.over-hero #navigation.open > a:hover,.header:not(.over-hero) #navigation.open > a:hover,.header.over-hero #navigation.open > a:focus-visible,.header:not(.over-hero) #navigation.open > a:focus-visible { color: #fff; background: #ffffff12; }
+ .header #navigation.open > a::after { left: 12px; right: 12px; bottom: 6px; }
+ .header #navigation.open .header-social { grid-column: 1/-1; display: flex; gap: 12px; margin: 10px 0 0; padding: 12px 0 0; border-top: 1px solid #ffffff35; }
+ .header.over-hero #navigation.open .header-social > a,.header:not(.over-hero) #navigation.open .header-social > a { color: #fff; width: 40px; height: 40px; }
+ .header #navigation.open .header-social > a:hover { background: #ffffff12; }
+}
+@media(min-width:600px) and (max-width:1000px) { .header #navigation.open,.header.over-hero #navigation.open,.header:not(.over-hero) #navigation.open { grid-template-columns: 1fr 1fr; padding: 20px; gap: 5px 20px; } }
+@keyframes nav-glass-arrive { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+@media(prefers-reduced-motion:reduce) { .header #navigation.open { animation: none; } }
