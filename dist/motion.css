@@ -247,3 +247,8 @@ body[data-page=faq] .faq-module { padding-top: 24px; }
 .featured-section + .reviews-module blockquote { font-size: clamp(20px,2.1vw,30px); line-height: 1.4; margin: 22px 0; max-width: 46ch; }
 .featured-section + .reviews-module figcaption { font-size: 15px; font-weight: 500; }
 @media(max-width:700px) { .featured-section + .reviews-module { padding-top: 36px; padding-bottom: 40px; } .featured-section + .reviews-module figure { padding: 24px; } }
+/* Navigation hover underline follows the current header color. */
+.header #navigation > a { position: relative; }
+.header #navigation > a::after { content: ''; position: absolute; left: 7px; right: 7px; bottom: 3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .2s ease; pointer-events: none; }
+.header #navigation > a:hover::after,.header #navigation > a:focus-visible::after { transform: scaleX(1); }
+@media(prefers-reduced-motion:reduce) { .header #navigation > a::after { transition: none; } }
