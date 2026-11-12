@@ -278,3 +278,10 @@ html.lenis,html.lenis body { scroll-behavior: auto; }
 @media(min-width:600px) and (max-width:1000px) { .header #navigation.open,.header.over-hero #navigation.open,.header:not(.over-hero) #navigation.open { grid-template-columns: 1fr 1fr; padding: 20px; gap: 5px 20px; } }
 @keyframes nav-glass-arrive { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 @media(prefers-reduced-motion:reduce) { .header #navigation.open { animation: none; } }
+/* Solid white glass menu with moss text. */
+@media(max-width:1000px) {
+ .header #navigation.open,.header.over-hero #navigation.open,.header:not(.over-hero) #navigation.open { background: rgb(255 255 255 / 96%); color: #596b43; border-color: #d7ddcf; box-shadow: 0 16px 48px #13231920; }
+ .header.over-hero #navigation.open > a,.header:not(.over-hero) #navigation.open > a,.header.over-hero #navigation.open > a[aria-current],.header:not(.over-hero) #navigation.open > a[aria-current],.header.over-hero #navigation.open .header-social > a,.header:not(.over-hero) #navigation.open .header-social > a { color: #596b43; }
+ .header.over-hero #navigation.open > a:hover,.header:not(.over-hero) #navigation.open > a:hover,.header.over-hero #navigation.open > a:focus-visible,.header:not(.over-hero) #navigation.open > a:focus-visible,.header #navigation.open .header-social > a:hover { color: #405231; background: #596b430c; }
+ .header #navigation.open .header-social { border-top-color: #d7ddcf; }
+}
