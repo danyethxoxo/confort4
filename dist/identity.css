@@ -12,8 +12,8 @@
   --paper: #fff;
   --soft: #f4f3ef;
   --line: #d8d7d2;
-  --red: #b54b2e;
-  --red-hover: #913a23;
+  --red: #596b43;
+  --red-hover: #405231;
   --gutter: clamp(22px,2.1vw,40px);
 }
 body { font-family: 'Inter Tight',sans-serif; background: #fff; font-size: 16px; line-height: 1.4; }
@@ -32,7 +32,7 @@ h1,h2,h3 { font-weight: 400; letter-spacing: -.04em; }
 .header .nav-contact { color: inherit; }
 .header .nav-cta { min-height: 40px; font-size: 13px; }
 .header-social > a { color: inherit; }
-.header.over-hero { background: transparent; backdrop-filter: none; color: #ffe2d0; }
+.header.over-hero { background: transparent; backdrop-filter: none; color: #f1f4ea; }
 .header.over-hero .brand-logo { filter: brightness(0) invert(1); }
 .header.over-hero a[aria-current] { color: #fff; }
 body:not([data-page=home]) main { padding-top: 80px; }
@@ -130,7 +130,7 @@ body:not([data-page=home]) main { padding-top: 80px; }
 .contact-single input:not([type=checkbox]):not([type=radio]),.contact-single select,.contact-single textarea { font-family: inherit; border: 0; border-bottom: 1px solid #aaa; border-radius: 0; padding-left: 0; padding-right: 0; background: #fff; }
 .contact-single textarea { min-height: 85px; }
 .contact-single > .button { width: 100%; background: #151515; color: #fff; }
-.contact-single > .button:hover { background: #b54b2e; }
+.contact-single > .button:hover { background: #596b43; }
 .property-card,.property-photo,.service-page-intro > img,.property-gallery > #gallery-main,.article-cover,.portrait { border-radius: 0; }
 .catalog-section { padding-top: 75px; padding-bottom: 75px; }
 .property-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 40px; }
@@ -174,7 +174,7 @@ body:not([data-page=home]) main { padding-top: 80px; }
 }
 @media(max-width:1000px) {
   .header.over-hero nav.open { background: #fff; color: #151515; padding: 15px 18px; }
-  .header.over-hero nav.open a[aria-current] { color: #b54b2e; }
+  .header.over-hero nav.open a[aria-current] { color: #596b43; }
 }
 @media(max-width:700px) {
   body:not([data-page=home]) main { padding-top: 73px; }
@@ -236,3 +236,37 @@ body:not([data-page=home]) main { padding-top: 80px; }
 html { scroll-padding-top: 82px; }
 .contact-form-section { scroll-margin-top: 0; }
 .catalog-toolbar input,.catalog-toolbar select,.journal-controls input,.journal-controls select,.faq-search input { font-family: inherit; }
+
+/* Moss palette, calm interaction states and shared forms. */
+:root { --soft: #f2f4ed; --line: #d7ddcf; }
+.header:not(.over-hero) { background: #f8faf2ed; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 1px 14px #27332212; }
+a,button,summary { -webkit-tap-highlight-color: transparent; }
+a:focus:not(:focus-visible),button:focus:not(:focus-visible),summary:focus:not(:focus-visible) { outline: none; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+.button { transition: background .2s,color .2s,border-color .2s; }
+.button:hover { background: var(--red); border-color: var(--red); color: #fff; }
+.button:active { transform: none; background: var(--red-hover); border-color: var(--red-hover); }
+.site-form.contact-single { background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 14px 40px #14220a0a; }
+.contact-single input:not([type=checkbox]):not([type=radio]),.contact-single select,.contact-single textarea { font-family: inherit; border: 1px solid #d3dacb; border-radius: 7px; padding: 11px 12px; background: #fafbf8; transition: border-color .2s,box-shadow .2s; }
+.site-form.contact-single input:focus,.site-form.contact-single select:focus,.site-form.contact-single textarea:focus { outline: none; border-color: var(--red); box-shadow: 0 0 0 3px #596b4318; }
+.contact-single select { appearance: none; padding-right: 38px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23596b43' stroke-width='1.5'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; cursor: pointer; }
+.contact-single select option { color: var(--ink); background: #f2f4ed; }
+.contact-single > .button { background: var(--red); border-color: var(--red); border-radius: 7px; }
+.contact-single > .button:hover { background: var(--red-hover); border-color: var(--red-hover); }
+.contact-single .rating-options input:checked+span { background: var(--red); border-color: var(--red); }
+.home-review { padding-top: 70px; }
+.blog-question { padding: 30px; border: 1px solid var(--line); background: #fff; }
+.blog-question p { margin: 16px 0 24px; }
+.journal-controls { grid-template-columns: 1fr; }
+@media(min-width:1001px) and (max-width:1250px) { .header nav { gap: 12px; font-size: 12px; } .header-social { gap: 0; } .header-social>a { width: 27px; } }
+
+.site-form .select-native { position: absolute; width: 1px!important; height: 1px; opacity: 0; pointer-events: none; padding: 0!important; min-height: 0; }
+.styled-select { position: relative; margin-top: 8px; }
+.select-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 12px; border: 1px solid #d3dacb; border-radius: 7px; background: #fafbf8; text-align: left; font: 400 16px/1.5 'Inter Tight',sans-serif; }
+.select-trigger::after { content: ''; width: 7px; height: 7px; border-right: 1.5px solid var(--red); border-bottom: 1.5px solid var(--red); transform: rotate(45deg); flex-shrink: 0; margin-right: 3px; }
+.select-trigger:hover { border-color: var(--red); }
+.select-trigger[aria-expanded=true] { border-color: var(--red); box-shadow: 0 0 0 3px #596b4318; }
+.select-options { position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; right: 0; padding: 6px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--ink); box-shadow: 0 12px 30px #1d2e1820; max-height: 245px; overflow-y: auto; }
+.select-options [role=option] { padding: 10px; border-radius: 5px; font-size: 14px; font-weight: 400; cursor: pointer; }
+.select-options [role=option]:hover,.select-options .is-active { background: #f2f4ed; }
+.select-options [aria-selected=true] { color: var(--red-hover); background: #e9eedf; }

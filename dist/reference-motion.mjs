@@ -215,7 +215,7 @@ function updateScrollScene() {
   const height = window.innerHeight;
   const reduced = motionPreference.matches;
   const hero = sceneElements.hero;
-  document.querySelector('.header')?.classList.toggle('over-hero', Boolean(hero && hero.getBoundingClientRect().bottom > 100));
+  document.querySelector('.header')?.classList.toggle('over-hero', Boolean(hero && window.scrollY < 24));
 
   if (hero) {
     const bounds = hero.getBoundingClientRect();

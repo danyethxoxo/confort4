@@ -163,3 +163,9 @@
   .page-transition-overlay { display: none; }
   .motion-media-cursor { display: none; }
 }
+/* Keep navigation legible over both the hero and the scrolled page. */
+.header { mix-blend-mode: normal; }
+.header.over-hero { background: transparent; color: #fff; }
+.header:not(.over-hero) { background: #f8faf2ed; color: #151515; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 1px 14px #27332212; }
+.header:not(.over-hero) .brand-logo { filter: none; }
+.header:not(.over-hero) a[aria-current] { color: var(--red); }
