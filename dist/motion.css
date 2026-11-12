@@ -223,3 +223,9 @@ body[data-page=faq] .faq-module { padding-top: 24px; }
 .header #navigation > a,.header #navigation > a[aria-current],.header #navigation .header-social > a { color: #596b43; }
 .header #navigation > a:hover,.header #navigation > a:focus-visible,.header #navigation .header-social > a:hover,.header #navigation .header-social > a:focus-visible { color: #fff; background: #596b43; }
 .team-story > .team-profile-grid:first-child { gap: 32px; color: var(--ink); }
+
+/* White navigation and logo, moss hover. */
+.header #navigation > a,.header #navigation > a[aria-current],.header #navigation .header-social > a,.header .menu-toggle { color: #fff; }
+.header #navigation > a:hover,.header #navigation > a:focus-visible,.header #navigation .header-social > a:hover,.header #navigation .header-social > a:focus-visible,.header .menu-toggle:hover { color: #596b43; background: transparent; }
+.header .brand-logo,.header.over-hero .brand-logo,.header:not(.over-hero) .brand-logo,.header:has(nav.open) .brand-logo { filter: brightness(0) invert(1); }
+.header:not(.over-hero),.header:has(nav.open),.header.over-hero nav.open { background: #24321fe8; color: #fff; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
