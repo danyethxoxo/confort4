@@ -33,7 +33,7 @@ for(const [file,page,title,params={}] of routes){
  const indexable=page!=='admin'&&!(['article','property'].includes(page)&&!post&&!property);
  write('dist/'+file+'.html',`<!doctype html><html lang="es-MX"><head>
  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff">
- <title>${e(title)} | Confort4</title><meta name="description" content="${e(description)}">${!indexable?'<meta name="robots" content="noindex,nofollow">':`<link rel="canonical" href="${origin+file+'.html'}">`}
+ <title>${page==='home'?'Confort 4':e(title)+' | Confort4'}</title><meta name="description" content="${e(description)}">${!indexable?'<meta name="robots" content="noindex,nofollow">':`<link rel="canonical" href="${origin+file+'.html'}">`}
  <meta property="og:title" content="${e(title)} | Confort4"><meta property="og:description" content="${e(description)}"><meta property="og:type" content="${post?'article':'website'}"><meta property="og:image" content="${origin+image}">
  ${page==='home'?'<script src="motion-boot.js"></script>':''}<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="assets/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="styles.css?v=14"><link rel="stylesheet" href="modules.css?v=14"><link rel="stylesheet" href="identity.css?v=36"><link rel="stylesheet" href="motion.css?v=36">
  <script src="form-config.js"></script><script type="module" src="${page==='admin'?'admin.mjs':'site.mjs'}?v=36"></script>${jsonld?'<script type="application/ld+json">'+JSON.stringify(jsonld).replaceAll('<','\\u003c')+'</script>':''}</head>
