@@ -163,16 +163,14 @@
   "home": {
     "title": "Un espacio para lo que sigue.",
     "intro": "Tu primer hogar. Una nueva etapa. Una inversión. Te acompañamos a comprar, vender o rentar en CDMX, a tu manera.",
-    "photo": "assets/interior.jpg",
+    "photo": "assets/architecture-facade.webp",
     "modules": [
       "intents",
       "properties",
       "process",
-      "tool",
       "journal",
       "faq",
-      "contact",
-      "reviews"
+      "contact"
     ]
   },
   "process": [
@@ -271,7 +269,7 @@
       "category": "Vender",
       "title": "Antes del anuncio, prepara tu venta.",
       "excerpt": "Seis decisiones para salir al mercado con un plan más claro.",
-      "cover": "assets/guide-sale.svg",
+      "cover": "assets/editorial-sale.jpg",
       "summary": [
         "Empieza por tus objetivos, no por el anuncio.",
         "Organiza información antes de negociar.",
@@ -309,7 +307,7 @@
       "category": "Comprar",
       "title": "El precio de la casa no es todo el presupuesto.",
       "excerpt": "Ordena tus conceptos antes de comparar propiedades.",
-      "cover": "assets/guide-budget.svg",
+      "cover": "assets/editorial-budget.jpg",
       "summary": [
         "Distingue precio, gastos de operación y reserva.",
         "Solicita importes aplicables a tu caso.",
@@ -333,7 +331,6 @@
           "text": "La mudanza, los servicios, el mantenimiento o las adecuaciones que deseas hacer también merecen una conversación. Utiliza la herramienta de presupuesto de Confort4 para ordenar tus propios números y llevar preguntas concretas al equipo."
         }
       ],
-      "tool": true,
       "source": {
         "label": "Profeco · Antes de comprar casa usada, infórmate",
         "url": "https://www.gob.mx/profeco/documentos/antes-de-comprar-casa-usada-informate"
@@ -347,7 +344,7 @@
       "category": "Comprar",
       "title": "Mira más allá de la primera impresión.",
       "excerpt": "Una visita puede darte mejores preguntas, además de buenas fotografías.",
-      "cover": "assets/guide-visit.svg",
+      "cover": "assets/editorial-visit.jpg",
       "summary": [
         "Lleva los mismos criterios a cada visita.",
         "Registra dudas y conceptos incluidos.",
@@ -385,7 +382,7 @@
       "category": "Comprar",
       "title": "Apartado y enganche: aclara qué estás pagando.",
       "excerpt": "Preguntas útiles antes de comprometer un anticipo.",
-      "cover": "assets/interior.jpg",
+      "cover": "assets/editorial-agreement.jpg",
       "summary": [
         "El nombre del pago no explica todas sus condiciones.",
         "Aclara su destino y tratamiento por escrito.",
@@ -422,7 +419,7 @@
       "category": "Rentar",
       "title": "Una entrega clara empieza con un buen registro.",
       "excerpt": "Un checklist para que propietario e inquilino partan del mismo punto.",
-      "cover": "assets/home-detail.jpg",
+      "cover": "assets/editorial-rental.jpg",
       "summary": [
         "Recorre y documenta el inmueble con ambas partes.",
         "Registra accesorios, llaves y lecturas.",
@@ -460,7 +457,7 @@
       "category": "Decidir",
       "title": "Comprar o rentar: empieza por tu proyecto.",
       "excerpt": "Una comparación de prioridades, no una respuesta universal.",
-      "cover": "assets/interior.jpg",
+      "cover": "assets/editorial-city.jpg",
       "summary": [
         "Piensa en movilidad, plazo y recursos.",
         "Compara el costo total y las responsabilidades.",
@@ -484,7 +481,6 @@
           "text": "Antes de buscar una respuesta definitiva, explica al equipo qué valoras, qué recursos tienes disponibles y qué dudas te frenan. Confort4 puede ayudarte a organizar la búsqueda y a comparar opciones en función de tu proyecto, sin prometer resultados futuros del mercado."
         }
       ],
-      "tool": true,
       "source": {
         "label": "Profeco · Antes de comprar casa usada, infórmate",
         "url": "https://www.gob.mx/profeco/documentos/antes-de-comprar-casa-usada-informate"

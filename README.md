@@ -6,13 +6,13 @@ Sitio modular independiente, publicado en GitHub Pages. HTML, CSS y módulos Jav
 
 ## Páginas y módulos
 
-- Inicio: presentación, rutas de servicio, catálogo, proceso narrativo, presupuesto, lecturas, preguntas, contacto y reseñas. Orden y visibilidad editables.
+- Inicio: presentación, rutas de servicio, catálogo, proceso narrativo, lecturas, preguntas, contacto y reseñas. Orden y visibilidad editables.
 - Equipo: perfiles de Alberto Flores Resendiz y Renata Flores, con sus fotografías. Sin retratos en el inicio.
 - Vender, comprar y rentar: guías, proceso, tablas de decisiones, checklists, preguntas y CTA. Renta contempla a arrendador e inquilino.
 - Propiedades: filtros de operación, zona, moneda y precio; guardadas locales; comparación de hasta tres; fichas con galería y contacto contextual.
-- Blog: seis artículos iniciales originales; búsqueda, categorías, índice de lectura, puntos clave y recursos relacionados. Ilustraciones editoriales propias y fotos de ambientación identificadas.
-- Recursos: tres checklists imprimibles y herramienta de presupuesto con datos del visitante. No calcula impuestos ni tasas ni ofrece aprobación crediticia.
-- Contacto: formulario de tres etapas, validación, canal preferido, contexto de propiedad, consentimiento y envío idempotente.
+- Blog: seis artículos iniciales originales; búsqueda, categorías, índice de lectura, puntos clave y recursos relacionados. Fotografía editorial de ambientación.
+- Recursos: tres checklists imprimibles.
+- Contacto: formulario de una sola vista, validación, canal preferido, contexto de propiedad, consentimiento y envío idempotente.
 - Reseñas: permiso de publicación separado; nunca se publican sin revisión y consentimiento.
 - Panel `admin.html`: contenido, módulos, perfiles, servicios, proceso, blog, FAQ, checklists, imágenes, contactos y seguimiento, moderación, inventario adicional, destinatario y versiones.
 
@@ -28,7 +28,7 @@ node serve.mjs
 
 jsdom es únicamente una dependencia de pruebas. `npm test` genera 24 páginas, comprueba enlaces, valida funciones con solicitudes simuladas y ejecuta recorridos DOM del sitio y del panel. GitHub Actions ejecuta esas pruebas antes de publicar `dist/`.
 
-La conexión del navegador no estuvo disponible durante esta entrega. Las pruebas DOM, de API y de despliegue no equivalen a revisión visual en Chrome ni a un inicio de sesión real de usuario.
+El rediseño Nivara se revisó visualmente en Chrome y con una vista de 390 píxeles dentro de un iframe de prueba. Las pruebas de autenticación utilizan solicitudes simuladas y controles de permisos del servidor.
 
 ## Contenido y publicación
 
@@ -65,4 +65,10 @@ Ver [docs/ADMIN-PLAN.md](docs/ADMIN-PLAN.md) para operación, roles y límites.
 
 ## Recursos gráficos
 
-Logo y retratos aportados por el usuario; logos KW Premier del sitio existente. Ambientación Unsplash: `photo-1600210492486-724fe5c67fb0`, `photo-1600607687920-4e2a09cf159d`; no se presentan como inmuebles disponibles. Ilustraciones SVG propias en `dist/assets/guide-*.svg`. Manrope conserva su licencia OFL en assets.
+Logo y retratos aportados por el usuario; logos KW Premier del sitio existente. Ambientación Unsplash: `photo-1600210492486-724fe5c67fb0`, `photo-1600607687920-4e2a09cf159d`; no se presentan como inmuebles disponibles. Portadas fotográficas en `dist/assets/editorial-*.jpg`. Manrope conserva su licencia OFL en assets.
+
+## Rediseño Nivara — noviembre de 2026
+
+Referencia visual elegida por el propietario: https://nivara-architecture-template.vercel.app/. La portada usa su fotografía de fachada y la tipografía Inter Tight, cuya licencia OFL acompaña el archivo. El contenido y los enlaces corresponden a Confort4. Las imágenes editoriales adicionales proceden de Unsplash: photo-1600596542815-ffad4c1539a9, photo-1600607687939-ce8a6c25118c, photo-1600585154340-be6161a56a0c y photo-1600566753190-17f0baa2a6c3. Son ambientación.
+
+Texto destacado al hacer scroll, escena fotográfica que se abre con el desplazamiento, presentación de propiedades con pausa y controles, servicios desplegables y contacto visible. Las preferencias de movimiento reducido desactivan la animación y el avance automático. La herramienta de precio de referencia y ahorro se retiró de inicio, recursos, artículos y selección de módulos del panel.

@@ -1,4 +1,4 @@
-export const moduleTypes=['intents','properties','process','tool','journal','faq','contact','reviews'];
+export const moduleTypes=['intents','properties','process','journal','faq','contact','reviews'];
 export function validateContent(data){
  if(!data||typeof data!=='object'||!data.team||!Array.isArray(data.services)||!data.home||!Array.isArray(data.posts)||!Array.isArray(data.faq))throw Error('Faltan secciones de contenido.');
  if(JSON.stringify(data).length>440000)throw Error('El contenido es demasiado grande.');
@@ -22,7 +22,7 @@ export function validateContent(data){
  for(const question of data.faq){string(question.question,'la pregunta');string(question.answer,'la respuesta');string(question.category,'la categoría');}
  for(const service of data.services){if(!['vender','comprar','rentar'].includes(service.id))throw Error('Servicio desconocido.');for(const k of ['title','shortTitle','intro','image','cta','closing'])string(service[k],'el campo '+k+' de '+service.id);list(service.sections,'las secciones del servicio');for(const section of service.sections){string(section.title,'el título de sección');string(section.text,'el contenido de sección');}if(service.id==='rentar'){list(service.audiences,'los públicos de renta');for(const audience of service.audiences){string(audience.id,'el identificador del público');string(audience.title,'el título del público');list(audience.items,'los puntos de renta');}}}
  if(data.services.length!==3||!['vender','comprar','rentar'].every(id=>data.services.some(s=>s.id===id)))throw Error('Conserva los tres servicios.');
- if(!Array.isArray(data.home.modules)||!data.home.modules.every(m=>moduleTypes.includes(m))||new Set(data.home.modules).size!==data.home.modules.length)throw Error('Revisa los módulos de inicio.');
+ if(!Array.isArray(data.home.modules)||!data.home.modules.every(m=>(m==='tool'||moduleTypes.includes(m)))||new Set(data.home.modules).size!==data.home.modules.length)throw Error('Revisa los módulos de inicio.');
  const slugs=new Set();for(const post of data.posts){if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(post.slug)||slugs.has(post.slug))throw Error('Slug de artículo inválido o repetido.');slugs.add(post.slug);if(!post.title||!Array.isArray(post.sections)||!Array.isArray(post.summary))throw Error('Revisa el artículo.');if(post.checklist&&!['venta','visita','renta'].includes(post.checklist))throw Error('Checklist de artículo inválido.');if(post.published){for(const key of ['title','excerpt','cover','author','updated'])string(post[key],'el campo '+key+' del artículo');if(!post.sections.length||!post.summary.length)throw Error('Completa el artículo antes de hacerlo visible.');for(const section of post.sections){string(section.title,'el título de la sección');string(section.text,'el contenido del artículo');}}}
  return data;
 }

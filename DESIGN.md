@@ -1,29 +1,21 @@
-# Confort4 — design direction
+# Confort4 — Nivara reference lock
 
-The owner rejected the dark, pinned collage and supplied Coinbase and Cuure as the accepted replacement references. Jaime Luciano supplies the breadth of real-estate information architecture, rather than a visual template.
+The owner explicitly selected https://nivara-architecture-template.vercel.app/ and asked to reproduce its visual identity and scroll animations. This supersedes the previous Coinbase/Cuure and provisional colorful-gradient directions.
 
-| Reference / evidence | Decision | Application |
-| --- | --- | --- |
-| Coinbase | Strong hierarchy, whitespace, clear primary action | White sticky navigation, left aligned hero, generous type and spacing |
-| Cuure | Personal guidance, approachable reading, neutral surfaces | Residential split hero, concise service paths, restrained corners |
-| Jaime Luciano | Content breadth and separate journeys | Team, buyer/seller/renter pages, inventory, journal, practical resources |
-| Confort4 supplied identity | Charcoal, white, red | Real raster logo filtered inside SVG; original logo and official KW Premier in footer |
-| Owner's latest requests | Segmentation and editability | Distinct URLs, modular content, forms, authenticated editorial panel |
+## Composition
 
-## Reading rhythm
+Full-viewport photographic facade hero. Large, light Inter Tight headlines sit at the bottom left with a narrower description and action on the right. The actual Confort4 logo and requested navigation overlay the photograph, then switch to a white header after the hero. The reference photograph is ambient imagery, not a Confort4 listing.
 
-The homepage moves from a residential image to three service paths, actual property cards, a sticky process guide, a charcoal budget tool, editorial illustrations, FAQ, a focused wizard and authorized reviews. Each module has a distinct purpose and structure. Full biographies and photos stay on the team page.
+A large introduction highlights words as it enters the viewport. Services use two columns of image-backed accordions. Actual listings occupy a panoramic carousel with manual navigation, automatic advance and pause. Narrative process content alternates photographs and text. A sticky photographic scene unfolds on scroll. The journal uses a lead article and supporting stories. FAQ and a visible single-view contact form complete the homepage. The footer carries oversized Confort4 typography and official KW Premier affiliation.
 
-The process uses a connected SVG route with active milestones driven by intersection. Brief native entrances reveal service paths and article cards. No artificial scroll distance or scroll hijacking. Content is visible by default; reduced motion cancels entrances and transitions. Gallery, tables, checklists and forms provide useful interactions rather than decorative counters.
+White and warm off-white surfaces, black type, thin rules and restrained warm action accents follow the selected reference. Large photographs have square edges. Inter Tight is self-hosted with its OFL license. Advisor photographs remain on the team page.
 
-## System
+## Function and motion
 
-Self-hosted Manrope, charcoal `#202520`, red `#c92330`, off-white `#f4f5f0`, white. Maximum public content width 1432px including responsive gutters. Large reading headings and restrained 6–16px corners. SVG editorial artwork uses the same palette with architectural and budget motifs. Ambient photos never masquerade as property inventory.
+Existing service routes, property details, blog, resources, contact delivery and administrative content editing remain the business entry points. The reference-price/savings calculator has been removed. Older saved content with its retired module identifier renders without that module.
 
-Header uses the actual supplied logo. Its SVG viewport excludes the lower “by KW” block; color filtering removes the dark background and changes white marks to charcoal. Social icons include WhatsApp. Mobile uses an explicit menu; properties, service routes and forms reflow into single columns.
+Scroll effects use one requestAnimationFrame update per frame, with passive scroll input. All copy is readable before JavaScript. Reduced-motion preferences reveal all words, keep the photo composition static and pause the carousel by default. Automatic carousel advance pauses while a control has focus and only runs while visible.
 
-Administrative content is structured, escaped and validated. Draft previews use public-content-only local storage. Private leads and credentials never enter public rendering. Styling remains fixed while editors update text, images, module order and article content.
+## Evidence
 
-## Verification
-
-Local links/assets, HTML structure, API authorization, content validation, form flows, catalog controls, budget math, gallery, article/blog navigation and CMS draft/followup were tested. SQL save/publish/restore checks were rolled back. The three original SVG illustrations were rendered and visually inspected. Browser access host was unavailable and native Chrome could not verify the current URL, so no claim is made of complete browser visual or responsive verification.
+Nivara's live desktop rendering, font and media were inspected. Confort4's rebuilt hero and contact were checked in Chrome, and a 390-pixel iframe fixture exercises native responsive layout. Functional checks cover carousel controls, catalog filters, FAQ, single-view contact, administrative editing and the absence of the retired calculator. The supplied cloner repository was cloned separately and reviewed as a workflow reference. The application continues to use its existing static Pages architecture.

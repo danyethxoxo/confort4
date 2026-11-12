@@ -1,4 +1,5 @@
 import {renderPage,e,propertyCard,money,imageOf,safeURL} from './ui.mjs';
+import {initializeReferenceMotion} from './reference-motion.mjs';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;
 let bundle=JSON.parse(document.querySelector('#site-data').textContent),dirty=false,observer;
@@ -29,7 +30,6 @@ function compare(){const panel=$('#comparison');if(!panel)return;const items=bun
  const rows=[['Precio',p=>money(p.precio,p.moneda)+' '+p.moneda],['Operación',p=>p.operacion],['Zona',p=>[p.colonia,p.municipio].filter(Boolean).join(', ')],['Recámaras',p=>p.recamaras??'Por confirmar'],['Baños',p=>p.banos??'Por confirmar'],['Construcción',p=>p.m2_construccion?p.m2_construccion+' m²':'Por confirmar'],['Estacionamientos',p=>p.estacionamientos??'Por confirmar']];
  panel.innerHTML=`<div class="module-heading"><h3>Compara lo que te importa.</h3><button class="text-button" data-clear-compare>Limpiar comparación</button></div><p role="status">${items.length} de 3 propiedades seleccionadas</p><div class="table-scroll"><table><caption>Comparación de propiedades seleccionadas</caption><thead><tr><th scope="col">Característica</th>${items.map(p=>`<th scope="col"><a href="propiedad.html?id=${encodeURIComponent(p.id)}">${e(p.titulo)}</a></th>`).join('')}</tr></thead><tbody>${rows.map(([label,fn])=>`<tr><th scope="row">${label}</th>${items.map(p=>`<td>${e(fn(p))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 }
-function budget(){const val=k=>Math.max(0,Math.min(1e12,Number($('[data-budget="'+k+'"]').value)||0));const total=val('price')+val('costs'),covered=Math.min(total,val('savings'));const format=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(n);$('#budget-total').textContent=format(total);$('#budget-savings').textContent=format(covered);$('#budget-gap').textContent=format(total-covered);$('#budget-covered').style.width=(total?covered/total*100:0)+'%';$('.budget-bar').setAttribute('aria-label','Ahorro aplicado: '+format(covered)+'. Importe por resolver: '+format(total-covered));}
 function updateChecklist(section){const inputs=$$('input[type=checkbox]',section),done=inputs.filter(c=>c.checked).length;$('progress',section).value=done;$('.checklist-status',section).textContent=done+' de '+inputs.length+' revisados';storage.set('checklist-'+section.dataset.checklist,inputs.map(c=>c.checked));}
 function searchText(selector,query,empty){const q=normalize(query);let count=0;$$(selector).forEach(el=>{el.hidden=!normalize(el.textContent).includes(q);if(!el.hidden)count++;});if($(empty))$(empty).hidden=count>0;}
 function blogFilter(){let n=0;const q=normalize($('#blog-search').value),category=$('#blog-category').value;$$('[data-post]').forEach(el=>{el.hidden=!(normalize(el.textContent).includes(q)&&(!category||category===el.dataset.category));if(!el.hidden)n++;});$('#blog-empty').hidden=n>0;}
@@ -38,9 +38,10 @@ function validateStep(form){let valid=true;$$('[data-step]:not([hidden]) input,[
 function preference(form){const email=form.elements.email,phone=form.elements.phone,phonePreferred=form.elements.contact_preference?.value!=='email';email.required=!phonePreferred;phone.required=phonePreferred;if(phonePreferred)phone.pattern='[+0-9 () .\\-]{7,30}';else phone.removeAttribute('pattern');}
 function init(){
  observer?.disconnect();
+ initializeReferenceMotion(main);
  if(preview){$$('a[href]',main).forEach(a=>{const url=new URL(a.getAttribute('href'),location.href);if(url.origin===location.origin&&url.pathname.endsWith('.html')&&!/\/(admin|privacidad|resena)\.html$/.test(url.pathname)){url.searchParams.set('preview','1');a.href=url.href;}});$$('button[type=submit]',main).forEach(b=>{b.disabled=true;b.textContent='Formulario en vista previa';});}
  $$('[data-checklist]').forEach(s=>{const saved=storage.get('checklist-'+s.dataset.checklist,[]);$$('[data-check]',s).forEach((c,i)=>c.checked=!!saved[i]);updateChecklist(s);});
- $$('form.project-form').forEach(form=>{form.noValidate=true;const requested=params.interes;if([...form.elements.interest.options].some(o=>o.value===requested))form.elements.interest.value=requested;preference(form);setStep(form,0);});
+ $$('form[data-kind=contact]').forEach(form=>{form.noValidate=true;const requested=params.interes;if([...form.elements.interest.options].some(o=>o.value===requested))form.elements.interest.value=requested;preference(form);if(form.matches('.project-form'))setStep(form,0);});
  markFavorites();
  if(page==='article'){const post=bundle.content.posts.find(p=>p.slug===params.slug&&p.published!==false);if(post)document.title=post.title+' | Confort4';}
  if(page==='property'){const property=bundle.properties.find(p=>p.id===params.id);if(property)document.title=property.titulo+' | Confort4';}
@@ -56,7 +57,7 @@ main.addEventListener('click',ev=>{
  if(target.matches('[data-print]')){const checklist=target.closest('[data-checklist]');$$('[data-checklist]').forEach(el=>el.classList.toggle('print-selected',el===checklist));window.print();}
  if(target.matches('[data-next],[data-back]')){const f=target.closest('form'),step=Number(f.dataset.currentStep);if(target.matches('[data-back]'))setStep(f,step-1);else if(validateStep(f))setStep(f,step+1);}
 });
-main.addEventListener('input',ev=>{const el=ev.target;if(el.matches('#property-search,#property-budget'))filterProperties();if(el.matches('[data-budget]'))budget();if(el.id==='faq-search')searchText('[data-faq]',el.value,'.faq-empty');if(el.id==='blog-search')blogFilter();});
+main.addEventListener('input',ev=>{const el=ev.target;if(el.matches('#property-search,#property-budget'))filterProperties();if(el.id==='faq-search')searchText('[data-faq]',el.value,'.faq-empty');if(el.id==='blog-search')blogFilter();});
 main.addEventListener('change',ev=>{const el=ev.target;if(el.id==='property-operation')filterProperties();if(el.id==='property-currency'){$('#property-budget').disabled=!el.value;$('#property-budget').value='';filterProperties();}if(el.id==='blog-category')blogFilter();if(el.name==='contact_preference')preference(el.form);if(el.matches('[data-check]'))updateChecklist(el.closest('[data-checklist]'));if(el.matches('[data-compare]')){if(el.checked&&comparisons.size>=3){el.checked=false;$('#catalog-count').textContent='Puedes comparar hasta 3 propiedades. Quita una para agregar otra.';return;}el.checked?comparisons.add(el.dataset.compare):comparisons.delete(el.dataset.compare);compare();}});
 const requests=new WeakMap();
 main.addEventListener('submit',async ev=>{
