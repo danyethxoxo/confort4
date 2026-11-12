@@ -252,3 +252,8 @@ body[data-page=faq] .faq-module { padding-top: 24px; }
 .header #navigation > a::after { content: ''; position: absolute; left: 7px; right: 7px; bottom: 3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .2s ease; pointer-events: none; }
 .header #navigation > a:hover::after,.header #navigation > a:focus-visible::after { transform: scaleX(1); }
 @media(prefers-reduced-motion:reduce) { .header #navigation > a::after { transition: none; } }
+
+/* Let the smooth-scroll engine own page motion; nested fields still scroll natively. */
+html.lenis,html.lenis body { scroll-behavior: auto; }
+.site-form textarea,.select-options { overscroll-behavior: auto; }
+.contact-form-section::before { contain: paint; }

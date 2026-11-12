@@ -15,7 +15,8 @@ function configureSmoothScroll() {
     duration: 1.1,
     autoRaf: true,
     anchors: {offset: -82},
-    prevent: element => element.matches('textarea,[data-lenis-prevent]')
+    allowNestedScroll: true,
+    prevent: element => element.hasAttribute('data-lenis-prevent')
   });
 }
 

@@ -1,5 +1,5 @@
 import {motionTiming as timing, clampProgress, intervalProgress, expansionState, lineGradientPosition} from './motion-rules.mjs';
-import {initializeMotionNavigation} from './motion-navigation.mjs';
+import {initializeMotionNavigation} from './motion-navigation.mjs?v=39';
 
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 let scrollFrame = null;
@@ -210,91 +210,65 @@ function prepareFooter() {
   return footer;
 }
 
+// Read geometry together, then apply styles; offscreen scenes keep their last frame.
 function updateScrollScene() {
-  scrollFrame = null;
-  const height = window.innerHeight;
-  const reduced = motionPreference.matches;
-  const hero = sceneElements.hero;
-  document.querySelector('.header')?.classList.toggle('over-hero', Boolean(hero && window.scrollY < 24));
-
-  if (hero) {
-    const bounds = hero.getBoundingClientRect();
-    const progress = reduced ? 0 : clampProgress(-bounds.top / Math.max(1, bounds.height));
-    hero.querySelector('.hero-parallax')?.style.setProperty('transform', `translateY(${progress * 45}%)`);
+ scrollFrame = null;
+ const height=window.innerHeight,width=window.innerWidth,reduced=motionPreference.matches;
+ if(resizePending){
+  resizePending=false;
+  for(const block of [...lineBlocks,...gradientBlocks]){
+   if(Math.abs(block.element.getBoundingClientRect().width-block.width)>1){
+    Object.assign(block,measureLines(block.element,block.kind));
+    if(block.kind==='entrance'&&!block.element.dataset.motionSeen&&!reduced)block.lines.forEach(line=>line.style.transform='translateY(110%)');
+   }
   }
-
-  for (const scene of sceneElements.expanding || []) {
-    const bounds = scene.getBoundingClientRect();
-    const progress = reduced ? 1 : clampProgress(-bounds.top / Math.max(1, bounds.height - height));
-    const state = expansionState(progress, window.innerWidth);
-    scene.querySelector('.expanding-frame').style.clipPath = `inset(${state.verticalInset}% ${state.horizontalInset}%)`;
-    scene.querySelector('.expanding-frame img').style.transform = `scale(${state.scale})`;
-    scene.querySelector('.expanding-scrim').style.opacity = state.scrim;
-    const copy = scene.querySelector('.expanding-copy');
-    copy.style.opacity = state.opacity;
-    copy.style.transform = `translateY(${state.offset}px)`;
-    copy.style.pointerEvents = state.opacity > 0.9 ? 'auto' : 'none';
-    if ('inert' in copy) copy.inert = state.opacity < 0.9;
-    if (progress > 0.6) animateSceneCounts(scene);
-    copy.querySelectorAll('.expanding-metric').forEach((link, index) => {
-      const entry = intervalProgress(progress, 0.6 + index * 0.04, 0.76 + index * 0.04);
-      link.style.setProperty('--option-progress', String(reduced ? 1 : entry));
-    });
-  }
-
-  for (const scene of sceneElements.scattered || []) {
-    const bounds = scene.getBoundingClientRect();
-    const progress = clampProgress((height - bounds.top) / (height + bounds.height));
-    scene.querySelectorAll('[data-scene-drift]').forEach(photo => {
-      const offset = reduced || window.innerWidth < 1200 ? 0 : progress * Number(photo.dataset.sceneDrift);
-      photo.style.transform = `translateY(${offset}px)`;
-    });
-  }
-
-  for (const image of sceneElements.parallax || []) {
-    const figure = image.closest('figure');
-    const bounds = figure.getBoundingClientRect();
-    const progress = clampProgress((height - bounds.top) / (height + bounds.height));
-    image.style.transform = reduced ? 'none' : `translateY(${-8 + progress * 16}%) scale(1.18)`;
-  }
-
-  for (const block of gradientBlocks) {
-    const bounds = block.element.getBoundingClientRect();
-    const progress = reduced ? 1 : clampProgress((height * 0.85 - bounds.top) / (bounds.height + height * 0.4));
-    block.lines.forEach((line, index) => {
-      const position = lineGradientPosition(progress, index, block.lines.length);
-      line.style.backgroundImage = `linear-gradient(90deg,var(--ink) ${position - 9}%,#cfcfcf ${position + 9}%)`;
-    });
-  }
-
-  const footer = sceneElements.footer;
-  if (footer) {
-    const bounds = footer.getBoundingClientRect();
-    const progress = reduced ? 1 : clampProgress((height - bounds.top) / Math.max(1, bounds.height));
-    const letters = [...footer.querySelectorAll('.footer-letter')];
-    letters.forEach((letter, index) => {
-      const start = index / letters.length * 0.45;
-      const offset = 100 * (1 - intervalProgress(progress, start, start + 0.55));
-      letter.style.transform = `translateY(${offset}%)`;
-    });
-  }
-
-  if (resizePending) {
-    resizePending = false;
-    let reflowed = false;
-    for (const block of [...lineBlocks, ...gradientBlocks]) {
-      const width = block.element.getBoundingClientRect().width;
-      if (Math.abs(width - block.width) > 1) {
-        const rebuilt = measureLines(block.element, block.kind);
-        Object.assign(block, rebuilt);
-        if (block.kind === 'entrance' && !block.element.dataset.motionSeen && !reduced) {
-          block.lines.forEach(line => { line.style.transform = 'translateY(110%)'; });
-        }
-        reflowed = true;
-      }
-    }
-    if (reflowed) scheduleScrollScene();
-  }
+ }
+ const {hero,header}=sceneElements;
+ const bounds=new Map();
+ const measure=element=>{if(element&&!bounds.has(element))bounds.set(element,element.getBoundingClientRect());};
+ measure(hero);measure(sceneElements.footer);
+ (sceneElements.expanding||[]).forEach(scene=>measure(scene.element));
+ (sceneElements.scattered||[]).forEach(scene=>measure(scene.element));
+ (sceneElements.parallax||[]).forEach(image=>measure(image.figure));
+ gradientBlocks.forEach(block=>measure(block.element));
+ const visible=rect=>rect&&rect.top<height+160&&rect.bottom>-160;
+ const set=(element,property,value)=>{if(element&&element.style[property]!==value)element.style[property]=value;};
+ const overHero=Boolean(hero&&window.scrollY<24);
+ if(header&&header.classList.contains('over-hero')!==overHero)header.classList.toggle('over-hero',overHero);
+ if(hero&&visible(bounds.get(hero))){
+  const rect=bounds.get(hero),progress=reduced?0:clampProgress(-rect.top/Math.max(1,rect.height));
+  set(sceneElements.heroParallax,'transform', 'translateY('+progress*45+'%)');
+ }
+ for(const scene of sceneElements.expanding||[]){
+  const rect=bounds.get(scene.element);if(!visible(rect))continue;
+  const progress=reduced?1:clampProgress(-rect.top/Math.max(1,rect.height-height)),state=expansionState(progress,width);
+  set(scene.frame,'clipPath','inset('+state.verticalInset+'% '+state.horizontalInset+'%)');
+  set(scene.image,'transform','scale('+state.scale+')');set(scene.scrim,'opacity',String(state.scrim));
+  set(scene.copy,'opacity',String(state.opacity));set(scene.copy,'transform','translateY('+state.offset+'px)');set(scene.copy,'pointerEvents',state.opacity>.9?'auto':'none');
+  if('inert' in scene.copy&&scene.copy.inert!==(state.opacity<.9))scene.copy.inert=state.opacity<.9;
+  if(progress>.6)animateSceneCounts(scene.element);
+  scene.metrics.forEach((metric,index)=>{const value=String(reduced?1:intervalProgress(progress,.6+index*.04,.76+index*.04));if(metric.style.getPropertyValue('--option-progress')!==value)metric.style.setProperty('--option-progress',value);});
+ }
+ for(const scene of sceneElements.scattered||[]){
+  const rect=bounds.get(scene.element);if(!visible(rect))continue;
+  const progress=clampProgress((height-rect.top)/(height+rect.height));
+  scene.photos.forEach(photo=>set(photo,'transform','translateY('+(reduced||width<1200?0:progress*Number(photo.dataset.sceneDrift))+'px)'));
+ }
+ for(const image of sceneElements.parallax||[]){
+  const rect=bounds.get(image.figure);if(!visible(rect))continue;
+  const progress=clampProgress((height-rect.top)/(height+rect.height));
+  set(image.element,'transform',reduced?'none':'translateY('+(-8+progress*16)+'%) scale(1.18)');
+ }
+ for(const block of gradientBlocks){
+  const rect=bounds.get(block.element);if(!visible(rect))continue;
+  const progress=reduced?1:clampProgress((height*.85-rect.top)/(rect.height+height*.4));
+  block.lines.forEach((line,index)=>{const position=lineGradientPosition(progress,index,block.lines.length);set(line,'backgroundImage','linear-gradient(90deg,var(--ink) '+(position-9)+'%,#cfcfcf '+(position+9)+'%)');});
+ }
+ const footer=sceneElements.footer,rect=bounds.get(footer);
+ if(footer&&visible(rect)){
+  const progress=reduced?1:clampProgress((height-rect.top)/Math.max(1,rect.height)),letters=sceneElements.footerLetters;
+  letters.forEach((letter,index)=>{const start=index/letters.length*.45;set(letter,'transform','translateY('+100*(1-intervalProgress(progress,start,start+.55))+'%)');});
+ }
 }
 
 function scheduleScrollScene() {
@@ -359,6 +333,8 @@ function prepareFeaturedProperties(root) {
   progress.append(progressFill);
   carousel.append(progress);
 
+  let inView = !window.IntersectionObserver;
+  let visibilityObserver = null;
   let index = 0;
   let paused = motionPreference.matches || slides.length < 2;
   let advanceTimer = null;
@@ -381,7 +357,7 @@ function prepareFeaturedProperties(root) {
     progressAnimation?.cancel();
     zoomAnimation?.cancel();
     progressFill.style.transform = 'scaleX(0)';
-    if (paused || motionPreference.matches || document.hidden || slides.length < 2) return;
+    if (paused || !inView || motionPreference.matches || document.hidden || slides.length < 2) return;
     progressAnimation = progressFill.animate?.([{transform: 'scaleX(0)'}, {transform: 'scaleX(1)'}], {duration: timing.slideInterval, easing: 'linear', fill: 'both'});
     const image = slides[index].querySelector('img');
     zoomAnimation = image.animate?.([{transform: 'scale(1)'}, {transform: 'scale(1.08)'}], {duration: timing.slideInterval, easing: 'linear', fill: 'both'});
@@ -489,9 +465,11 @@ function prepareFeaturedProperties(root) {
   }, true);
   const visibilityChange = () => armAutoplay();
   document.addEventListener('visibilitychange', visibilityChange);
+  if(window.IntersectionObserver){visibilityObserver=new window.IntersectionObserver(entries=>{const visible=entries[0]?.isIntersecting||false;if(visible!==inView){inView=visible;armAutoplay();}},{rootMargin:'160px'});visibilityObserver.observe(carousel);}
   updateToggle();
   armAutoplay();
   carouselCleanup = () => {
+    visibilityObserver?.disconnect();
     window.clearTimeout(advanceTimer);
     progressAnimation?.cancel();
     zoomAnimation?.cancel();
@@ -509,17 +487,22 @@ export function initializeReferenceMotion(root) {
   const hero = root.querySelector('.hero');
   sceneElements = {
     hero,
-    expanding: [...root.querySelectorAll('.expanding-scene')],
-    scattered: [...root.querySelectorAll('.living-scene')],
+    header: document.querySelector('.header'),
+    heroParallax: hero?.querySelector('.hero-parallax'),
+    expanding: [...root.querySelectorAll('.expanding-scene')].map(element=>({element,frame:element.querySelector('.expanding-frame'),image:element.querySelector('.expanding-frame img'),scrim:element.querySelector('.expanding-scrim'),copy:element.querySelector('.expanding-copy'),metrics:[...element.querySelectorAll('.expanding-metric')]})),
+    scattered: [...root.querySelectorAll('.living-scene')].map(element=>({element,photos:[...element.querySelectorAll('[data-scene-drift]')]})),
     parallax: [],
-    footer: prepareFooter()
+    footer: prepareFooter(),
+    footerLetters: []
   };
 
   Promise.resolve(document.fonts?.ready).then(() => {
     if (currentGeneration !== generation || !root.isConnected) return;
     prepareHero(hero);
+    sceneElements.heroParallax=hero?.querySelector('.hero-parallax');
+    sceneElements.footerLetters=[...document.querySelectorAll('.footer-letter')];
     prepareEntranceObserver(root);
-    sceneElements.parallax = [...root.querySelectorAll('.narrative-process .motion-image-parallax')];
+    sceneElements.parallax = [...root.querySelectorAll('.narrative-process .motion-image-parallax')].map(element=>({element,figure:element.closest('figure')}));
     sizeObserver?.disconnect();
     if (window.ResizeObserver) {
       sizeObserver = new window.ResizeObserver(() => { resizePending = true; scheduleScrollScene(); });

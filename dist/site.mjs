@@ -1,5 +1,5 @@
-﻿import {renderPage} from './ui.mjs?v=37';
-import {initializeReferenceMotion} from './reference-motion.mjs?v=37';
+﻿import {renderPage} from './ui.mjs?v=39';
+import {initializeReferenceMotion} from './reference-motion.mjs?v=39';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;
 let bundle=JSON.parse(document.querySelector('#site-data').textContent),dirty=false;
