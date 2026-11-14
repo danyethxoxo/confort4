@@ -1,4 +1,4 @@
-﻿import {renderPage} from './ui.mjs?v=40';
+﻿import {renderPage} from './ui.mjs?v=20261113contactos';
 import {initializeReferenceMotion} from './reference-motion.mjs?v=40';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;

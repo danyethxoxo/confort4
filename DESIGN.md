@@ -8,7 +8,7 @@ Full-viewport photographic facade hero. Large, light Inter Tight headlines sit a
 
 A large introduction highlights words as it enters the viewport. Services use two columns of image-backed accordions. Actual listings occupy a panoramic carousel with manual navigation, automatic advance and pause. Narrative process content alternates photographs and text. A sticky photographic scene unfolds on scroll. The journal uses a lead article and supporting stories. FAQ and a visible single-view contact form complete the homepage. The footer carries oversized Confort4 typography and official KW Premier affiliation.
 
-White and neutral gray surfaces, black type, thin rules and KW red action accents follow the owner's November palette request while preserving the selected reference's composition. Large photographs have square edges. Inter Tight is self-hosted with its OFL license. Advisor photographs remain on the team page.
+White and neutral gray surfaces, black type, thin rules and KW red action accents follow the owner's November palette request while preserving the selected reference's composition. Large photographs have square edges. Inter Tight is self-hosted with its OFL license. Advisor photography is expanded on the team and seller pages using the owner-provided sources.
 
 ## Function and motion
 
@@ -39,3 +39,7 @@ The November 13 reference pins KW red #b40101, main gray #999999, light gray #cc
 ### Red header
 
 Restore the original header behavior, selectors, transition timing, scroll threshold, blur, saturation and mobile menu. The only background change is the original white 84% scrolled bar becoming KW red #b40101 at the same 84% opacity. White text and logo accompany the red bar. The homepage top remains transparent. The mobile dropdown keeps its original white translucent surface with red links. Do not introduce stronger ID overrides or a separate scroll implementation.
+
+## Team content and photographs
+
+The November 13 owner request expands Who We Are using the supplied landing and I:/Imágenes/confort 4. Preserve the approved layout, color and scroll system. The team route adds a shared portrait, richer member biographies, three explanatory sections, a second shared photo, four real community photographs, and direct contacts. The seller route incorporates the supplied valuation offer and the shared team photo. Public contact data is shared by the renderer and generated footer; notification routing is unchanged. See docs/CONTENT-SOURCES.md.

@@ -1,45 +1,84 @@
 {
   "brand": "Confort4",
-  "phone": "+52 55 3434 7566",
-  "whatsapp": "https://wa.me/525534347566",
+  "phone": "+52 55 2747 7538",
+  "whatsapp": "https://wa.me/525527477538",
   "team": {
     "title": "Dos generaciones. Un equipo contigo.",
     "intro": "Somos un equipo de profesionales inmobiliarios certificados que combina experiencia y nuevas perspectivas para acompañar cada proyecto en CDMX.",
     "paragraphs": [
-      "Entendemos que cada generación tiene distintas prioridades: un primer hogar, un cambio de etapa, un patrimonio por cuidar o una propiedad para invertir. Empezamos por escuchar tu proyecto antes de buscar una solución.",
-      "Trabajamos con ética, visión de futuro y atención personal. Alberto y Renata Flores forman Confort4, una inmobiliaria afiliada a KW Premier."
+      "Cada proyecto tiene una historia: un primer hogar, una nueva etapa, un patrimonio por cuidar o una propiedad para invertir. Empezamos por escuchar qué necesitas y qué te gustaría lograr.",
+      "En Confort4 combinamos dos generaciones y una misma forma de trabajar: trato directo, comunicación clara y acompañamiento de principio a fin. Somos Alberto y Renata Flores, un equipo afiliado a KW Premier.",
+      "Te acompañamos a comprar, vender o rentar en CDMX y Estado de México. Para quien quiere vender, el primer paso puede ser una valuación sin costo que ayude a definir una estrategia con referencias de su zona."
     ],
     "members": [
       {
         "id": "alberto",
         "name": "Alberto Flores Resendiz",
         "photo": "assets/alberto.webp",
-        "contact": "https://wa.me/525534347566",
+        "contact": "https://wa.me/525527477538",
         "contactLabel": "Hablar con Alberto",
-        "bio": "Alberto Flores Resendiz forma parte del equipo Confort4. Su acompañamiento comienza por conocer tu proyecto y las decisiones que necesitas tomar."
+        "bio": "Alberto comienza por conocer tu propiedad, tus prioridades y los tiempos que tienes en mente. Te acompaña a revisar las opciones y las condiciones de la operación, con atención directa durante el proceso.",
+        "phone": "+52 55 2747 7538"
       },
       {
         "id": "renata",
         "name": "Renata Flores",
         "photo": "assets/renata.webp",
-        "contact": "https://www.instagram.com/renflogar/",
-        "contactLabel": "Conocer a Renata",
-        "bio": "Renata Flores forma parte del equipo Confort4. Junto con Alberto, ofrece una perspectiva que conecta las necesidades de distintas generaciones."
+        "contact": "https://wa.me/525576719555",
+        "contactLabel": "Hablar con Renata",
+        "bio": "Renata comparte una perspectiva cercana a las necesidades de distintas generaciones. Junto con Alberto, te acompaña a ordenar tus dudas, explorar alternativas y mantener una comunicación clara en cada paso de tu proyecto.",
+        "phone": "+52 55 7671 9555"
+      }
+    ],
+    "photos": [
+      "assets/equipo-confort4.webp"
+    ],
+    "cover": "assets/alberto-renata-confort4.webp",
+    "approach": [
+      {
+        "title": "Primero, escucharte.",
+        "text": "Tu propiedad y tus objetivos son el punto de partida. Hablamos del lugar, los tiempos y las decisiones que necesitas tomar."
+      },
+      {
+        "title": "Una estrategia con contexto.",
+        "text": "Si vendes, revisamos referencias del mercado y preparamos la promoción de tu inmueble. Si compras o rentas, partimos de tus prioridades para enfocar la búsqueda."
+      },
+      {
+        "title": "Acompañarte hasta la firma.",
+        "text": "Atendemos las consultas, coordinamos visitas y damos seguimiento a las propuestas. Te ayudamos a entender las condiciones y a organizar los siguientes pasos."
+      }
+    ],
+    "gallery": [
+      {
+        "photo": "assets/alberto-comunidad-kw.webp",
+        "caption": "Alberto con la comunidad Keller Williams."
+      },
+      {
+        "photo": "assets/renata-comunidad-kw.webp",
+        "caption": "Renata en un encuentro de Keller Williams."
+      },
+      {
+        "photo": "assets/equipo-encuentro-kw.webp",
+        "caption": "Compartiendo momentos con el equipo KW."
+      },
+      {
+        "photo": "assets/equipo-kw-premier.webp",
+        "caption": "Alberto y Renata en KW Premier."
       }
     ]
   },
   "services": [
     {
       "id": "vender",
-      "title": "Vender una propiedad empieza con una buena estrategia.",
+      "title": "Una estrategia para vender tu propiedad en CDMX y Estado de México.",
       "shortTitle": "Vender",
-      "image": "assets/home-detail.jpg",
-      "intro": "Poner un anuncio es solo una parte. Una venta requiere entender el mercado, preparar la documentación y acompañar las decisiones hasta el cierre.",
-      "cta": "Quiero asesoría para vender",
+      "image": "assets/alberto-renata-confort4.webp",
+      "intro": "Empezamos con una valuación sin costo, basada en datos de tu zona. Alberto y Renata te acompañan en la preparación, promoción y negociación de tu propiedad, hasta la firma.",
+      "cta": "Quiero mi valuación gratis",
       "sections": [
         {
           "title": "Antes de salir al mercado",
-          "text": "Primero conviene aclarar qué quieres lograr, en qué plazo y bajo qué condiciones. Un precio de salida debe considerar la ubicación, el estado del inmueble y propiedades comparables; no solo el monto que te gustaría recibir."
+          "text": "Revisamos tu propiedad, la zona y las referencias de mercado para construir una estimación de precio comercial. La valuación es sin costo y sin compromiso; también hablamos de tus objetivos y los tiempos en que te gustaría vender."
         },
         {
           "title": "Un expediente que permita avanzar",
@@ -47,25 +86,26 @@
         },
         {
           "title": "Presentar bien, atender mejor",
-          "text": "Fotografías, descripción y difusión deben contar con claridad lo que ofrece tu inmueble. También importa atender consultas, organizar visitas y dar seguimiento a las personas interesadas, sin perder el control de tu tiempo."
+          "text": "Preparamos la presentación y la promoción de tu inmueble, con difusión en la red Keller Williams. Atendemos consultas, revisamos el interés de los compradores y coordinamos las visitas para que el seguimiento tenga orden."
         },
         {
           "title": "Negociar también es revisar condiciones",
           "text": "El precio es importante, pero también lo son la forma de pago, los tiempos, los compromisos y la entrega. La asesoría ayuda a comparar propuestas y a mantener una comunicación ordenada entre las partes."
         }
       ],
-      "benefitsTitle": "¿Qué aporta un asesor inmobiliario?",
+      "benefitsTitle": "Estrategia precisa. Acompañamiento humano.",
       "benefits": [
-        "Un punto de referencia para definir la estrategia comercial.",
-        "Coordinación de visitas y seguimiento a interesados.",
-        "Acompañamiento para entender las propuestas.",
-        "Organización del proceso con las partes y especialistas que intervienen."
+        "Valuación sin costo y sin compromiso, con referencias de tu zona.",
+        "Promoción profesional y difusión a través de la red Keller Williams.",
+        "Atención a interesados, coordinación de visitas y seguimiento.",
+        "Acompañamiento en la negociación y coordinación hasta la firma."
       ],
-      "closing": "En Confort4 empezamos por conocer tu propiedad y lo que necesitas de la venta. A partir de ahí, construimos contigo el siguiente paso.",
+      "closing": "Cuéntanos dónde está tu propiedad y qué quieres lograr. Alberto o Renata te contactarán para conversar sobre la valuación y los siguientes pasos.",
       "source": {
         "label": "Profeco: aspectos a revisar en una operación de vivienda usada",
         "url": "https://www.gob.mx/profeco/documentos/antes-de-comprar-casa-usada-informate"
-      }
+      },
+      "imageAlt": "Alberto y Renata Flores, equipo Confort4"
     },
     {
       "id": "comprar",
@@ -489,5 +529,7 @@
       "updated": "2026-11-05",
       "published": true
     }
-  ]
+  ],
+  "email": "confort4.bienesraices@kwmexico.mx",
+  "office": "San Francisco 25, Int. 201, Col. Del Valle Norte, Benito Juárez, CDMX, C.P. 03103"
 }
