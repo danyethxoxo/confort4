@@ -221,12 +221,9 @@
     "intro": "Tu primer hogar. Una nueva etapa. Una inversión. Te acompañamos a comprar, vender o rentar en CDMX, a tu manera.",
     "photo": "assets/architecture-facade.webp",
     "modules": [
-      "intents",
       "properties",
       "process",
-      "journal",
-      "faq",
-      "contact"
+      "faq"
     ]
   },
   "process": [

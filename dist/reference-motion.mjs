@@ -152,7 +152,7 @@ function prepareEntranceObserver(root) {
           element.dataset.motionSeen = 'true';
           play(element, [{clipPath: 'inset(100% 0% 0%)'}, {clipPath: 'inset(0%)'}], timing.imageWipe, 0, timing.inOut);
           const settle = element.querySelector('.motion-image-settle');
-          if (settle) play(settle, [{transform: 'scale(1.15)'}, {transform: 'scale(1)'}], timing.imageSettle);
+          if (settle) play(settle, [{transform: element.dataset.motionFraming==='faces'?'scale(1.03)':'scale(1.15)'}, {transform: 'scale(1)'}], timing.imageSettle);
         } else if (element.dataset.motionKind === 'rule') {
           play(element, [{transform:'scaleX(0)'}, {transform:'scaleX(1)'}], 900);
         } else {
@@ -163,7 +163,7 @@ function prepareEntranceObserver(root) {
     }, {rootMargin: '0px 0px -10% 0px', threshold: 0});
   }
 
-  const lineTargets = root.querySelectorAll('.brand-statement p,.module-heading h2,.module-heading>p,.module-heading>div>p,.process-stage h3,.process-stage>div>p,.living-copy h2,.faq-module h2,.contact-form-intro h2,[data-team-text]');
+  const lineTargets = root.querySelectorAll('.brand-statement p,.module-heading h2,.module-heading>p,.module-heading>div>p,.process-stage h3,.process-stage>div>p,.living-copy h2,.faq-module h2,.contact-form-intro h2,.contact-form-intro h1,[data-team-text]');
   lineBlocks = [...lineTargets].map(element => {
     const block = measureLines(element);
     if (canObserve && !element.dataset.motionSeen) {
@@ -264,6 +264,7 @@ function updateScrollScene() {
  for(const image of sceneElements.parallax||[]){
   const rect=bounds.get(image.figure);if(!visible(rect))continue;
   const progress=clampProgress((height-rect.top)/(height+rect.height));
+  if(image.figure.dataset.motionFraming==='faces'){set(image.element,'transform','none');continue;}
   const team=image.figure.hasAttribute('data-motion-image');
   set(image.element,'transform',reduced?'none':'translateY('+((team?-4:-8)+progress*(team?8:16))+'%) scale('+(team?1.12:1.18)+')');
  }

@@ -26,7 +26,7 @@ npm test
 node serve.mjs
 ```
 
-jsdom es únicamente una dependencia de pruebas. `npm test` genera 24 páginas, comprueba enlaces, valida funciones con solicitudes simuladas y ejecuta recorridos DOM del sitio y del panel. GitHub Actions ejecuta esas pruebas antes de publicar `dist/`.
+jsdom es únicamente una dependencia de pruebas. `npm test` genera 25 páginas, comprueba enlaces, valida funciones con solicitudes simuladas y ejecuta recorridos DOM del sitio y del panel. GitHub Actions ejecuta esas pruebas antes de publicar `dist/`.
 
 El rediseño Nivara se revisó visualmente en Chrome y con una vista de 390 píxeles dentro de un iframe de prueba. Las pruebas de autenticación utilizan solicitudes simuladas y controles de permisos del servidor.
 

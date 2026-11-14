@@ -1,6 +1,7 @@
-﻿import {renderPage} from './ui.mjs?v=20261113equipo-scroll';
-import {initializeReferenceMotion} from './reference-motion.mjs?v=20261113equipo-scroll';
+﻿import {renderPage} from './ui.mjs?v=20261113inicio-footer';
+import {initializeReferenceMotion} from './reference-motion.mjs?v=20261113inicio-footer';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
+if(page==='home'&&location.hash==='#contacto'){const destination=new URL('contacto.html',location.href);destination.search=location.search;location.replace(destination.href);}
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;
 let bundle=JSON.parse(document.querySelector('#site-data').textContent),dirty=false;
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
@@ -32,7 +33,7 @@ function blogFilter(){
  const query=$('#blog-search').value.trim(), terms=normalize(query).split(/\s+/).filter(t=>t.length>2&&!['que','como','para','una','los','las','del','por','con'].includes(t));let count=0;
  $$('[data-post]').forEach(card=>{const text=normalize(card.dataset.search||card.textContent);card.hidden=!!query&&!terms.every(term=>text.includes(term));if(!card.hidden)count++;});
  $('#blog-empty').hidden=count>0;
- $('#blog-question-link').href='index.html?interes=general&duda='+encodeURIComponent(query)+'#contacto';
+ $('#blog-question-link').href='contacto.html?interes=general&duda='+encodeURIComponent(query)+'#contacto';
 }
 function zoneLabel(form){const label=$('[data-zone-label]',form);if(label)label.textContent=['vender','rentar-arrendador'].includes(form.elements.interest.value)?'¿En qué zona se encuentra tu propiedad? · opcional':'¿Cuál es tu zona de interés? · opcional';}
 function setStep(form,n){form.dataset.currentStep=n;$$('[data-step]',form).forEach((s,i)=>{s.hidden=i!==n;$$('input,textarea,select',s).forEach(f=>f.disabled=i!==n);});$$('.wizard-progress li',form).forEach((li,i)=>{if(i===n)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});if(n===2){const interest=form.elements.interest;$('.project-summary',form).textContent=interest.selectedOptions[0].textContent+(form.elements.zone.value?' · '+form.elements.zone.value:'');}if(n>0)$('[data-step="'+n+'"] legend',form)?.scrollIntoView({block:'nearest',behavior:'auto'});}

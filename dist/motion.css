@@ -287,13 +287,13 @@ html.lenis,html.lenis body { scroll-behavior: auto; }
 }
 
 /* Contact is the primary header action; the established scroll states stay intact. */
-.header #navigation > a.header-contact-button { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:12px 22px; margin-left:6px; border:1px solid #fff; border-radius:7px; background:#fff; color:var(--red); font-size:15px; font-weight:500; white-space:nowrap; }
-.header #navigation > a.header-contact-button:is(:hover,:focus-visible) { background:var(--red-hover); border-color:var(--red-hover); color:#fff; }
+.header #navigation > a.header-contact-button { display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:10px 16px; margin-left:6px; border:1px solid currentColor; border-radius:7px; background:transparent; color:inherit; font-size:14px; font-weight:400; white-space:nowrap; }
+.header #navigation > a.header-contact-button:is(:hover,:focus-visible) { background:#ffffff14; border-color:currentColor; color:inherit; }
 .header #navigation > a.header-contact-button::after { display:none; }
-.header:not(.over-hero) #navigation > a.header-contact-button,.header.over-hero #navigation > a.header-contact-button { color:var(--red); background:#fff; }
+.header:not(.over-hero) #navigation > a.header-contact-button,.header.over-hero #navigation > a.header-contact-button { color:#fff; background:transparent; }
 .header:not(.over-hero):has(nav.open) .brand-logo { filter:brightness(0) invert(1); }
-.header:not(.over-hero) #navigation > a.header-contact-button:is(:hover,:focus-visible),.header.over-hero #navigation > a.header-contact-button:is(:hover,:focus-visible) { color:#fff; background:var(--red-hover); }
+.header:not(.over-hero) #navigation > a.header-contact-button:is(:hover,:focus-visible),.header.over-hero #navigation > a.header-contact-button:is(:hover,:focus-visible) { color:#fff; background:#ffffff14; }
 @media(min-width:1001px) and (max-width:1250px) { .header #navigation > a.header-contact-button { font-size:13px; padding-inline:16px; } }
-@media(max-width:1000px) { .header #navigation.open > a.header-contact-button { grid-column:1/-1; width:100%; margin:10px 0 0; background:var(--red); border-color:var(--red); color:#fff; } }
+@media(max-width:1000px) { .header #navigation.open > a.header-contact-button,.header #navigation.open > a.header-contact-button:is(:hover,:focus-visible) { grid-column:1/-1; width:100%; margin:10px 0 0; background:transparent; border-color:var(--red); color:var(--red); } }
 
 @media(prefers-reduced-motion:reduce) { [data-motion-image] .motion-image-parallax { transform:none!important; } [data-team-text] .motion-line { transform:none!important; } }
