@@ -38,4 +38,4 @@ The November 13 reference pins KW red #b40101, main gray #999999, light gray #cc
 
 ### Red header
 
-The owner requested a KW red #b40101 header on November 13, retaining the original scroll transition. Keep navigation text, icons and the Confort4 logo white at the hero, after scrolling and on interior pages. Over the homepage hero the header stays transparent. After scrolling below the photo and on interior pages, use 88% red with an 18px backdrop blur. The mobile menu uses the same red/white treatment with 96% red and blur; hover uses the darker brand red and keyboard focus remains white.
+Restore the original header behavior, selectors, transition timing, scroll threshold, blur, saturation and mobile menu. The only background change is the original white 84% scrolled bar becoming KW red #b40101 at the same 84% opacity. White text and logo accompany the red bar. The homepage top remains transparent. The mobile dropdown keeps its original white translucent surface with red links. Do not introduce stronger ID overrides or a separate scroll implementation.
