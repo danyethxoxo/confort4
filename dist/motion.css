@@ -318,6 +318,6 @@ html.lenis,html.lenis body { scroll-behavior: auto; }
  .header .nav-interest-links { position:static; min-width:0; margin:0 12px 8px; padding:0 0 0 12px; background:transparent; color:inherit; border:0; }
  .header .nav-interest-links::before { display:none; }
  .header .nav-interest-links a:hover,.header .nav-interest-links a:focus-visible { color:inherit; background:transparent; }
- .header .nav-interest-links a { min-height:44px; padding:12px 16px; }
+ .header .nav-interest-links a { min-height:44px; padding:12px 16px; font-size:17px; line-height:1.25; }
 }
 @media(prefers-reduced-motion:reduce) { .header .nav-interest-toggle svg,.header .nav-interest-links a { transition:none; } .header .nav-interest-links { animation:none; } }
