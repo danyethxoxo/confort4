@@ -43,3 +43,7 @@ Restore the original header behavior, selectors, transition timing, scroll thres
 ## Team content and photographs
 
 The November 13 owner request expands Who We Are using the supplied landing and I:/Imágenes/confort 4. Preserve the approved layout, color and scroll system. The team route adds a shared portrait, richer member biographies, three explanatory sections, a second shared photo, four real community photographs, and direct contacts. The seller route incorporates the supplied valuation offer and the shared team photo. Public contact data is shared by the renderer and generated footer; notification routing is unchanged. See docs/CONTENT-SOURCES.md.
+
+## Team scroll refinement
+
+Reuse the existing line-mask and photo-wipe engine on the team route. Photo frames receive a bounded 4% scroll drift and 1.12 inner scale; line entrances use the homepage timing. Thin separators reveal horizontally. Keep geometry reads in the existing batched frame, no additional scroll listener. Reduced motion reveals text and keeps images static. CAPPERS and national newcomer recognition stories use owner-confirmed text and provided photos. Contact buttons replace visible phone digits, the office block lives in the footer, and the header has a primary Contactanos action in place of the WhatsApp icon. Preserve the established transparent/translucent header behavior.

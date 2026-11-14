@@ -16,7 +16,7 @@
         "name": "Alberto Flores Resendiz",
         "photo": "assets/alberto.webp",
         "contact": "https://wa.me/525527477538",
-        "contactLabel": "Hablar con Alberto",
+        "contactLabel": "Contáctame",
         "bio": "Alberto comienza por conocer tu propiedad, tus prioridades y los tiempos que tienes en mente. Te acompaña a revisar las opciones y las condiciones de la operación, con atención directa durante el proceso.",
         "phone": "+52 55 2747 7538"
       },
@@ -25,7 +25,7 @@
         "name": "Renata Flores",
         "photo": "assets/renata.webp",
         "contact": "https://wa.me/525576719555",
-        "contactLabel": "Hablar con Renata",
+        "contactLabel": "Contáctame",
         "bio": "Renata comparte una perspectiva cercana a las necesidades de distintas generaciones. Junto con Alberto, te acompaña a ordenar tus dudas, explorar alternativas y mantener una comunicación clara en cada paso de tu proyecto.",
         "phone": "+52 55 7671 9555"
       }
@@ -51,21 +51,37 @@
     "gallery": [
       {
         "photo": "assets/alberto-comunidad-kw.webp",
-        "caption": "Alberto con la comunidad Keller Williams."
+        "caption": "Alberto, celebrando su primer año como CAPPER en KW Premier."
       },
       {
         "photo": "assets/renata-comunidad-kw.webp",
-        "caption": "Renata en un encuentro de Keller Williams."
+        "caption": "Renata, celebrando su primer año como CAPPER en KW Premier."
       },
       {
         "photo": "assets/equipo-encuentro-kw.webp",
-        "caption": "Compartiendo momentos con el equipo KW."
+        "caption": "Un logro compartido con nuestra comunidad KW Premier."
       },
       {
         "photo": "assets/equipo-kw-premier.webp",
-        "caption": "Alberto y Renata en KW Premier."
+        "caption": "Nuestro primer año como CAPPERS, juntos."
       }
-    ]
+    ],
+    "galleryTitle": "CAPPERS en nuestro primer año.",
+    "galleryIntro": "En nuestro primer año en KW Premier, Alberto y Renata nos convertimos en CAPPERS. Un logro que celebramos con la comunidad que nos ha acompañado desde el comienzo.",
+    "nationalAward": {
+      "title": "Novatos del Año a nivel nacional.",
+      "description": "También fuimos reconocidos a nivel nacional como Novatos del Año. De amarillo y con nuestra comunidad, celebramos un momento muy especial para Alberto, Renata y Confort4.",
+      "photos": [
+        {
+          "photo": "assets/novatos-del-ano-nacional-1.webp",
+          "caption": "Alberto y Renata en la premiación nacional como Novatos del Año."
+        },
+        {
+          "photo": "assets/novatos-del-ano-nacional-2.webp",
+          "caption": "Celebrando el reconocimiento nacional con Keller Williams."
+        }
+      ]
+    }
   },
   "services": [
     {

@@ -153,6 +153,8 @@ function prepareEntranceObserver(root) {
           play(element, [{clipPath: 'inset(100% 0% 0%)'}, {clipPath: 'inset(0%)'}], timing.imageWipe, 0, timing.inOut);
           const settle = element.querySelector('.motion-image-settle');
           if (settle) play(settle, [{transform: 'scale(1.15)'}, {transform: 'scale(1)'}], timing.imageSettle);
+        } else if (element.dataset.motionKind === 'rule') {
+          play(element, [{transform:'scaleX(0)'}, {transform:'scaleX(1)'}], 900);
         } else {
           play(element, [{opacity: 0.001, transform: 'translateY(24px)'}, {opacity: 1, transform: 'translateY(0px)'}], 900, Number(element.dataset.motionDelay || 0));
         }
@@ -161,7 +163,7 @@ function prepareEntranceObserver(root) {
     }, {rootMargin: '0px 0px -10% 0px', threshold: 0});
   }
 
-  const lineTargets = root.querySelectorAll('.brand-statement p,.module-heading h2,.module-heading>p,.module-heading>div>p,.process-stage h3,.process-stage>div>p,.living-copy h2,.faq-module h2,.contact-form-intro h2');
+  const lineTargets = root.querySelectorAll('.brand-statement p,.module-heading h2,.module-heading>p,.module-heading>div>p,.process-stage h3,.process-stage>div>p,.living-copy h2,.faq-module h2,.contact-form-intro h2,[data-team-text]');
   lineBlocks = [...lineTargets].map(element => {
     const block = measureLines(element);
     if (canObserve && !element.dataset.motionSeen) {
@@ -175,7 +177,7 @@ function prepareEntranceObserver(root) {
 
   gradientBlocks = [...root.querySelectorAll('.process-guide .scroll-copy')].map(element => measureLines(element, 'gradient'));
 
-  root.querySelectorAll('.narrative-process figure,.journal-card>a').forEach(element => {
+  root.querySelectorAll('.narrative-process figure,.journal-card>a,[data-motion-image]').forEach(element => {
     if (!element.querySelector('.motion-image-settle')) {
       const image = element.querySelector('img');
       const settle = document.createElement('div');
@@ -188,6 +190,11 @@ function prepareEntranceObserver(root) {
     }
     element.dataset.motionKind = 'image';
     if (canObserve && !element.dataset.motionSeen) entranceObserver.observe(element);
+  });
+
+  root.querySelectorAll('[data-team-rule]').forEach(element => {
+    element.dataset.motionKind='rule';
+    if(canObserve)entranceObserver.observe(element);
   });
 
   root.querySelectorAll('.module-heading>.text-link,.living-copy>.text-link,.contact-direct').forEach(element => {
@@ -257,7 +264,8 @@ function updateScrollScene() {
  for(const image of sceneElements.parallax||[]){
   const rect=bounds.get(image.figure);if(!visible(rect))continue;
   const progress=clampProgress((height-rect.top)/(height+rect.height));
-  set(image.element,'transform',reduced?'none':'translateY('+(-8+progress*16)+'%) scale(1.18)');
+  const team=image.figure.hasAttribute('data-motion-image');
+  set(image.element,'transform',reduced?'none':'translateY('+((team?-4:-8)+progress*(team?8:16))+'%) scale('+(team?1.12:1.18)+')');
  }
  for(const block of gradientBlocks){
   const rect=bounds.get(block.element);if(!visible(rect))continue;
@@ -502,7 +510,7 @@ export function initializeReferenceMotion(root) {
     sceneElements.heroParallax=hero?.querySelector('.hero-parallax');
     sceneElements.footerLetters=[...document.querySelectorAll('.footer-letter')];
     prepareEntranceObserver(root);
-    sceneElements.parallax = [...root.querySelectorAll('.narrative-process .motion-image-parallax')].map(element=>({element,figure:element.closest('figure')}));
+    sceneElements.parallax = [...root.querySelectorAll('.narrative-process .motion-image-parallax,[data-motion-image] .motion-image-parallax')].map(element=>({element,figure:element.closest('[data-motion-image]')||element.closest('figure')}));
     sizeObserver?.disconnect();
     if (window.ResizeObserver) {
       sizeObserver = new window.ResizeObserver(() => { resizePending = true; scheduleScrollScene(); });

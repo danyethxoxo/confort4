@@ -18,7 +18,7 @@ for(const file of pages){
   }
   references++;
  }
- if(!html.includes('aria-label="Confort4 en WhatsApp"'))throw Error(`${file}: WhatsApp header link missing`);
+ if(!html.includes('class="header-contact-button" href="index.html#contacto"'))throw Error(`${file}: primary header contact action missing`);
 }
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
 if(!home.includes('data-kind="contact"')||!home.includes('href="resena.html"'))throw Error('Missing contact/review flow');

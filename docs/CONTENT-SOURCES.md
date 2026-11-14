@@ -15,3 +15,9 @@ La página Vender integra la valuación sin costo, atención directa de Alberto 
 Quiénes somos amplía la presentación, perfiles, forma de acompañamiento y galería del equipo. El diseño mantiene la composición y paleta aprobadas. El panel administrativo se adaptará después de cerrar el diseño; no se agregan editores de diseño en esta etapa.
 
 El correo público de contacto no cambia el destinatario de las notificaciones de prueba de formularios, que sigue siendo el configurado previamente en el servidor.
+
+## Reconocimientos confirmados por el propietario
+
+En la revisión posterior del 13 de noviembre, el propietario confirmó que las fotos de comunidad corresponden a cuando Alberto y Renata se hicieron CAPPERS en su primer año de ingresar a KW Premier. También confirmó el reconocimiento nacional como Novatos del Año en las fotos vestidos de amarillo. Se integran `IMG_9333.JPG` e `IMG_9344.JPG`, optimizadas como WebP. No se deduce ni se publica un año calendario para el premio.
+
+Los números se conservan como destinos de WhatsApp, pero la interfaz muestra botones «Contáctame». La oficina y el correo permanecen en el footer. Se retira el bloque de contacto repetido de Quiénes somos y el icono de WhatsApp del header se sustituye por «Contáctanos».
