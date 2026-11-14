@@ -1,5 +1,5 @@
-﻿import {renderPage} from './ui.mjs?v=20261113inicio-footer';
-import {initializeReferenceMotion} from './reference-motion.mjs?v=20261113inicio-footer';
+﻿import {renderPage} from './ui.mjs?v=20261113menu-interes';
+import {initializeReferenceMotion} from './reference-motion.mjs?v=20261113menu-interes';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
 if(page==='home'&&location.hash==='#contacto'){const destination=new URL('contacto.html',location.href);destination.search=location.search;location.replace(destination.href);}
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;
@@ -8,9 +8,17 @@ const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelecto
 const storage={get(k,f){try{return JSON.parse(localStorage.getItem('confort4-'+k))??f;}catch{return f;}},set(k,v){try{localStorage.setItem('confort4-'+k,JSON.stringify(v));}catch{}}};
 let favorites=new Set(storage.get('favorites',[]));
 const menu=$('.menu-toggle'),nav=$('#navigation');
+const interest=$('.nav-interest'),interestToggle=$('.nav-interest-toggle'),interestLinks=$('#interest-links');
+function setInterest(open){if(!interestToggle||!interestLinks)return;interestToggle.setAttribute('aria-expanded',String(open));interestLinks.hidden=!open;}
+interestToggle?.addEventListener('click',()=>setInterest(interestToggle.getAttribute('aria-expanded')!=='true'));
+interest?.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse'&&window.innerWidth>1000)setInterest(true);});
+interest?.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'&&!interest.contains(document.activeElement))setInterest(false);});
+interest?.addEventListener('focusout',event=>{if(!interest.contains(event.relatedTarget))setInterest(false);});
+interest?.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();setInterest(false);interestToggle.focus();}if(event.key==='ArrowDown'&&event.target===interestToggle){event.preventDefault();setInterest(true);$('a',interestLinks)?.focus();}});
+document.addEventListener('click',event=>{if(!event.target.closest('.nav-interest'))setInterest(false);});
 function setMenu(open){
  if(!menu||!nav)return;
- nav.classList.toggle('open',open);menu.setAttribute('aria-expanded',String(open));
+ nav.classList.toggle('open',open);menu.setAttribute('aria-expanded',String(open));if(!open)setInterest(false);
  menu.firstChild.textContent=open?'Cerrar ':'Menú ';
  menu.querySelector('path')?.setAttribute('d',open?'M6 6l12 12M6 18 18 6':'M4 8h16M4 16h16');
 }
@@ -19,7 +27,7 @@ menu?.addEventListener('click',()=>setMenu(menu.getAttribute('aria-expanded')!==
 document.addEventListener('click',event=>{if(nav?.classList.contains('open')&&!event.target.closest('.header'))closeMenu();});
 window.addEventListener('resize',()=>{if(window.innerWidth>1000&&nav?.classList.contains('open'))closeMenu();},{passive:true});
 nav?.addEventListener('click',ev=>{if(ev.target.closest('a'))closeMenu();});
-document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&nav?.classList.contains('open')){closeMenu();menu.focus();}});
+document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&interestToggle?.getAttribute('aria-expanded')==='true'){setInterest(false);interestToggle.focus();return;}if(ev.key==='Escape'&&nav?.classList.contains('open')){closeMenu();menu.focus();}});
 $('#year')?.replaceChildren(String(new Date().getFullYear()));
 document.addEventListener('input',ev=>{if(ev.target.closest('main'))dirty=true;});
 main.addEventListener('change',()=>dirty=true);

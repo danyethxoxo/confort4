@@ -1,4 +1,4 @@
-import {e,safeURL,money} from './ui.mjs?v=20261113inicio-footer';
+import {e,safeURL,money} from './ui.mjs?v=20261113menu-interes';
 import {validateContent,moduleTypes} from './content-validation.mjs?v=32';
 const config=window.CONFORT4_FORMS,base=config.endpoint.split('/functions/')[0],endpoint=config.endpoint.replace('confort4-forms','confort4-site');
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];

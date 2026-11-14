@@ -297,3 +297,19 @@ html.lenis,html.lenis body { scroll-behavior: auto; }
 @media(max-width:1000px) { .header #navigation.open > a.header-contact-button,.header #navigation.open > a.header-contact-button:is(:hover,:focus-visible) { grid-column:1/-1; width:100%; margin:10px 0 0; background:transparent; border-color:var(--red); color:var(--red); } }
 
 @media(prefers-reduced-motion:reduce) { [data-motion-image] .motion-image-parallax { transform:none!important; } [data-team-text] .motion-line { transform:none!important; } }
+.header .nav-interest { position:relative; }
+.header .nav-interest-toggle { display:flex; align-items:center; gap:7px; padding:7px; border:0; border-radius:0; background:transparent; color:inherit; font:inherit; cursor:pointer; white-space:nowrap; }
+.header .nav-interest-toggle svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.5; transition:transform .2s; }
+.header .nav-interest-toggle[aria-expanded=true] svg { transform:rotate(180deg); }
+.header .nav-interest-links { position:absolute; top:100%; left:0; min-width:160px; display:grid; padding:8px; background:rgb(180 1 1 / 94%); border:1px solid #ffffff50; color:#fff; backdrop-filter:blur(18px); }
+.header .nav-interest-links[hidden] { display:none; }
+.header .nav-interest-links a { display:block; padding:12px 16px; color:inherit; white-space:nowrap; }
+.header .nav-interest-links a:hover,.header .nav-interest-links a:focus-visible { background:#ffffff18; color:#fff; }
+.header .nav-interest-toggle:focus-visible { outline:2px solid currentColor; outline-offset:3px; }
+@media(max-width:1000px) {
+ .header #navigation.open .nav-interest-toggle { width:100%; justify-content:space-between; min-height:44px; padding:12px; font-size:17px; }
+ .header .nav-interest-links { position:static; min-width:0; margin:0 12px 8px; padding:0 0 0 12px; background:transparent; color:inherit; border:0; border-left:1px solid currentColor; backdrop-filter:none; }
+ .header .nav-interest-links a:hover,.header .nav-interest-links a:focus-visible { color:inherit; background:rgb(180 1 1 / 8%); }
+ .header .nav-interest-links a { min-height:44px; padding:12px 16px; }
+}
+@media(prefers-reduced-motion:reduce) { .header .nav-interest-toggle svg { transition:none; } }
