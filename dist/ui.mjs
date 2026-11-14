@@ -71,10 +71,8 @@ export function contactDetails(data,compact=false) {
 export function contactForm(data={},primary=false) {
  return `<section class="contact-form-section wrap" id="contacto">
   <div class="contact-form-intro">
-   <${primary?'h1':'h2'}>Hablemos de tu próximo movimiento.</${primary?'h1':'h2'}>
+   <${primary?'h1':'h2'}>¿Tienes algo en mente?</${primary?'h1':'h2'}>
    <p>Comprar, vender o rentar. Cuéntanos qué tienes en mente y empecemos por ahí.</p>
-   ${contactDetails(data)}
-   <p class="contact-team">Alberto y Renata Flores<br>Confort4 · KW Premier</p>
   </div>
   <form method="post" class="site-form contact-single" data-kind="contact">
    <${primary?'h2':'h3'}>Cuéntanos tu proyecto</${primary?'h2':'h3'}>
