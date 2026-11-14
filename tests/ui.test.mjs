@@ -7,7 +7,7 @@ let calls=[],mode='public',saved=null;
 const tick=()=>new Promise(resolve=>setTimeout(resolve,20));
 async function load(file,query=''){
  if(globalThis.window?.close)globalThis.window.close();
- const dom=new JSDOM(fs.readFileSync(new URL('../dist/'+file,import.meta.url),'utf8'),{url:'https://danyethxoxo.github.io/confort4/'+file+query,pretendToBeVisual:true});
+ const dom=new JSDOM(fs.readFileSync(new URL('../dist/'+file,import.meta.url),'utf8'),{url:'https://danyethxoxo.github.io/confort4-revision-7f3c9a/'+file+query,pretendToBeVisual:true});
  const w=dom.window;for(const name of ['window','document','location','localStorage','sessionStorage','FormData','FileReader'])globalThis[name]=name==='window'?w:w[name];
  w.CONFORT4_FORMS={endpoint:'https://example.invalid/functions/v1/confort4-forms',publishableKey:'public-test-key',anonKey:'anon-test'};
  w.HTMLElement.prototype.scrollIntoView=()=>{};w.print=()=>{};w.confirm=()=>true;w.open=()=>{};globalThis.matchMedia=()=>({matches:true,addEventListener(){}});w.matchMedia=globalThis.matchMedia;

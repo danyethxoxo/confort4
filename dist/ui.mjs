@@ -102,7 +102,7 @@ export function propertyDetail(bundle,p){
  const propertyType=String(p.tipo||'propiedad').toLowerCase();
  const operation=rental?'renta':'venta';
  const place=[p.colonia,p.municipio,p.estado].filter(Boolean).join(', ');
- const whatsapp='https://wa.me/525527477538?text='+encodeURIComponent('Hola, me interesa tu '+propertyType+' en '+operation+' en '+place+' que tienes publicado en Confort4.com. ¿Me puedes dar más información?\n'+new URL(propertyURL(p.id),'https://danyethxoxo.github.io/confort4/').href);
+ const whatsapp='https://wa.me/525527477538?text='+encodeURIComponent('Hola, me interesa tu '+propertyType+' en '+operation+' en '+place+' que tienes publicado en Confort4.com. ¿Me puedes dar más información?\n'+new URL(propertyURL(p.id),'https://danyethxoxo.github.io/confort4-revision-7f3c9a/').href);
  const facts=[[p.recamaras,'Recámaras'],[p.banos,'Baños'],[p.estacionamientos,'Estacionamientos'],[p.m2_construccion||p.m2_terreno,'m² publicados']].filter(([value])=>Number(value)>0);
  const description=plain(p.descripcion);
  return `<section class="property-detail property-editorial wrap">

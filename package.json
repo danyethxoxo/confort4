@@ -1,7 +1,7 @@
 {
   "name": "confort4",
   "version": "1.0.0",
-  "description": "Sitio inmobiliario independiente de KW Premier. Publicación: https://danyethxoxo.github.io/confort4/",
+  "description": "Sitio inmobiliario independiente de KW Premier. Publicación: https://danyethxoxo.github.io/confort4-revision-7f3c9a/",
   "private": true,
   "directories": {
     "doc": "docs",
@@ -13,16 +13,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danyethxoxo/confort4.git"
+    "url": "git+https://github.com/danyethxoxo/confort4-revision-7f3c9a.git"
   },
   "keywords": [],
   "author": "",
   "license": "UNLICENSED",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/danyethxoxo/confort4/issues"
+    "url": "https://github.com/danyethxoxo/confort4-revision-7f3c9a/issues"
   },
-  "homepage": "https://github.com/danyethxoxo/confort4#readme",
+  "homepage": "https://github.com/danyethxoxo/confort4-revision-7f3c9a#readme",
   "devDependencies": {
     "jsdom": "26.1.0"
   },
