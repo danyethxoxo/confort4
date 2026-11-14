@@ -51,3 +51,7 @@ Reuse the existing line-mask and photo-wipe engine on the team route. Photo fram
 ## Simplified homepage and integrated footer
 
 The latest owner request removes the intents/services accordion, blog, contact form, review form and testimonials from the homepage. Keep the property carousel, process and FAQ. Contact uses contacto.html with the same photographic/form composition; service, property and blog links retain context through its query parameters. Old index.html#contacto links redirect to the new route. The header contact action is transparent with a current-color outline and opens Alberto's WhatsApp directly. The footer groups brand/affiliation, navigation and contact in three columns, with compact legal links below; the animated Confort4 wordmark is capped at 144px instead of 350px. Shared portraits use their full 3:2 framing and photo masks without the crop-inducing scroll zoom.
+
+## Property detail and Google reviews
+
+Keep the approved typography, KW palette and square editorial photography. Property pages now use a full-width photo, complete thumbnail strip, native accessible fullscreen viewer, concise facts and an advisor sidebar. Missing data stays omitted. Google reviews use a responsive three/two/one-column neutral-gray grid, retaining owner-supplied text and fragment attribution. The next admin iteration must edit these fields without exposing layout controls.

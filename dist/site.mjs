@@ -1,5 +1,5 @@
-﻿import {renderPage} from './ui.mjs?v=20261113servicios';
-import {initializeReferenceMotion} from './reference-motion.mjs?v=20261113servicios';
+﻿import {renderPage} from './ui.mjs?v=20261113fichas-resenas';
+import {initializeReferenceMotion} from './reference-motion.mjs?v=20261113fichas-resenas';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
 if(page==='home'&&location.hash==='#contacto'){const destination=new URL('contacto.html',location.href);destination.search=location.search;location.replace(destination.href);}
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;
@@ -76,13 +76,35 @@ function init(){
  initSelects();
  markFavorites();
  if(page==='article'){const post=bundle.content.posts.find(p=>p.slug===params.slug&&p.published!==false);if(post)document.title=post.title+' | Confort4';}
- if(page==='property'){const property=bundle.properties.find(p=>p.id===params.id);if(property)document.title=property.titulo+' | Confort4';}
+ if(page==='property'){
+  const property=bundle.properties.find(p=>p.id===params.id);if(property)document.title=property.titulo+' | Confort4';
+  const description=$('#property-description'),toggle=$('[data-description-toggle]');
+  if(toggle&&description){description.classList.add('is-collapsed');toggle.hidden=false;}
+  const viewer=$('.property-viewer');
+  viewer?.setAttribute('data-lenis-prevent','');
+  viewer?.addEventListener('click',ev=>{if(ev.target===viewer)viewer.close();});
+  viewer?.addEventListener('keydown',ev=>{if(['ArrowLeft','ArrowRight'].includes(ev.key)){ev.preventDefault();chooseGallery(Number(viewer.dataset.index||0)+(ev.key==='ArrowLeft'?-1:1));}});
+  let swipeStart=null;
+  viewer?.addEventListener('touchstart',ev=>{swipeStart=ev.touches[0]?.clientX;},{passive:true});
+  viewer?.addEventListener('touchend',ev=>{const end=ev.changedTouches[0]?.clientX;if(swipeStart!=null&&Math.abs(end-swipeStart)>60)chooseGallery(Number(viewer.dataset.index||0)+(end<swipeStart?1:-1));swipeStart=null;},{passive:true});
+ }
+}
+function chooseGallery(index){
+ const thumbnails=$$('[data-gallery]');if(!thumbnails.length)return;
+ const selected=(index+thumbnails.length)%thumbnails.length,thumb=thumbnails[selected],viewer=$('.property-viewer');
+ $('#gallery-main').src=thumb.dataset.gallery;
+ thumbnails.forEach(b=>b.setAttribute('aria-pressed',String(b===thumb)));
+ if(viewer){viewer.dataset.index=String(selected);const image=$('[data-gallery-full]',viewer);image.src=thumb.dataset.gallery;image.alt=$('#gallery-main').alt+' · Foto '+(selected+1);$('[data-gallery-count]',viewer).textContent=(selected+1)+' / '+thumbnails.length;}
 }
 main.addEventListener('click',ev=>{
  const target=ev.target.closest('button');if(!target)return;
  dirty=true;
  if(target.matches('[data-favorite]')){const id=target.dataset.favorite;favorites.has(id)?favorites.delete(id):favorites.add(id);storage.set('favorites',[...favorites]);markFavorites();}
- if(target.matches('[data-gallery]')){$('#gallery-main').src=target.dataset.gallery;$$('[data-gallery]').forEach(b=>b.setAttribute('aria-pressed',String(b===target)));}
+ if(target.matches('[data-gallery]'))chooseGallery($$('[data-gallery]').indexOf(target));
+ if(target.matches('[data-gallery-open]'))$('.property-viewer')?.showModal();
+ if(target.matches('[data-gallery-close]'))$('.property-viewer')?.close();
+ if(target.matches('[data-gallery-step]'))chooseGallery(Number($('.property-viewer').dataset.index||0)+Number(target.dataset.galleryStep));
+ if(target.matches('[data-description-toggle]')){const expanded=target.getAttribute('aria-expanded')!=='true';target.setAttribute('aria-expanded',String(expanded));$('#property-description').classList.toggle('is-collapsed',!expanded);target.textContent=expanded?'Leer menos':'Leer descripción completa';}
  if(target.matches('[data-print]')){const checklist=target.closest('[data-checklist]');$$('[data-checklist]').forEach(el=>el.classList.toggle('print-selected',el===checklist));window.print();}
  if(target.matches('[data-next],[data-back]')){const f=target.closest('form'),step=Number(f.dataset.currentStep);if(target.matches('[data-back]'))setStep(f,step-1);else if(validateStep(f))setStep(f,step+1);}
 });

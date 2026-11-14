@@ -27,3 +27,9 @@ Los números se conservan como destinos de WhatsApp, pero la interfaz muestra bo
 La landing del propietario inspira la comparativa de Vender: precio, compradores, alcance, negociación, trámites y atención. Comprar y Rentar adaptan ese formato al acompañamiento ya descrito por Confort4. No se importan garantías de precio, plazos ni testimonios ficticios. Se usa gris neutro, negro y rojo KW.
 
 La captura de Google facilitada por el propietario el 13 de noviembre de 2026 muestra 5.0/5 con 21 opiniones. Se publica el fragmento visible de Armando Camacho, 5 estrellas, con nombre y texto conservados; el resto del perfil no fue accesible por bloqueo de Google. La cifra lleva fecha de consulta y el enlace abre la búsqueda del perfil en Maps. No es una sincronización automática.
+
+## Reseñas proporcionadas en texto y fichas de propiedades
+
+El propietario facilitó los textos de las 21 reseñas de Google, todas con cinco estrellas. Se conservan nombres, idioma y redacción; los textos con «Más» o puntos suspensivos se marcan como fragmentos y no se completan. Se eliminan únicamente controles de interfaz, etiquetas Local Guide y fechas relativas. La valoración global sigue siendo la captura fechada, sin sincronización automática.
+
+Las fichas presentan todas las fotos del inventario (sin el límite anterior de 12), visor modal con teclado y navegación táctil, precio y datos disponibles, descripción expandible y contacto directo con Alberto. Se omiten datos de superficie o características ausentes; la ubicación enlaza a la zona publicada, sin inventar una dirección exacta.
