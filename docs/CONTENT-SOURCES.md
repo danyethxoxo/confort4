@@ -21,3 +21,9 @@ El correo público de contacto no cambia el destinatario de las notificaciones d
 En la revisión posterior del 13 de noviembre, el propietario confirmó que las fotos de comunidad corresponden a cuando Alberto y Renata se hicieron CAPPERS en su primer año de ingresar a KW Premier. También confirmó el reconocimiento nacional como Novatos del Año en las fotos vestidos de amarillo. Se integran `IMG_9333.JPG` e `IMG_9344.JPG`, optimizadas como WebP. No se deduce ni se publica un año calendario para el premio.
 
 Los números se conservan como destinos de WhatsApp, pero la interfaz muestra botones «Contáctame». La oficina y el correo permanecen en el footer. Se retira el bloque de contacto repetido de Quiénes somos y el icono de WhatsApp del header se sustituye por «Contáctanos».
+
+## Comparativas de servicios y Google
+
+La landing del propietario inspira la comparativa de Vender: precio, compradores, alcance, negociación, trámites y atención. Comprar y Rentar adaptan ese formato al acompañamiento ya descrito por Confort4. No se importan garantías de precio, plazos ni testimonios ficticios. Se usa gris neutro, negro y rojo KW.
+
+La captura de Google facilitada por el propietario el 13 de noviembre de 2026 muestra 5.0/5 con 21 opiniones. Se publica el fragmento visible de Armando Camacho, 5 estrellas, con nombre y texto conservados; el resto del perfil no fue accesible por bloqueo de Google. La cifra lleva fecha de consulta y el enlace abre la búsqueda del perfil en Maps. No es una sincronización automática.

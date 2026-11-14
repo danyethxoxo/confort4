@@ -14,7 +14,7 @@ const articleRoutes=Object.fromEntries(content.posts.filter(p=>p.published).map(
 const propertyRoutes=Object.fromEntries(properties.map(p=>[p.id,'inmueble-'+p.id+'.html']));
 write('dist/routes.mjs','export const articleRoutes='+JSON.stringify(articleRoutes)+';\nexport const propertyRoutes='+JSON.stringify(propertyRoutes)+';\n');
 write('supabase/functions/confort4-site/content-validation.mjs',read('dist/content-validation.mjs'));
-const {renderPage,e,contactDetails}=await import('../dist/ui.mjs');
+const {renderPage,e,contactDetails,googleReviewModule}=await import('../dist/ui.mjs');
 const bundle={content,properties,reviews:[],revision:1};
 const origin='https://danyethxoxo.github.io/confort4/';
 const header=read('templates/header.html').replace('href="https://wa.me/525527477538" target="_blank" rel="noopener">Hablemos','href="index.html#contacto">Hablemos').replace('href="index.html#propiedades"','href="propiedades.html"').replace('<div class="header-social"','<a href="blog.html">Blog</a><div class="header-social"');
@@ -28,15 +28,15 @@ for(const [file,page,title,params={}] of routes){
  const property=page==='property'&&properties.find(p=>p.id===params.id);
  const description=post?.excerpt||'Confort4: acompañamiento inmobiliario para comprar, vender y rentar en Ciudad de México.';
  const image=post?.cover||content.home.photo;
- const main=['review','privacy'].includes(page)?read('templates/'+file+'-main.html'):page==='admin'?admin:renderPage(bundle,page,params);
+ const main=['review','privacy'].includes(page)?read('templates/'+file+'-main.html')+(page==='review'?googleReviewModule(content):''):page==='admin'?admin:renderPage(bundle,page,params);
  const jsonld=post?{'@context':'https://schema.org','@type':'BlogPosting',headline:post.title,description:post.excerpt,dateModified:post.updated,author:{'@type':'Organization',name:post.author},publisher:{'@type':'Organization',name:'Confort4'},image:origin+image,url:origin+file+'.html'}:page==='home'?{'@context':'https://schema.org','@type':'RealEstateAgent',name:'Confort4',url:origin,telephone:'+525527477538',email:content.email,address:content.office,areaServed:['Ciudad de México','Estado de México'],image:origin+'assets/confort4.jpg'}:null;
  const indexable=page!=='admin'&&!(['article','property'].includes(page)&&!post&&!property);
  write('dist/'+file+'.html',`<!doctype html><html lang="es-MX"><head>
  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff">
  <title>${page==='home'?'Confort 4':e(title)+' | Confort4'}</title><meta name="description" content="${e(description)}">${!indexable?'<meta name="robots" content="noindex,nofollow">':`<link rel="canonical" href="${origin+file+'.html'}">`}
  <meta property="og:title" content="${e(title)} | Confort4"><meta property="og:description" content="${e(description)}"><meta property="og:type" content="${post?'article':'website'}"><meta property="og:image" content="${origin+image}">
- ${page==='home'?'<script src="motion-boot.js?v=20261113reload"></script>':''}<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="assets/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="styles.css?v=20261113kwccc"><link rel="stylesheet" href="modules.css?v=20261113kwccc"><link rel="stylesheet" href="identity.css?v=20261113menu-rojo"><link rel="stylesheet" href="motion.css?v=20261113menu-rojo">
- <script src="form-config.js"></script><script type="module" src="${page==='admin'?'admin.mjs':'site.mjs'}?v=20261113menu-rojo"></script>${jsonld?'<script type="application/ld+json">'+JSON.stringify(jsonld).replaceAll('<','\\u003c')+'</script>':''}</head>
+ ${page==='home'?'<script src="motion-boot.js?v=20261113reload"></script>':''}<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="assets/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="styles.css?v=20261113kwccc"><link rel="stylesheet" href="modules.css?v=20261113kwccc"><link rel="stylesheet" href="identity.css?v=20261113servicios"><link rel="stylesheet" href="motion.css?v=20261113servicios">
+ <script src="form-config.js"></script><script type="module" src="${page==='admin'?'admin.mjs':'site.mjs'}?v=20261113servicios"></script>${jsonld?'<script type="application/ld+json">'+JSON.stringify(jsonld).replaceAll('<','\\u003c')+'</script>':''}</head>
  <body data-page="${page}" data-route-id="${e(params.id||'')}" data-route-slug="${e(params.slug||'')}"><a class="skip" href="#contenido">Saltar al contenido</a>${(page==='home'?header.replace('class="header"','class="header over-hero"'):header).replaceAll('href="'+file+'.html"','href="'+file+'.html" aria-current="page"')}<main id="contenido">${main}</main>${footer}<script type="application/json" id="site-data">${JSON.stringify(bundle).replaceAll('<','\\u003c')}</script></body></html>`);
 }
 write('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+routes.filter(([file])=>!['admin','articulo','propiedad'].includes(file)).map(([file])=>'<url><loc>'+origin+file+'.html</loc></url>').join('')+'</urlset>');

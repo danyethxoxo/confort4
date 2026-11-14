@@ -121,14 +121,50 @@
         "label": "Profeco: aspectos a revisar en una operación de vivienda usada",
         "url": "https://www.gob.mx/profeco/documentos/antes-de-comprar-casa-usada-informate"
       },
-      "imageAlt": "Alberto y Renata Flores, equipo Confort4"
+      "imageAlt": "Alberto y Renata Flores, equipo Confort4",
+      "comparison": {
+        "title": "Vender por tu cuenta. Vender con un equipo.",
+        "soloLabel": "Vender por tu cuenta",
+        "rows": [
+          [
+            "El precio",
+            "Definir el precio sin referencias suficientes.",
+            "Valuación sin costo con datos de tu zona."
+          ],
+          [
+            "Los compradores",
+            "Atender consultas y visitas sin un filtro previo.",
+            "Revisamos el interés y las posibilidades de compra."
+          ],
+          [
+            "El alcance",
+            "Publicar un anuncio y dar seguimiento por tu cuenta.",
+            "Promoción profesional y difusión en la red Keller Williams."
+          ],
+          [
+            "La negociación",
+            "Comparar y negociar propuestas por tu cuenta.",
+            "Te acompañamos a negociar precio, plazos y condiciones."
+          ],
+          [
+            "Los trámites",
+            "Organizar documentos y coordinar a cada parte.",
+            "Te guiamos y coordinamos el proceso hasta la firma."
+          ],
+          [
+            "Tu tranquilidad",
+            "Resolver mensajes, visitas y dudas en tus tiempos.",
+            "Trato directo con Alberto y Renata durante el proceso."
+          ]
+        ]
+      }
     },
     {
       "id": "comprar",
       "title": "Comprar con claridad, elegir con confianza.",
       "shortTitle": "Comprar",
       "image": "assets/interior.jpg",
-      "intro": "Una propiedad tiene que hacer sentido para tu vida y para tu presupuesto. La búsqueda empieza por tus prioridades, no por una lista interminable de anuncios.",
+      "intro": "Tu próximo hogar o inversión empieza por tus prioridades. Alberto y Renata te ayudan a filtrar opciones en CDMX y Estado de México, organizar visitas y revisar las condiciones de compra, desde la búsqueda hasta la entrega.",
       "cta": "Quiero asesoría para comprar",
       "sections": [
         {
@@ -146,6 +182,10 @@
         {
           "title": "De la oferta a la entrega",
           "text": "Una vez que encuentras una opción, hay que ordenar las condiciones de compra, los tiempos y la documentación. Mantener claridad sobre cada compromiso reduce confusiones antes de firmar o realizar pagos."
+        },
+        {
+          "title": "Un equipo contigo, de principio a fin",
+          "text": "Tienes trato directo con Alberto y Renata para ordenar las opciones, coordinar visitas y dar seguimiento a tus preguntas. El respaldo de la red Keller Williams complementa la búsqueda; cada propuesta se revisa según lo que necesitas y puedes destinar a la compra."
         }
       ],
       "benefitsTitle": "La diferencia de buscar acompañado",
@@ -155,10 +195,46 @@
         "Acompañamiento durante la oferta y la negociación.",
         "Coordinación de las siguientes etapas con las partes involucradas."
       ],
-      "closing": "Cuéntanos cómo imaginas tu próximo espacio. Te ayudamos a convertir esa idea en una búsqueda concreta en CDMX.",
+      "closing": "Cuéntanos qué espacio buscas, en qué zona y con qué presupuesto. Alberto o Renata te ayudarán a definir los siguientes pasos en CDMX y Estado de México.",
       "source": {
         "label": "Profeco: antes de comprar una casa usada",
         "url": "https://www.gob.mx/profeco/documentos/antes-de-comprar-casa-usada-informate"
+      },
+      "comparison": {
+        "title": "Tu próximo hogar, con una búsqueda más clara.",
+        "soloLabel": "Buscar por tu cuenta",
+        "rows": [
+          [
+            "Las opciones",
+            "Revisar anuncios sin un criterio común.",
+            "Filtramos propiedades según tu zona, presupuesto y prioridades."
+          ],
+          [
+            "El presupuesto",
+            "Comparar únicamente el precio anunciado.",
+            "Te ayudamos a identificar gastos y condiciones por revisar."
+          ],
+          [
+            "Las visitas",
+            "Coordinar horarios y preguntas con distintos contactos.",
+            "Organizamos visitas y damos seguimiento a tus dudas."
+          ],
+          [
+            "La oferta",
+            "Negociar sin comparar todas las condiciones.",
+            "Revisamos contigo precio, forma de pago y tiempos."
+          ],
+          [
+            "Los documentos",
+            "Identificar por tu cuenta qué información falta.",
+            "Organizamos la información y su revisión con los especialistas."
+          ],
+          [
+            "La entrega",
+            "Dar seguimiento a los acuerdos por separado.",
+            "Acompañamiento desde la búsqueda hasta la firma y la entrega."
+          ]
+        ]
       }
     },
     {
@@ -166,7 +242,7 @@
       "title": "Una buena renta funciona para las dos partes.",
       "shortTitle": "Rentar",
       "image": "assets/home-detail.jpg",
-      "intro": "Acompañamos tanto a quien ofrece una propiedad como a quien busca un lugar para vivir. Expectativas claras desde el inicio ayudan a construir una mejor relación de arrendamiento.",
+      "intro": "Alberto y Renata acompañan tanto a quien pone su propiedad en renta como a quien busca un nuevo hogar en CDMX y Estado de México. Promoción o búsqueda, visitas, condiciones y entrega: cada parte del proceso con atención directa.",
       "cta": "Quiero asesoría para rentar",
       "audiences": [
         {
@@ -200,6 +276,14 @@
         {
           "title": "¿Por qué hacerlo con asesoría?",
           "text": "Un asesor puede organizar la búsqueda o promoción, coordinar visitas y facilitar la comunicación. También ayuda a identificar preguntas pendientes para que arrendador e inquilino sepan qué están acordando."
+        },
+        {
+          "title": "Si vas a poner tu propiedad en renta",
+          "text": "Revisamos las referencias de la zona y las características del inmueble para definir una propuesta de renta. Organizamos su presentación, promoción y visitas, y revisamos la información de los interesados según los requisitos acordados."
+        },
+        {
+          "title": "Si estás buscando dónde vivir",
+          "text": "Partimos de tu presupuesto, ubicación y necesidades. Filtramos opciones, organizamos las visitas y aclaramos los requisitos y conceptos incluidos para que puedas comparar antes de elegir."
         }
       ],
       "benefitsTitle": "Acompañamiento para una relación más clara",
@@ -213,6 +297,42 @@
       "source": {
         "label": "Profeco: proceso para rentar casa o departamento",
         "url": "https://www.gob.mx/profeco/documentos/proceso-para-rentar-casa-o-departamento?state=published"
+      },
+      "comparison": {
+        "title": "Una renta con acuerdos claros, desde el inicio.",
+        "soloLabel": "Gestionar por tu cuenta",
+        "rows": [
+          [
+            "La búsqueda",
+            "Atender anuncios o solicitudes sin filtros definidos.",
+            "Ordenamos opciones o interesados según las condiciones del proyecto."
+          ],
+          [
+            "Las visitas",
+            "Coordinar consultas y horarios por separado.",
+            "Organizamos las visitas y el seguimiento."
+          ],
+          [
+            "Las condiciones",
+            "Descubrir diferencias al avanzar en la operación.",
+            "Aclaramos renta, depósito, mantenimiento y requisitos desde el inicio."
+          ],
+          [
+            "La documentación",
+            "Reunir y revisar la información sin una guía.",
+            "Coordinamos la documentación y la revisión que corresponda."
+          ],
+          [
+            "Los acuerdos",
+            "Resolver dudas sobre plazos y responsabilidades al final.",
+            "Facilitamos la comunicación antes de firmar."
+          ],
+          [
+            "La entrega",
+            "Dejar el estado y los accesorios sin registro.",
+            "Te ayudamos a documentar el estado del inmueble y su entrega."
+          ]
+        ]
       }
     }
   ],
@@ -544,5 +664,19 @@
     }
   ],
   "email": "confort4.bienesraices@kwmexico.mx",
-  "office": "San Francisco 25, Int. 201, Col. Del Valle Norte, Benito Juárez, CDMX, C.P. 03103"
+  "office": "San Francisco 25, Int. 201, Col. Del Valle Norte, Benito Juárez, CDMX, C.P. 03103",
+  "googleReviews": {
+    "url": "https://www.google.com/maps/search/?api=1&query=Confort%204%20by%20Keller%20Williams%20Premier",
+    "checkedAt": "2026-11-13",
+    "rating": 5,
+    "total": 21,
+    "items": [
+      {
+        "name": "Armando Camacho",
+        "rating": 5,
+        "excerpt": true,
+        "message": "Gracias al trabajo tan profesional de Albert ahora tenemos la casa de nuestros sueños todo acompañamiento y seguimiento fueron fundamental para cerrar la operación. Muchas gracias Albert por todo."
+      }
+    ]
+  }
 }
