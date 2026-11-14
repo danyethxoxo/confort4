@@ -1,5 +1,5 @@
-﻿import {renderPage} from './ui.mjs?v=20261114tarjetas';
-import {initializeReferenceMotion} from './reference-motion.mjs?v=20261114tarjetas';
+﻿import {renderPage} from './ui.mjs?v=20261114mascara';
+import {initializeReferenceMotion} from './reference-motion.mjs?v=20261114mascara';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
 if(page==='home'&&location.hash==='#contacto'){const destination=new URL('contacto.html',location.href);destination.search=location.search;location.replace(destination.href);}
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;
@@ -114,8 +114,8 @@ async function moveReview(carousel,direction){
  const visible=slides.filter(slide=>!slide.hidden),reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  if(reduced||!visible[0]?.animate){showReviewGroup(carousel,next);return;}
  carousel.dataset.animating='true';carousel.setAttribute('aria-busy','true');const buttons=$$('[data-review-direction]',carousel);buttons.forEach(button=>button.disabled=true);
- const fold=(cards,enter)=>cards.map((card,i)=>{const origin=(i%2===0)===(direction>0)?'left center':'right center';card.style.transformOrigin=origin;const folded={opacity:0,transform:'perspective(900px) rotateY('+(direction*65)+'deg) scaleX(.3)'};const flat={opacity:1,transform:'perspective(900px) rotateY(0deg) scaleX(1)'};return card.animate(enter?[folded,flat]:[flat,folded],{duration:enter?260:170,delay:i*35,easing:'cubic-bezier(.2,.7,.3,1)',fill:'both'});});
- try{const out=fold(visible,false);await Promise.all(out.map(animation=>animation.finished.catch(()=>{})));showReviewGroup(carousel,next);out.forEach(animation=>animation.cancel());const incoming=slides.filter(slide=>!slide.hidden),animations=fold(incoming,true);await Promise.all(animations.map(animation=>animation.finished.catch(()=>{})));animations.forEach(animation=>animation.cancel());}finally{slides.forEach(slide=>slide.style.removeProperty('transform-origin'));carousel.dataset.animating='false';carousel.removeAttribute('aria-busy');buttons.forEach(button=>button.disabled=false);}
+ const wipe=(cards,enter)=>cards.map((card,i)=>card.animate(enter?[{clipPath:'inset(0 0 0 100%)',transform:'translateX(24px)'},{clipPath:'inset(0 0 0 0)',transform:'translateX(0)'}]:[{clipPath:'inset(0 0 0 0)',transform:'translateX(0)'},{clipPath:'inset(0 100% 0 0)',transform:'translateX(-16px)'}],{duration:enter?460:160,delay:i*(enter?60:20),easing:'cubic-bezier(.16,1,.3,1)',fill:'both'}));
+ try{const out=wipe(visible,false);await Promise.all(out.map(animation=>animation.finished.catch(()=>{})));showReviewGroup(carousel,next);out.forEach(animation=>animation.cancel());const incoming=slides.filter(slide=>!slide.hidden),animations=wipe(incoming,true);await Promise.all(animations.map(animation=>animation.finished.catch(()=>{})));animations.forEach(animation=>animation.cancel());}finally{carousel.dataset.animating='false';carousel.removeAttribute('aria-busy');buttons.forEach(button=>button.disabled=false);}
 }
 function updateThumbArrows(track){const wrapper=track.closest('.property-thumbnail-carousel');if(!wrapper)return;$('[data-thumbs-direction="-1"]',wrapper).disabled=track.scrollLeft<=2;$('[data-thumbs-direction="1"]',wrapper).disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-2;}
 window.addEventListener('resize',()=>{$$('.review-carousel').forEach(carousel=>showReviewGroup(carousel,Number(carousel.dataset.reviewIndex||0)));$$('.property-gallery-thumbs').forEach(updateThumbArrows);},{passive:true});

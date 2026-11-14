@@ -63,3 +63,7 @@ Google reviews are a manual single-review carousel with counter, arrows and swip
 ## Review panels and property controls refinement
 
 Reviews use three equal 390px cards on desktop, two on tablet and one on mobile. Navigation folds cards in sequence and respects reduced motion. Overflowing review text opens in a native dialog, preserving the supplied text. Property cover resets inherited padding/borders, embeds Regresar, and uses thumbnail arrows with hidden scrollbar. The contact card keeps only its WhatsApp action and association. Maps embed the published neighborhood as an approximate location. The seller checklist is removed from Vender only.
+
+## Horizontal review mask and service accordions
+
+The owner clarified that accordion means the existing image mask reveal, horizontally from right to left. Review navigation now uses clip-path wipes with a small horizontal settle, without perspective or folding. Cards use KW red #b40101 and white text/stars. Service guidance and FAQ accordions share 17px regular summaries, 16px body text, 42px headings (34px mobile), consistent row spacing and column alignment across Vender, Rentar and Comprar.
