@@ -34,4 +34,4 @@ The owner requested this step to change color only. Preserve Nivara composition,
 
 ### Owner-supplied palette reference
 
-The November 13 reference pins KW red #b40101, main gray #999999, light gray #cccccc, medium gray #666666, black #000000 and white #ffffff. Use medium gray for secondary text; main gray is for controls and non-text details, not small body copy. Neutral #f4f4f4 surfaces and #eeeeee review cards are light tints of the same achromatic scale. Review panels must be visibly neutral gray with no beige, olive or green cast.
+The November 13 reference pins KW red #b40101, main gray #999999, light gray #cccccc, medium gray #666666, black #000000 and white #ffffff. Use medium gray for secondary text; main gray is for controls and non-text details, not small body copy. Neutral #f4f4f4 section surfaces remain; review cards use the exact light gray #cccccc from the owner-supplied palette. Review panels must be visibly neutral gray with no beige, olive or green cast.

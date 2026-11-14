@@ -10,7 +10,7 @@
   --gray-main: #999999;
   --gray-light: #cccccc;
   --gray-medium: #666666;
-  --surface-muted: #eeeeee;
+  --surface-muted: var(--gray-light);
   --ink: #000000;
   --muted: #666666;
   --paper: #fff;
