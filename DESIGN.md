@@ -31,3 +31,7 @@ Reduced-motion preferences remove spatial transitions and smooth scrolling. The 
 ## KW palette - November 13, 2026
 
 The owner requested this step to change color only. Preserve Nivara composition, typography, photographs and motion. Use white #ffffff as the main canvas, neutral gray #f4f4f4 for alternate surfaces, near-black #151515 for text and dark surfaces, #626262 for secondary text, and #d8d8d8 for separators. The sole action accent is KW red #b40101, with #8f0000 for hover/pressed states and errors. Buttons have white text on red. Photo overlays use neutral black; photos keep their original colors. The Confort4 header mark is black on light surfaces and white over photographs, without the previous moss filter. Apply the same roles to forms, menus, selection, focus, catalog, blog and existing admin UI. The administrative feature redesign remains a later step.
+
+### Owner-supplied palette reference
+
+The November 13 reference pins KW red #b40101, main gray #999999, light gray #cccccc, medium gray #666666, black #000000 and white #ffffff. Use medium gray for secondary text; main gray is for controls and non-text details, not small body copy. Neutral #f4f4f4 surfaces and #eeeeee review cards are light tints of the same achromatic scale. Review panels must be visibly neutral gray with no beige, olive or green cast.
