@@ -22,7 +22,7 @@ for(const file of pages){
 }
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const homeMain=home.match(/<main[^>]*>([\s\S]*?)<\/main>/)[1];
-if(/class="(?:intent-section|journal-module|reviews-module|review-form-layout|contact-form-section)/.test(homeMain)||/data-kind="(?:contact|review)"/.test(homeMain))throw Error('Homepage contains retired modules');
+if(/class="(?:intent-section|journal-module|review-form-layout|contact-form-section)/.test(homeMain)||/data-kind="(?:contact|review)"/.test(homeMain))throw Error('Homepage contains retired modules');
 const contact=fs.readFileSync(path.join(root,'contacto.html'),'utf8');
 if(!contact.includes('data-kind="contact"')||!home.includes('href="contacto.html"')||!home.includes('href="resena.html"'))throw Error('Missing dedicated contact/review flow');
 if(/alberto\.webp|renata\.webp/.test(home.match(/<main[^>]*>([\s\S]*?)<\/main>/)[1]))throw Error('Advisor photos belong on the team page only');

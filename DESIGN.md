@@ -55,3 +55,7 @@ The latest owner request removes the intents/services accordion, blog, contact f
 ## Property detail and Google reviews
 
 Keep the approved typography, KW palette and square editorial photography. Property pages now use a full-width photo, complete thumbnail strip, native accessible fullscreen viewer, concise facts and an advisor sidebar. Missing data stays omitted. Google reviews use a responsive three/two/one-column neutral-gray grid, retaining owner-supplied text and fragment attribution. The next admin iteration must edit these fields without exposing layout controls.
+
+## Owner revision: carousel and association
+
+Google reviews are a manual single-review carousel with counter, arrows and swipe, present on Home and Reviews. Property pages adopt the full-width photographic hero and white overlaid title/price used by featured inventory. The contact card represents Confort4 using the supplied white-background team portrait and property-specific WhatsApp messages. KW Premier appears beside the Home team statement, team introduction, property contact cards and footer, labelled Asociados a.

@@ -1,5 +1,5 @@
-﻿import {renderPage} from './ui.mjs?v=20261113fichas-resenas';
-import {initializeReferenceMotion} from './reference-motion.mjs?v=20261113fichas-resenas';
+﻿import {renderPage} from './ui.mjs?v=20261114carrusel';
+import {initializeReferenceMotion} from './reference-motion.mjs?v=20261114carrusel';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
 if(page==='home'&&location.hash==='#contacto'){const destination=new URL('contacto.html',location.href);destination.search=location.search;location.replace(destination.href);}
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;
@@ -70,6 +70,13 @@ function initSelects(){
 }
 function init(){
  initializeReferenceMotion(main);
+ $$('.review-carousel').forEach(carousel=>{
+  carousel.dataset.reviewIndex='0';carousel.tabIndex=0;
+  carousel.addEventListener('keydown',event=>{if(event.target===carousel&&['ArrowLeft','ArrowRight'].includes(event.key)){event.preventDefault();moveReview(carousel,event.key==='ArrowLeft'?-1:1);}});
+  let start=null;
+  carousel.addEventListener('touchstart',event=>{start=event.touches[0]?.clientX;},{passive:true});
+  carousel.addEventListener('touchend',event=>{const end=event.changedTouches[0]?.clientX;if(start!=null&&Math.abs(end-start)>60)moveReview(carousel,end<start?1:-1);start=null;},{passive:true});
+ });
  if(preview){$$('a[href]',main).forEach(a=>{const url=new URL(a.getAttribute('href'),location.href);if(url.origin===location.origin&&url.pathname.endsWith('.html')&&!/\/(admin|privacidad|resena)\.html$/.test(url.pathname)){url.searchParams.set('preview','1');a.href=url.href;}});$$('button[type=submit]',main).forEach(b=>{b.disabled=true;b.textContent='Formulario en vista previa';});}
  $$('[data-checklist]').forEach(s=>{const saved=storage.get('checklist-'+s.dataset.checklist,[]);$$('[data-check]',s).forEach((c,i)=>c.checked=!!saved[i]);updateChecklist(s);});
  $$('form[data-kind=contact]').forEach(form=>{form.noValidate=true;const requested=params.interes;if([...form.elements.interest.options].some(o=>o.value===requested))form.elements.interest.value=requested;preference(form);zoneLabel(form);if(params.duda){form.elements.message.value='Consulta desde el blog: '+params.duda.slice(0,200); }if(form.matches('.project-form'))setStep(form,0);});
@@ -96,9 +103,11 @@ function chooseGallery(index){
  thumbnails.forEach(b=>b.setAttribute('aria-pressed',String(b===thumb)));
  if(viewer){viewer.dataset.index=String(selected);const image=$('[data-gallery-full]',viewer);image.src=thumb.dataset.gallery;image.alt=$('#gallery-main').alt+' · Foto '+(selected+1);$('[data-gallery-count]',viewer).textContent=(selected+1)+' / '+thumbnails.length;}
 }
+function moveReview(carousel,direction){const slides=$$('[data-review-slide]',carousel);if(!slides.length)return;const index=(Number(carousel.dataset.reviewIndex||0)+direction+slides.length)%slides.length;carousel.dataset.reviewIndex=String(index);slides.forEach((slide,i)=>slide.hidden=i!==index);$('[data-review-count]',carousel).textContent=(index+1)+' / '+slides.length;}
 main.addEventListener('click',ev=>{
  const target=ev.target.closest('button');if(!target)return;
  dirty=true;
+ if(target.matches('[data-review-direction]'))moveReview(target.closest('.review-carousel'),Number(target.dataset.reviewDirection));
  if(target.matches('[data-favorite]')){const id=target.dataset.favorite;favorites.has(id)?favorites.delete(id):favorites.add(id);storage.set('favorites',[...favorites]);markFavorites();}
  if(target.matches('[data-gallery]'))chooseGallery($$('[data-gallery]').indexOf(target));
  if(target.matches('[data-gallery-open]'))$('.property-viewer')?.showModal();

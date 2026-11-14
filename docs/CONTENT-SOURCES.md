@@ -33,3 +33,5 @@ La captura de Google facilitada por el propietario el 13 de noviembre de 2026 mu
 El propietario facilitó los textos de las 21 reseñas de Google, todas con cinco estrellas. Se conservan nombres, idioma y redacción; los textos con «Más» o puntos suspensivos se marcan como fragmentos y no se completan. Se eliminan únicamente controles de interfaz, etiquetas Local Guide y fechas relativas. La valoración global sigue siendo la captura fechada, sin sincronización automática.
 
 Las fichas presentan todas las fotos del inventario (sin el límite anterior de 12), visor modal con teclado y navegación táctil, precio y datos disponibles, descripción expandible y contacto directo con Alberto. Se omiten datos de superficie o características ausentes; la ubicación enlaza a la zona publicada, sin inventar una dirección exacta.
+
+La foto conjunta con fondo blanco procede de I:/Imágenes/confort 4/KW de FOTO DE PERFIL.png y se publica optimizada como alberto-renata-contacto.webp. Los enlaces de WhatsApp incluyen tipo, operación y ubicación disponible en el inventario, el texto Confort4.com solicitado y la URL real de la ficha. No se deduce una calle o número ausentes.
