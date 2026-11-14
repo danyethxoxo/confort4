@@ -1,5 +1,5 @@
-﻿import {renderPage} from './ui.mjs?v=20261114proyecto';
-import {initializeReferenceMotion} from './reference-motion.mjs?v=20261114proyecto';
+﻿import {renderPage,googleReviewModule} from './ui.mjs?v=20261114resenas-fechas';
+import {initializeReferenceMotion} from './reference-motion.mjs?v=20261114resenas-fechas';
 const config=window.CONFORT4_FORMS,main=document.querySelector('main'),page=document.body.dataset.page,params=Object.fromEntries(new URLSearchParams(location.search));
 if(page==='home'&&location.hash==='#contacto'){const destination=new URL('contacto.html',location.href);destination.search=location.search;location.replace(destination.href);}
 params.id=params.id||document.body.dataset.routeId;params.slug=params.slug||document.body.dataset.routeSlug;
@@ -68,8 +68,7 @@ function initSelects(){
   select.classList.add('select-native');select.tabIndex=-1;select.setAttribute('aria-hidden','true');select.after(wrapper);wrapper.append(button,list);sync();
  });
 }
-function init(){
- initializeReferenceMotion(main);
+function initReviews(){
  $$('.review-carousel').forEach(carousel=>{
   carousel.dataset.reviewIndex='0';carousel.tabIndex=0;showReviewGroup(carousel,0);
   carousel.addEventListener('keydown',event=>{if(event.target===carousel&&['ArrowLeft','ArrowRight'].includes(event.key)){event.preventDefault();moveReview(carousel,event.key==='ArrowLeft'?-1:1);}});
@@ -77,8 +76,13 @@ function init(){
   carousel.addEventListener('touchstart',event=>{start=event.touches[0]?.clientX;},{passive:true});
   carousel.addEventListener('touchend',event=>{const end=event.changedTouches[0]?.clientX;if(start!=null&&Math.abs(end-start)>60)moveReview(carousel,end<start?1:-1);start=null;},{passive:true});
  });
- $$('.property-gallery-thumbs').forEach(track=>{track.addEventListener('scroll',()=>updateThumbArrows(track),{passive:true});updateThumbArrows(track);});
  $$('.review-full-dialog').forEach(dialog=>{dialog.setAttribute('data-lenis-prevent','');dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});});
+}
+function init(){
+ initializeReferenceMotion(main);
+ initReviews();
+ $$('.property-gallery-thumbs').forEach(track=>{track.addEventListener('scroll',()=>updateThumbArrows(track),{passive:true});updateThumbArrows(track);});
+
  if(preview){$$('a[href]',main).forEach(a=>{const url=new URL(a.getAttribute('href'),location.href);if(url.origin===location.origin&&url.pathname.endsWith('.html')&&!/\/(admin|privacidad|resena)\.html$/.test(url.pathname)){url.searchParams.set('preview','1');a.href=url.href;}});$$('button[type=submit]',main).forEach(b=>{b.disabled=true;b.textContent='Formulario en vista previa';});}
  $$('[data-checklist]').forEach(s=>{const saved=storage.get('checklist-'+s.dataset.checklist,[]);$$('[data-check]',s).forEach((c,i)=>c.checked=!!saved[i]);updateChecklist(s);});
  $$('form[data-kind=contact]').forEach(form=>{form.noValidate=true;const requested=params.interes;if([...form.elements.interest.options].some(o=>o.value===requested))form.elements.interest.value=requested;preference(form);zoneLabel(form);if(params.duda){form.elements.message.value='Consulta desde el blog: '+params.duda.slice(0,200); }if(form.matches('.project-form'))setStep(form,0);});
@@ -123,7 +127,7 @@ main.addEventListener('click',ev=>{
  const target=ev.target.closest('button');if(!target)return;
  dirty=true;
  if(target.matches('[data-review-direction]'))moveReview(target.closest('.review-carousel'),Number(target.dataset.reviewDirection));
- if(target.matches('[data-review-read]')){const figure=target.closest('figure'),dialog=target.closest('.google-reviews').querySelector('.review-full-dialog');$('h2',dialog).textContent=$('figcaption',figure).firstChild.textContent;$('blockquote',dialog).textContent=$('blockquote',figure).textContent;dialog.showModal();}
+ if(target.matches('[data-review-read]')){const figure=target.closest('figure'),dialog=target.closest('.google-reviews').querySelector('.review-full-dialog');$('h2',dialog).textContent=$('figcaption',figure).firstChild.textContent;$('blockquote',dialog).textContent=$('blockquote',figure).textContent;$('[data-review-source]',dialog).textContent=$('figcaption span',figure).textContent+($('time',figure)?' ? '+$('time',figure).textContent:'');dialog.showModal();}
  if(target.matches('[data-review-close]'))target.closest('dialog').close();
  if(target.matches('[data-thumbs-direction]')){const track=$('.property-gallery-thumbs',target.closest('.property-thumbnail-carousel'));track.scrollBy({left:Number(target.dataset.thumbsDirection)*track.clientWidth*.85,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
  if(target.matches('[data-favorite]')){const id=target.dataset.favorite;favorites.has(id)?favorites.delete(id):favorites.add(id);storage.set('favorites',[...favorites]);markFavorites();}
@@ -171,6 +175,17 @@ function heroSignature(hero) {
   hero.querySelector('.hero-aside p')?.textContent.trim()
  ]);
 }
+let reviewSignature=JSON.stringify([bundle.content.googleReviews,bundle.reviews||[]]),lastReviewRefresh=0,reviewRefreshPending=false;
+function syncReviews(next){
+ const signature=JSON.stringify([next.content.googleReviews,next.reviews||[]]);if(signature===reviewSignature)return;
+ const current=$('.google-reviews');if(!current||$('.review-full-dialog[open]',current)||$('.review-carousel',current)?.dataset.animating==='true')return;
+ const template=document.createElement('template');template.innerHTML=googleReviewModule(next.content,next.reviews||[]);current.replaceWith(template.content);reviewSignature=signature;initReviews();
+}
+async function refreshLatestReviews(){
+ if(reviewRefreshPending||document.hidden||Date.now()-lastReviewRefresh<30000)return;reviewRefreshPending=true;
+ try{const response=await fetch(config.endpoint.replace('confort4-forms','confort4-site'),{method:'POST',headers:{'Content-Type':'application/json',apikey:config.publishableKey,Authorization:'Bearer '+config.anonKey},body:JSON.stringify({action:'public'}),signal:AbortSignal.timeout(15000)});if(!response.ok)return;const next=await response.json();if(next.content?.home){syncReviews(next);lastReviewRefresh=Date.now();}}
+ catch{}finally{reviewRefreshPending=false;}
+}
 if (!preview) {
  fetch(config.endpoint.replace('confort4-forms','confort4-site'), {
   method:'POST',
@@ -181,8 +196,9 @@ if (!preview) {
   if (!response.ok) throw Error('feed');
   const live = await response.json();
   if (!live.content?.home) throw Error('feed');
-  bundle = live;
-  if (dirty || ['privacy','review'].includes(page)) return;
+  bundle = live;lastReviewRefresh=Date.now();
+  if(page==='review'||(page==='home'&&dirty)){syncReviews(live);return;}
+  if (dirty || page==='privacy') return;
   const previousHero = main.querySelector('.hero');
   const signature = heroSignature(previousHero);
   const template = document.createElement('template');
@@ -204,3 +220,5 @@ if (!preview) {
  });
 }
 
+
+if(!preview&&['home','review'].includes(page)){window.setInterval(refreshLatestReviews,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshLatestReviews();});}

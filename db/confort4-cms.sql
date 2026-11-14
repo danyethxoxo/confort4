@@ -27,12 +27,21 @@ returns jsonb language sql security invoker set search_path='' as $$
  and (p_query='' or concat_ws(' ',p.titulo,p.colonia,p.municipio,p.asesor_nombre) ilike '%'||left(p_query,100)||'%')
  order by p.updated_at desc limit 40) t;
 $$;
-create function public.confort4_public_site()
-returns jsonb language sql security invoker set search_path='' as $$
- select jsonb_build_object('content',c.published,'revision',c.revision,'properties',public.confort4_inventory(), 'reviews',
- (select coalesce(jsonb_agg(jsonb_build_object('id',s.id,'name',s.payload->>'name','rating',(s.payload->>'rating')::integer,'message',s.payload->>'message')),'[]') from (select * from confort4.submissions where kind='review' and moderation_status='approved' and payload->>'publishConsent'='true' order by created_at desc limit 12) s))
- from confort4.content c where c.id=true;
+create or replace function public.confort4_public_site()
+returns jsonb language sql set search_path='' as $$
+ select jsonb_build_object(
+  'content',c.published,'revision',c.revision,
+  'properties',public.confort4_inventory(),
+  'reviews',(select coalesce(jsonb_agg(jsonb_build_object(
+   'id',s.id,'name',s.payload->>'name','rating',(s.payload->>'rating')::integer,
+   'message',s.payload->>'message','created_at',s.created_at
+  ) order by s.created_at desc,s.id desc),'[]'::jsonb)
+  from (select id,payload,created_at from confort4.submissions
+   where kind='review' and moderation_status='approved' and payload->>'publishConsent'='true'
+   order by created_at desc,id desc limit 100) s)
+ ) from confort4.content c where c.id=true;
 $$;
+
 
 create function public.confort4_admin(p_user uuid,p_action text,p_args jsonb default '{}')
 returns jsonb language plpgsql security invoker set search_path='' as $$

@@ -67,3 +67,7 @@ Reviews use three equal 390px cards on desktop, two on tablet and one on mobile.
 ## Horizontal review mask and service accordions
 
 The owner clarified that accordion means the existing image mask reveal, horizontally from right to left. Review navigation now uses clip-path wipes with a small horizontal settle, without perspective or folding. Cards use KW red #b40101 and white text/stars. Service guidance and FAQ accordions share 17px regular summaries, 16px body text, 42px headings (34px mobile), consistent row spacing and column alignment across Vender, Rentar and Comprar.
+
+## Unified dated reviews
+
+Nuestras reseñas combines imported Google reviews and approved, publication-consented site reviews, newest first. On Home it immediately follows featured properties. Google month/year dates are approximate, derived from relative dates supplied by the owner on November 13; site timestamps are exact. The published feed refreshes the review section every minute while visible and when the page becomes visible, without replacing the review form or other user input. Open dialogs and active transitions are not interrupted.

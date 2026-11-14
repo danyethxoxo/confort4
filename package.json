@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "node scripts/build-pages.mjs",
-    "test": "node scripts/build-pages.mjs && node scripts/check-pages.mjs && node --experimental-strip-types tests/forms.test.mjs && node --experimental-strip-types tests/site.test.mjs && node tests/ui.test.mjs && node tests/motion.test.mjs"
+    "test": "node scripts/build-pages.mjs && node scripts/check-pages.mjs && node --experimental-strip-types tests/forms.test.mjs && node --experimental-strip-types tests/site.test.mjs && node tests/reviews.test.mjs && node tests/ui.test.mjs && node tests/motion.test.mjs"
   },
   "repository": {
     "type": "git",

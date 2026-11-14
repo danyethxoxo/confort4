@@ -545,3 +545,5 @@ body:is([data-page=vender],[data-page=rentar],[data-page=comprar]) :is(.service-
  body:is([data-page=vender],[data-page=rentar],[data-page=comprar]) :is(.service-reading,.faq-module) h2 { font-size:34px; }
 }
 @media(prefers-reduced-motion:reduce) { body:is([data-page=vender],[data-page=rentar],[data-page=comprar]) :is(.service-reading,.faq-module) summary svg { transition:none; } }
+.google-reviews .review-grid figure { grid-template-rows:20px minmax(0,1fr) 28px 64px; }
+.google-reviews .review-grid figcaption time { display:block; color:#fff; font-size:12px; line-height:1.4; }

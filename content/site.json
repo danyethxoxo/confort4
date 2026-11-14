@@ -675,127 +675,169 @@
         "name": "Armando Camacho",
         "message": "Gracias al trabajo tan profesional de Albert ahora tenemos la casa de nuestros sueños todo acompañamiento y seguimiento fueron fundamental para cerrar la operación. Muchas gracias Albert por todo.",
         "rating": 5,
-        "excerpt": true
+        "excerpt": true,
+        "date": "2026-11",
+        "dateApproximate": true
       },
       {
         "name": "Miriam González",
         "message": "Gran profesionalismo! Renata nos acompañó en todo el proceso, siempre atenta a cualquier duda que tuviéramos y con la mejor disposición para resolver dudas y ayudarnos en el proceso. La recomiendo mucho",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Elizabeth Garcia",
         "message": "Agradezco mucho como es que se me dió la atención y hasta la fecha en cualquier duda Renata contesta y está al pendiente, tarde meses en poder encontrar el departamento ideal y ella a la primera me atendió y dió toda la información. En verdad gracias por el seguimiento, recomiendo completamente.",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-06",
+        "dateApproximate": true
       },
       {
         "name": "Kaeri Dania Ruiz",
         "message": "Estoy muy contenta con el apoyo y acompañamiento que nos fue brindado por Albert, siempre muy comprometido y atento para tener el mejor proceso posible, cubriendo todas nuestras necesidades y guiándonos desde principio hasta el cierre. Nuevamente muchas gracias Albert!!",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "layzon bazan",
         "message": "Excelente equipo. Todo muy transparente y rápido. Los mejores en servicios inmobiliarios. Vendimos el depa en mucho menos tiempo del esperado gracias a su apoyo.",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Guillermo Sherwell",
         "message": "La atención que brindan desde el primer contacto refleja la seriedad y profesionalismo con el que manejan sus procesos de compra, venta y renta. Más que ser un simple intermediario, ofrecen un servicio integral de asesoría y acompañamiento.…",
         "rating": 5,
-        "excerpt": true
+        "excerpt": true,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Alejandra Almeida",
         "message": "La experiencia de trabajar con Renata y Alberto fue excelente!\n\nDesde el primer momento demostraron mucho profesionalismo, fueron muy claros y…",
         "rating": 5,
-        "excerpt": true
+        "excerpt": true,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Thiago Paiva",
         "message": "Albert es un excelente broker, nos ayudó a vender nuestro depa y siempre nos apoyó con todo lo necesario. Tuvimos varios temas al largo de la venta, pero Albert logró encontrar formas de resolverlos y logramos finalizar la venta. Recomiendo mucho!",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Erica Lais Hoeveler",
         "message": "Alberto nos ayudó muchísimo con la venta de nuestro departamento. Conoce mucho el mercado y siempre muy atencioso. Muchas gracias Alberto!!",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Berenice González",
         "message": "Buscaba un departamento para rentar y entre tantos anuncios e información pude dar con Renata, quien hizo que toda la experiencia de lo que implica rentar fuera mucho más sencillo y fluido. Dio respuesta rápida a nuestra solicitud,…",
         "rating": 5,
-        "excerpt": true
+        "excerpt": true,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Beto Villalobos",
         "message": "Confort 4 es sin duda alguna la mejor opción en el mundo inmobiliario.\n\nNo solamente por la comodidad y tranquilidad de saber que te encuentras en manos…",
         "rating": 5,
-        "excerpt": true
+        "excerpt": true,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Cinthia Ortega",
         "message": "Excelente asesoría inmobiliaria. ¡Los mejores! Buscan lo mejor para ambas partes, con ética y profesionalismo.",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Victor M. Islas",
         "message": "Renata y Alberto son los mejores brokers inmobiliarios del México!! Me han ayudado en distintas ocasiones a comprar, y también a rentar!! Trato super profesional, personalizado y humano!!   Me encanto que cada uno tiene su especialidad. Ren…",
         "rating": 5,
-        "excerpt": true
+        "excerpt": true,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "yenyfer alejandra",
         "message": "Tuve una excelente experiencia con Keller Williams Premier. Sin duda, fue lo mejor para mí y mi familia haberlos encontrado.\nDesde el inicio nos brindaron un trato muy profesional, cercano y transparente.…",
         "rating": 5,
-        "excerpt": true
+        "excerpt": true,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Raquel Lae",
         "message": "Renata and Albert are truly outstanding real estate professionals. I spent several months searching for an apartment to buy, and after meeting them, I was finally able to find my ideal place to live. They are attentive, organized, genuinely…",
         "rating": 5,
-        "excerpt": true
+        "excerpt": true,
+        "date": "2026-05",
+        "dateApproximate": true
       },
       {
         "name": "Hugo Corripio",
         "message": "100% Profesionales! Sin duda un gran opción para tus operaciones inmobiliarias",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-06",
+        "dateApproximate": true
       },
       {
         "name": "Bryan A",
         "message": "Buena actitud y servicio de ambos, me gusto el seguimiento que me dieron.",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-06",
+        "dateApproximate": true
       },
       {
         "name": "Emilio Martínez",
         "message": "Tanto Renata como Alberto son muy profesionales, llevan sus operaciones con total entrega, los procesos son muy claros y el acompañamiento es total.",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-06",
+        "dateApproximate": true
       },
       {
         "name": "María Fernanda",
         "message": "Son muy profesionales, confiables, los recomiendo 100%",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-06",
+        "dateApproximate": true
       },
       {
         "name": "ilse rodriguez",
         "message": "Excelente atención y profesionalismo , gracias",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-06",
+        "dateApproximate": true
       },
       {
         "name": "ROY KRATOS",
         "message": "Super equipo de Bienes raíces, 100% recomendables",
         "rating": 5,
-        "excerpt": false
+        "excerpt": false,
+        "date": "2026-06",
+        "dateApproximate": true
       }
     ]
   }

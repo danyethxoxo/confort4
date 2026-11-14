@@ -237,15 +237,7 @@ body[data-page=faq] .faq-module { padding-top: 24px; }
 @media(max-width:1000px) { .header.over-hero nav.open { background: rgb(26 42 30 / 94%); color: #fff; border-radius: 8px; } .header:not(.over-hero) nav.open { background: transparent; } }
 
 /* Homepage testimonials immediately follow the selected properties. */
-.featured-section + .reviews-module { padding-top: 60px; padding-bottom: 64px; background: #f4f4f4; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.featured-section + .reviews-module .module-heading { margin-bottom: 30px; }
-.featured-section + .reviews-module .review-grid { grid-template-columns: repeat(auto-fit,minmax(min(100%,300px),1fr)); max-width: 1000px; }
-.featured-section + .reviews-module figure { background: var(--surface-muted); padding: 32px; border: 1px solid #cccccc; border-radius: 12px; }
 .review-demo-label { color: var(--muted); font-size: 11px; letter-spacing: .04em; margin-bottom: 20px; }
-.featured-section + .reviews-module .review-rating { color: #b40101; }
-.featured-section + .reviews-module .review-rating svg { fill: currentColor; }
-.featured-section + .reviews-module blockquote { font-size: clamp(20px,2.1vw,30px); line-height: 1.4; margin: 22px 0; max-width: 46ch; }
-.featured-section + .reviews-module figcaption { font-size: 15px; font-weight: 500; }
 @media(max-width:700px) { .featured-section + .reviews-module { padding-top: 36px; padding-bottom: 40px; } .featured-section + .reviews-module figure { padding: 24px; } }
 /* Navigation hover underline follows the current header color. */
 .header #navigation > a { position: relative; }

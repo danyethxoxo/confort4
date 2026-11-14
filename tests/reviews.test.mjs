@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {JSDOM} from 'jsdom';
+import {combinedReviews,googleReviewModule,renderPage} from '../dist/ui.mjs';
+const content=JSON.parse(fs.readFileSync(new URL('../content/site.json',import.meta.url)));
+const properties=JSON.parse(fs.readFileSync(new URL('../content/inventory.json',import.meta.url)));
+const fresh={name:'Nueva reseña',message:'Mi experiencia',rating:4,created_at:'2026-11-14T19:00:00Z'};
+const rows=combinedReviews(content,[fresh,{...fresh,name:'No aprobada',moderation_status:'pending'},{...fresh,name:'Sin permiso',publishConsent:false},{...fresh,name:'Ejemplo',demo:true}]);
+assert.equal(rows.length,22);assert.equal(rows[0].name,'Nueva reseña');assert.equal(rows[0].source,'site');
+assert(rows.slice(1).every(r=>r.source==='google'&&r.dateApproximate));
+const html=googleReviewModule(content,[{...fresh,name:'<script>privado</script>'}]);
+assert.match(html,/Nuestras reseñas/);assert.match(html,/datetime="2026-11-14T19:00:00Z"/);assert.match(html,/aprox\./);assert(!html.includes('<script>privado'));
+const home=renderPage({content,properties,reviews:[fresh]},'home');
+const document=new JSDOM(home).window.document;
+assert(document.querySelector('#propiedades').nextElementSibling.matches('.google-reviews'));
+console.log('PASS: merged review sources, newest-first dates, consent boundaries, escaped content and homepage order.');
