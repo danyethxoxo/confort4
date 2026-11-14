@@ -278,12 +278,12 @@ html.lenis,html.lenis body { scroll-behavior: auto; }
 @media(min-width:600px) and (max-width:1000px) { .header #navigation.open,.header.over-hero #navigation.open,.header:not(.over-hero) #navigation.open { grid-template-columns: 1fr 1fr; padding: 20px; gap: 5px 20px; } }
 @keyframes nav-glass-arrive { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 @media(prefers-reduced-motion:reduce) { .header #navigation.open { animation: none; } }
-/* White mobile menu with KW action accents. */
+/* Mobile navigation shares the red translucent header palette. */
 @media(max-width:1000px) {
- .header #navigation.open,.header.over-hero #navigation.open,.header:not(.over-hero) #navigation.open { background: rgb(255 255 255 / 96%); color: #b40101; border-color: #cccccc; box-shadow: 0 16px 48px #1f1f1f20; }
- .header.over-hero #navigation.open > a,.header:not(.over-hero) #navigation.open > a,.header.over-hero #navigation.open > a[aria-current],.header:not(.over-hero) #navigation.open > a[aria-current],.header.over-hero #navigation.open .header-social > a,.header:not(.over-hero) #navigation.open .header-social > a { color: #b40101; }
- .header.over-hero #navigation.open > a:hover,.header:not(.over-hero) #navigation.open > a:hover,.header.over-hero #navigation.open > a:focus-visible,.header:not(.over-hero) #navigation.open > a:focus-visible,.header #navigation.open .header-social > a:hover { color: #8f0000; background: #6464640c; }
- .header #navigation.open .header-social { border-top-color: #cccccc; }
+ .header #navigation.open,.header.over-hero #navigation.open,.header:not(.over-hero) #navigation.open { background: rgb(180 1 1 / 84%); color: #fff; border-color: #ffffff38; box-shadow: 0 16px 48px #1f1f1f20; }
+ .header.over-hero #navigation.open > a,.header:not(.over-hero) #navigation.open > a,.header.over-hero #navigation.open > a[aria-current],.header:not(.over-hero) #navigation.open > a[aria-current],.header.over-hero #navigation.open .header-social > a,.header:not(.over-hero) #navigation.open .header-social > a { color: #fff; }
+ .header.over-hero #navigation.open > a:hover,.header:not(.over-hero) #navigation.open > a:hover,.header.over-hero #navigation.open > a:focus-visible,.header:not(.over-hero) #navigation.open > a:focus-visible,.header #navigation.open .header-social > a:hover { color: #fff; background: #ffffff12; }
+ .header #navigation.open .header-social { border-top-color: #ffffff35; }
 }
 
 /* Contact is the primary header action; the established scroll states stay intact. */
@@ -294,7 +294,7 @@ html.lenis,html.lenis body { scroll-behavior: auto; }
 .header:not(.over-hero):has(nav.open) .brand-logo { filter:brightness(0) invert(1); }
 .header:not(.over-hero) #navigation > a.header-contact-button:is(:hover,:focus-visible),.header.over-hero #navigation > a.header-contact-button:is(:hover,:focus-visible) { color:#fff; background:#ffffff14; }
 @media(min-width:1001px) and (max-width:1250px) { .header #navigation > a.header-contact-button { font-size:13px; padding-inline:16px; } }
-@media(max-width:1000px) { .header #navigation.open > a.header-contact-button,.header #navigation.open > a.header-contact-button:is(:hover,:focus-visible) { grid-column:1/-1; width:100%; margin:10px 0 0; background:transparent; border-color:var(--red); color:var(--red); } }
+@media(max-width:1000px) { .header #navigation.open > a.header-contact-button,.header #navigation.open > a.header-contact-button:is(:hover,:focus-visible) { grid-column:1/-1; width:100%; margin:10px 0 0; background:transparent; border-color:currentColor; color:#fff; } }
 
 @media(prefers-reduced-motion:reduce) { [data-motion-image] .motion-image-parallax { transform:none!important; } [data-team-text] .motion-line { transform:none!important; } }
 .header .nav-interest { position:relative; }
@@ -324,3 +324,8 @@ html.lenis,html.lenis body { scroll-behavior: auto; }
  .header .nav-interest-links a { min-height:44px; padding:12px 16px; font-size:17px; line-height:1.25; }
 }
 @media(prefers-reduced-motion:reduce) { .header .nav-interest-toggle svg,.header .nav-interest-links a { transition:none; } .header .nav-interest-links { animation:none; } }
+
+.header #navigation .header-social > a { position:relative; }
+.header #navigation .header-social > a::after { content:""; position:absolute; left:9px; right:9px; bottom:4px; height:1px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .2s ease; pointer-events:none; }
+.header #navigation .header-social > a:is(:hover,:focus-visible)::after { transform:scaleX(1); }
+@media(prefers-reduced-motion:reduce) { .header #navigation .header-social > a::after { transition:none; } }
