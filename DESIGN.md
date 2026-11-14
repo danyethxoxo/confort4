@@ -38,4 +38,4 @@ The November 13 reference pins KW red #b40101, main gray #999999, light gray #cc
 
 ### Red header
 
-The owner requested a solid KW red #b40101 header on November 13. Keep navigation text, icons and the Confort4 logo white at the hero, after scrolling and on interior pages. The mobile menu uses the same red/white treatment; hover uses the darker brand red and keyboard focus remains white.
+The owner requested a KW red #b40101 header on November 13, retaining the original scroll transition. Keep navigation text, icons and the Confort4 logo white at the hero, after scrolling and on interior pages. Over the homepage hero the header stays transparent. After scrolling below the photo and on interior pages, use 88% red with an 18px backdrop blur. The mobile menu uses the same red/white treatment with 96% red and blur; hover uses the darker brand red and keyboard focus remains white.
