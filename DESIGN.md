@@ -8,7 +8,7 @@ Full-viewport photographic facade hero. Large, light Inter Tight headlines sit a
 
 A large introduction highlights words as it enters the viewport. Services use two columns of image-backed accordions. Actual listings occupy a panoramic carousel with manual navigation, automatic advance and pause. Narrative process content alternates photographs and text. A sticky photographic scene unfolds on scroll. The journal uses a lead article and supporting stories. FAQ and a visible single-view contact form complete the homepage. The footer carries oversized Confort4 typography and official KW Premier affiliation.
 
-White and warm off-white surfaces, black type, thin rules and restrained warm action accents follow the selected reference. Large photographs have square edges. Inter Tight is self-hosted with its OFL license. Advisor photographs remain on the team page.
+White and neutral gray surfaces, black type, thin rules and KW red action accents follow the owner's November palette request while preserving the selected reference's composition. Large photographs have square edges. Inter Tight is self-hosted with its OFL license. Advisor photographs remain on the team page.
 
 ## Function and motion
 
@@ -27,3 +27,7 @@ The public reference CSS and component parameters were inspected. Hero framing r
 The 260svh photographic scene expands from a 30% vertical and 35% horizontal crop, using a 20% horizontal crop below 810px. Its scrim, copy, rules and 1600ms counters enter in sequence. Counters use the actual public catalog, team and service data. Seven scattered photographs have independent vertical drift at desktop widths, with a static two-column gallery below 1200px. Process text fills one measured line at a time. Footer letters reveal progressively with scroll.
 
 Reduced-motion preferences remove spatial transitions and smooth scrolling. The existing hero stays connected during public-feed hydration so its opening sequence does not replay.
+
+## KW palette - November 13, 2026
+
+The owner requested this step to change color only. Preserve Nivara composition, typography, photographs and motion. Use white #ffffff as the main canvas, neutral gray #f4f4f4 for alternate surfaces, near-black #151515 for text and dark surfaces, #626262 for secondary text, and #d8d8d8 for separators. The sole action accent is KW red #b40101, with #8f0000 for hover/pressed states and errors. Buttons have white text on red. Photo overlays use neutral black; photos keep their original colors. The Confort4 header mark is black on light surfaces and white over photographs, without the previous moss filter. Apply the same roles to forms, menus, selection, focus, catalog, blog and existing admin UI. The administrative feature redesign remains a later step.
