@@ -285,3 +285,14 @@ html.lenis,html.lenis body { scroll-behavior: auto; }
  .header.over-hero #navigation.open > a:hover,.header:not(.over-hero) #navigation.open > a:hover,.header.over-hero #navigation.open > a:focus-visible,.header:not(.over-hero) #navigation.open > a:focus-visible,.header #navigation.open .header-social > a:hover { color: #8f0000; background: #6464640c; }
  .header #navigation.open .header-social { border-top-color: #cccccc; }
 }
+
+/* The header keeps the KW red/white identity in every viewport and scroll state. */
+#inicio.header,#inicio.header.over-hero,#inicio.header:has(nav.open) { background:var(--red); color:#fff; backdrop-filter:none; -webkit-backdrop-filter:none; mix-blend-mode:normal; box-shadow:none; border-bottom:1px solid #ffffff33; }
+#inicio.header .brand-logo { filter:brightness(0) invert(1); }
+#inicio.header #navigation > a,#inicio.header #navigation > a[aria-current],#inicio.header #navigation .header-social > a,#inicio.header .menu-toggle { color:#fff; }
+#inicio.header #navigation > a:hover,#inicio.header #navigation > a:focus-visible,#inicio.header #navigation .header-social > a:hover,#inicio.header #navigation .header-social > a:focus-visible,#inicio.header .menu-toggle:hover { color:#fff; background:var(--red-hover); }
+#inicio.header a:focus-visible,#inicio.header button:focus-visible { outline-color:#fff; }
+@media(max-width:1000px) {
+ #inicio.header #navigation.open { background:var(--red); color:#fff; border-color:#ffffff55; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }
+ #inicio.header #navigation.open .header-social { border-top-color:#ffffff55; }
+}

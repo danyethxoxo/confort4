@@ -35,3 +35,7 @@ The owner requested this step to change color only. Preserve Nivara composition,
 ### Owner-supplied palette reference
 
 The November 13 reference pins KW red #b40101, main gray #999999, light gray #cccccc, medium gray #666666, black #000000 and white #ffffff. Use medium gray for secondary text; main gray is for controls and non-text details, not small body copy. Neutral #f4f4f4 section surfaces remain; review cards use the exact light gray #cccccc from the owner-supplied palette. Review panels must be visibly neutral gray with no beige, olive or green cast.
+
+### Red header
+
+The owner requested a solid KW red #b40101 header on November 13. Keep navigation text, icons and the Confort4 logo white at the hero, after scrolling and on interior pages. The mobile menu uses the same red/white treatment; hover uses the darker brand red and keyboard focus remains white.
