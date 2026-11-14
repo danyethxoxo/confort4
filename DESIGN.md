@@ -59,3 +59,7 @@ Keep the approved typography, KW palette and square editorial photography. Prope
 ## Owner revision: carousel and association
 
 Google reviews are a manual single-review carousel with counter, arrows and swipe, present on Home and Reviews. Property pages adopt the full-width photographic hero and white overlaid title/price used by featured inventory. The contact card represents Confort4 using the supplied white-background team portrait and property-specific WhatsApp messages. KW Premier appears beside the Home team statement, team introduction, property contact cards and footer, labelled Asociados a.
+
+## Review panels and property controls refinement
+
+Reviews use three equal 390px cards on desktop, two on tablet and one on mobile. Navigation folds cards in sequence and respects reduced motion. Overflowing review text opens in a native dialog, preserving the supplied text. Property cover resets inherited padding/borders, embeds Regresar, and uses thumbnail arrows with hidden scrollbar. The contact card keeps only its WhatsApp action and association. Maps embed the published neighborhood as an approximate location. The seller checklist is removed from Vender only.
