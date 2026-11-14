@@ -311,6 +311,7 @@ html.lenis,html.lenis body { scroll-behavior: auto; }
 @media(min-width:1001px) {
  .header #navigation { align-self:stretch; align-items:center; }
  .header .nav-interest { align-self:stretch; display:flex; align-items:center; }
+ .header .nav-interest-links { top:calc(100% + 10px); }
  .header:not(.over-hero) .nav-interest-links { background:rgb(180 1 1 / 84%); backdrop-filter:blur(18px) saturate(125%); -webkit-backdrop-filter:blur(18px) saturate(125%); }
 }
 @media(max-width:1000px) {
