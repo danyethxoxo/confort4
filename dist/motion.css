@@ -301,13 +301,18 @@ html.lenis,html.lenis body { scroll-behavior: auto; }
 .header .nav-interest-toggle { display:flex; align-items:center; gap:7px; padding:7px; border:0; border-radius:0; background:transparent; color:inherit; font:inherit; cursor:pointer; white-space:nowrap; }
 .header .nav-interest-toggle svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.5; transition:transform .2s; }
 .header .nav-interest-toggle[aria-expanded=true] svg { transform:rotate(180deg); }
-.header .nav-interest-links { position:absolute; top:calc(100% + 10px); left:0; min-width:120px; display:grid; gap:2px; padding:0; background:transparent; border:0; color:inherit; animation:interest-arrive .16s ease-out; }
+.header .nav-interest-links { position:absolute; top:100%; left:0; min-width:100%; display:grid; gap:0; padding:8px 0; background:transparent; border:0; border-radius:0; color:inherit; animation:interest-arrive .16s ease-out; }
 .header .nav-interest-links::before { content:''; position:absolute; inset:-12px 0 100%; }
 .header .nav-interest-links[hidden] { display:none; }
-.header .nav-interest-links a { display:block; padding:10px 7px; color:inherit; white-space:nowrap; line-height:1.4; text-decoration:none; text-underline-offset:5px; text-decoration-thickness:1px; }
+.header .nav-interest-links a { display:block; padding:10px 12px; color:inherit; white-space:nowrap; line-height:1.4; text-decoration:none; text-underline-offset:5px; text-decoration-thickness:1px; }
 .header .nav-interest-links a:hover,.header .nav-interest-links a:focus-visible { background:transparent; color:inherit; text-decoration:underline; }
 @keyframes interest-arrive { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
 .header .nav-interest-toggle:focus-visible { outline:2px solid currentColor; outline-offset:3px; }
+@media(min-width:1001px) {
+ .header #navigation { align-self:stretch; align-items:center; }
+ .header .nav-interest { align-self:stretch; display:flex; align-items:center; }
+ .header:not(.over-hero) .nav-interest-links { background:rgb(180 1 1 / 84%); backdrop-filter:blur(18px) saturate(125%); -webkit-backdrop-filter:blur(18px) saturate(125%); }
+}
 @media(max-width:1000px) {
  .header #navigation.open .nav-interest-toggle { width:100%; justify-content:space-between; min-height:44px; padding:12px; font-size:17px; }
  .header .nav-interest-links { position:static; min-width:0; margin:0 12px 8px; padding:0 0 0 12px; background:transparent; color:inherit; border:0; }
